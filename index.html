@@ -3,130 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilal EL Haoudar | Développeur Full-Stack</title>
+    <title>Bilal EL Haoudar | Développeur Full-Stack & Ingénieur Logiciel</title>
+    <meta name="description" content="Portfolio de Bilal EL Haoudar, un développeur full-stack et futur ingénieur logiciel basé à Tanger, Maroc. Spécialisé en React, Laravel, Node.js et plus. Découvrez mes projets, compétences et expériences.">
+    <meta name="keywords" content="Bilal EL Haoudar, développeur full-stack, ingénieur logiciel, portfolio, développeur web, React, Laravel, Node.js, Tanger, Maroc, EMSI">
+    <meta name="author" content="Bilal EL Haoudar">
+    <link rel="canonical" href="https://bilaleh.github.io/portfolio" />
+
+    <meta property="og:title" content="Bilal EL Haoudar | Développeur Full-Stack & Ingénieur Logiciel">
+    <meta property="og:description" content="Découvrez le portfolio de Bilal EL Haoudar, un développeur passionné et créatif.">
+    <meta property="og:image" content="https://bilaleh.github.io/portfolio/og-image.png">
+    <meta property="og:url" content="https://bilaleh.github.io/portfolio">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bilal EL Haoudar | Développeur Full-Stack & Ingénieur Logiciel">
+    <meta name="twitter:description" content="Découvrez le portfolio de Bilal EL Haoudar, un développeur passionné et créatif.">
+    <meta name="twitter:image" content="https://bilaleh.github.io/portfolio/og-image.png">
+
+    <link rel="icon" href="https://i.ibb.co/6jwgKYB/White-Clean-Minimalist-Business-Real-Estate-Resume.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/6jwgKYB/White-Clean-Minimalist-Business-Real-Estate-Resume.png">
+    <meta name="theme-color" content="#020617">
+    <meta name="msapplication-TileColor" content="#020617">
+    <meta name="msapplication-TileImage" content="https://i.ibb.co/6jwgKYB/White-Clean-Minimalist-Business-Real-Estate-Resume.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Bilal EL Haoudar">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Bilal EL Haoudar",
+      "url": "https://bilaleh.github.io/portfolio",
+      "jobTitle": "Développeur Full-Stack & Ingénieur en Logiciels",
+       "image": "https://bilaleh.github.io/portfolio/og-image.png",
+      "sameAs": [
+        "https://github.com/BilalEH",
+        "https://www.linkedin.com/in/bilal-el-haoudar/"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Bilal EL Haoudar"
+      },
+      "description": "Développeur full-stack passionné par la création d'applications web modernes et performantes, basé à Tanger, Maroc.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tanger",
+        "addressCountry": "MA"
+      }
+    }
+    </script>
+
+
     <style>
+        /* * ===================================================================
+         * CORE STYLING & THEMES
+         * =================================================================== */
         :root {
-            --bg-color-start: #020617; --bg-color-end: #0f172a;
-            --text-color: #e2e8f0; --text-muted-color: #94a3b8;
-            --card-bg-color: rgba(15, 23, 42, 0.6); --border-color: rgba(51, 65, 85, 0.5);
-            --primary-color: #38bdf8; --primary-color-dark: #0ea5e9;
+            --bg-color-main: #020617;
+            --text-color: #e2e8f0;
+            --text-muted-color: #94a3b8;
+            --card-bg-color: rgba(15, 23, 42, 0.75);
+            --border-color: rgba(51, 65, 85, 0.5);
+            --primary-color: #38bdf8;
+            --primary-color-dark: #0ea5e9;
+            /* New Static Gradient Background */
+            --bg-grid-color: rgba(51, 65, 85, 0.2);
+            --spotlight-color: rgba(14, 165, 233, 0.15);
+            --mouse-x: 50%;
+            --mouse-y: 50%;
         }
         .light-theme {
-            --bg-color-start: #fff7ed; --bg-color-end: #ffedd5;
-            --text-color: #0f172a; --text-muted-color: #475569;
-            --card-bg-color: rgba(255, 255, 255, 0.7); --border-color: rgba(203, 213, 225, 0.8);
-            --primary-color: #f97316; --primary-color-dark: #ea580c;
+            --bg-color-main: #f8fafc;
+            --text-color: #0f172a;
+            --text-muted-color: #475569;
+            --card-bg-color: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(203, 213, 225, 0.8);
+            --primary-color: #2563eb;
+            --primary-color-dark: #1d4ed8;
+            --bg-grid-color: rgba(203, 213, 225, 0.5);
+            --spotlight-color: rgba(96, 165, 250, 0.2);
         }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--bg-color-start), var(--bg-color-end));
-            background-size: 200% 200%;
-            animation: gradient-animation 20s ease infinite;
+            background-color: var(--bg-color-main);
             color: var(--text-color);
+            transition: background-color 0.5s ease;
+            position: relative;
+            overflow-x: hidden;
         }
-        @keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         html[lang="ar"] body { font-family: 'Cairo', sans-serif; }
+
+        /* Interactive Gradient Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image: 
+                radial-gradient(var(--bg-grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(
+                circle 400px at var(--mouse-x) var(--mouse-y),
+                var(--spotlight-color),
+                transparent
+            );
+            transition: background 0.3s ease-out;
+        }
         
-        /* Custom Cursor */
         .cursor-dot, .cursor-outline { display: none; }
         @media (hover: hover) and (pointer: fine) {
             body { cursor: none; }
-            .cursor-dot, .cursor-outline { display: block; pointer-events: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; opacity: 1; transition: opacity 0.3s, transform 0.3s, width 0.3s, height 0.3s; }
+            .cursor-dot, .cursor-outline {
+                display: block; pointer-events: none; position: fixed;
+                top: 0; left: 0; border-radius: 50%; z-index: 9999;
+                will-change: transform;
+            }
             .cursor-dot { width: 8px; height: 8px; background-color: var(--primary-color); }
             .cursor-outline { width: 40px; height: 40px; border: 2px solid var(--primary-color); }
-            body.link-hovered .cursor-outline { opacity: 0; }
-            body.link-hovered .cursor-dot { width: 40px; height: 40px; background-color: var(--primary-color); opacity: 0.2; }
         }
-
-        .preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-color-start); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 1; transition: opacity 0.4s ease-in-out, visibility 0.4s; }
+        .glass-effect { background: var(--card-bg-color); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-color); }
+        .preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-color-main); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 1; transition: opacity 0.5s ease-in-out, visibility 0.5s; }
         .preloader.fade-out { opacity: 0; visibility: hidden; }
         .spinner { width: 50px; height: 50px; border: 5px solid #334155; border-top: 5px solid var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        
-        .glass-effect { background: var(--card-bg-color); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-color); }
-        
-        .interactive-card { transition: transform 0.4s ease; position: relative; overflow: hidden; transform-style: preserve-3d; }
-        .interactive-card:hover { transform: translateY(-8px) scale(1.02) rotateX(5deg); }
-        .interactive-card .glow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 0.5rem; background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.1), transparent 40%); opacity: 0; transition: opacity 0.3s ease; }
-        .interactive-card:hover .glow { opacity: 1; }
-
-        .cert-card { transition: transform 0.3s ease; }
-        .cert-card:hover { transform: translateY(-5px); }
-        .cert-card i { transition: transform 0.3s ease-in-out; }
-        .cert-card:hover i { transform: rotate(15deg) scale(1.1); }
-        
-        .section-title::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 50%; height: 3px; background: linear-gradient(90deg, var(--primary-color), var(--primary-color-dark)); border-radius: 9999px; }
-        html[dir="rtl"] .section-title::after { left: auto; right: 0; }
-        
+        #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--primary-color); width: 0%; z-index: 100; }
+        .section-title { position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(90deg, var(--primary-color), var(--primary-color-dark)); border-radius: 9999px; transition: width 0.3s; }
+        .section-title:hover::after { width: 90px; }
         .text-muted { color: var(--text-muted-color); }
-        .fade-in-element { opacity: 0; transform: translateY(25px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .fade-in-element.is-visible { opacity: 1; transform: translateY(0); }
-        
-        /* Skills Slider */
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        #hero-subtitle .cursor { display: inline-block; width: 3px; height: 1em; background-color: var(--primary-color); animation: blink 0.7s infinite; margin-left: 4px; }
+        @keyframes blink { 50% { opacity: 0; } }
+        #mobile-menu-container { position: fixed; top: 64px; left: 0; right: 0; bottom: 0; z-index: 40; pointer-events: none; }
+        #mobile-menu { transform: translateX(100%); opacity: 0; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s; pointer-events: auto; }
+        html[dir="rtl"] #mobile-menu { transform: translateX(-100%); }
+        body.mobile-menu-open #mobile-menu { transform: translateX(0); opacity: 1; }
+        body.mobile-menu-open #mobile-menu-overlay { opacity: 1; pointer-events: auto; }
+        .nav-link { position: relative; transition: color 0.3s; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background-color: var(--primary-color); transition: width 0.3s ease-out; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: var(--primary-color); }
         @keyframes scroll-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-180px * 14)); } }
         @keyframes scroll-rtl { 0% { transform: translateX(0); } 100% { transform: translateX(calc(180px * 14)); } }
-        .skills-slider { animation-name: scroll-ltr; animation-duration: 60s; animation-timing-function: linear; animation-iteration-count: infinite; display: flex; width: calc(180px * 28); }
+        .skills-slider { animation: scroll-ltr 60s linear infinite; display: flex; width: calc(180px * 28); }
         html[dir="rtl"] .skills-slider { animation-name: scroll-rtl; }
         .skills-track:hover .skills-slider { animation-play-state: paused; }
-        .skill-slide { width: 180px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s; position: relative; }
-        .skill-tooltip { position: absolute; bottom: -25px; background-color: var(--text-color); color: var(--bg-color-start); padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; white-space: nowrap; }
-        .skill-slide:hover .skill-tooltip { opacity: 1; transform: translateY(0); }
-        
-        /* Timeline */
+        .skill-slide { width: 180px; display: flex; align-items: center; justify-content: center; position: relative; }
         .timeline-item { position: relative; padding-bottom: 2rem; padding-left: 2.5rem; }
         html[dir="rtl"] .timeline-item { padding-left: 0; padding-right: 2.5rem; }
         .timeline-item:last-child { padding-bottom: 0; }
-        .timeline-dot { position: absolute; left: 0; top: 0.3rem; width: 1rem; height: 1rem; background-color: var(--primary-color); border-radius: 50%; border: 3px solid var(--bg-color-start); }
+        .timeline-dot { position: absolute; left: 0; top: 0.3rem; width: 1rem; height: 1rem; background-color: var(--primary-color); border-radius: 50%; border: 3px solid var(--bg-color-main); }
         html[dir="rtl"] .timeline-dot { left: auto; right: 0; }
         .timeline-item::before { content: ''; position: absolute; left: 0.45rem; top: 0.3rem; width: 2px; height: 100%; background-color: var(--border-color); }
         html[dir="rtl"] .timeline-item::before { left: auto; right: 0.45rem; }
-
-        /* Animated Mobile Nav */
-        #mobile-menu { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out; }
-        #mobile-menu.is-open { max-height: 500px; opacity: 1; }
-        #mobile-menu.is-open a { animation: slide-in 0.5s forwards; opacity: 0; }
-        @keyframes slide-in { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        html[dir="rtl"] #mobile-menu.is-open a { animation-name: slide-in-rtl; }
-        @keyframes slide-in-rtl { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-
-        /* Scroll Progress Bar */
-        #progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--primary-color); width: 0%; z-index: 100; }
-        
-        .section-divider { height: 1px; width: 50%; margin: 4rem auto; background: linear-gradient(to right, transparent, var(--border-color), transparent); }
-        
-        .interactive-hover { transition: transform 0.2s ease-out; display: inline-block; }
-        .interactive-hover:hover { transform: scale(1.05); }
-
-        /* Contact Popup */
+        .cert-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .cert-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         #contact-popup { transition: opacity 0.3s, visibility 0.3s; }
-        #contact-popup .popup-content { transition: transform 0.4s ease-out; }
-        #contact-popup.is-open .popup-content { transform: scale(1) translateY(0); }
-        
+        #contact-popup.is-open { opacity: 1; visibility: visible; }
+        #contact-popup .popup-content { transition: transform 0.4s ease-out, opacity 0.4s; transform: scale(0.95); opacity: 0; }
+        #contact-popup.is-open .popup-content { transform: scale(1); opacity: 1; }
+        .project-slide { transition: opacity 0.5s ease-in-out; }
     </style>
 </head>
 <body class="antialiased">
-    <div id="progress-bar"></div>
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
+
+    <div id="progress-bar"></div>
     <div id="preloader" class="preloader"><div class="spinner"></div></div>
 
-    <!-- Contact Form Popup -->
     <div id="contact-popup" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4 opacity-0 invisible">
-        <div class="popup-content w-full max-w-lg glass-effect rounded-lg p-8 transform scale-95 -translate-y-10">
+        <div class="popup-content w-full max-w-lg glass-effect rounded-lg p-8">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-2xl font-bold" data-translate="contact_form_title">Contactez-moi</h3>
-                <button id="close-popup" class="w-8 h-8 rounded-full text-muted hover:text-white hover:bg-slate-700/50 transition-colors interactive-hover">&times;</button>
+                <button id="close-popup" class="interactive-hover w-8 h-8 rounded-full text-muted hover:text-white hover:bg-slate-700/50 transition-colors">&times;</button>
             </div>
             <form id="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSeEBPpSqFueROHoehhwvuHq14azpNQkqj95APc0a_dblnyvlw/formResponse" method="POST" target="hidden_iframe" class="space-y-4">
-                <input type="text" name="entry.123456789" placeholder="Nom complet" class="w-full bg-slate-800/50 border border-[var(--border-color)] rounded-md p-3 focus:ring-2 focus:ring-[var(--primary-color)] outline-none" required>
-                <input type="email" name="entry.987654321" placeholder="Adresse e-mail" class="w-full bg-slate-800/50 border border-[var(--border-color)] rounded-md p-3 focus:ring-2 focus:ring-[var(--primary-color)] outline-none" required>
-                <textarea name="entry.112233445" placeholder="Votre message" rows="5" class="w-full bg-slate-800/50 border border-[var(--border-color)] rounded-md p-3 focus:ring-2 focus:ring-[var(--primary-color)] outline-none" required></textarea>
+                <input type="text" name="entry.123456789" placeholder="Nom complet" class="w-full bg-slate-800/50 border border-[var(--border-color)] rounded-md p-3 focus:ring-2 focus:ring-[var(--primary-color)] outline-none interactive-hover" required>
+                <input type="email" name="entry.987654321" placeholder="Adresse e-mail" class="w-full bg-slate-800/50 border border-[var(--border-color)] rounded-md p-3 focus:ring-2 focus:ring-[var(--primary-color)] outline-none interactive-hover" required>
+                <textarea name="entry.112233445" placeholder="Votre message" rows="5" class="w-full bg-slate-800/50 border border-[var(--border-color)] rounded-md p-3 focus:ring-2 focus:ring-[var(--primary-color)] outline-none interactive-hover" required></textarea>
                 <button type="submit" class="w-full bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-bold py-3 rounded-md transition-colors interactive-hover" data-translate="contact_form_send">Envoyer</button>
             </form>
              <div id="form-success-message" class="hidden mt-4 text-center bg-green-500/20 text-green-300 p-3 rounded-md">
@@ -137,118 +213,269 @@
     </div>
     
     <header class="glass-effect sticky top-0 z-50">
-         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-wider interactive-hover">B<span class="text-[var(--primary-color)]">.</span>EH</a>
-            <nav class="hidden md:flex space-x-6 text-sm"><a href="#hero" class="interactive-hover" data-translate="nav_home"></a><a href="#about" class="interactive-hover" data-translate="nav_about"></a><a href="#skills" class="interactive-hover" data-translate="nav_skills"></a><a href="#experience" class="interactive-hover" data-translate="nav_experience"></a><a href="#projects" class="interactive-hover" data-translate="nav_projects"></a><a href="#contact" class="interactive-hover" data-translate="nav_contact"></a></nav>
-            <div class="flex items-center gap-3">
-                <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center text-muted interactive-hover"><i id="theme-icon" class="fas fa-moon"></i></button>
-                <div class="md:hidden relative"><button id="mobile-lang-toggle" class="w-10 h-10 rounded-full flex items-center justify-center text-muted interactive-hover"><i class="fas fa-globe"></i></button><div id="mobile-lang-menu" class="hidden absolute right-0 mt-2 w-28 glass-effect rounded-lg shadow-lg"><a href="#" data-lang="fr" class="lang-option-mobile block px-4 py-2 text-sm text-muted">Français</a><a href="#" data-lang="en" class="lang-option-mobile block px-4 py-2 text-sm text-muted">English</a><a href="#" data-lang="ar" class="lang-option-mobile block px-4 py-2 text-sm text-muted">العربية</a></div></div>
-                <div class="lang-switcher hidden md:flex items-center gap-1 border border-[var(--border-color)] rounded-full p-1"><button data-lang="fr" class="lang-option w-8 h-8 text-sm rounded-full interactive-hover">FR</button><button data-lang="en" class="lang-option w-8 h-8 text-sm rounded-full interactive-hover">EN</button><button data-lang="ar" class="lang-option w-8 h-8 text-sm rounded-full interactive-hover">AR</button></div>
-                <button id="mobile-menu-button" class="md:hidden text-muted w-10 h-10 interactive-hover"><i class="fas fa-bars text-xl"></i></button>
+        <div class="container mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="#" class="interactive-hover text-2xl font-bold tracking-wider">B<span class="text-[var(--primary-color)]">.</span>EH</a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm">
+                <a href="#hero" class="interactive-hover nav-link" data-translate="nav_home"></a>
+                <a href="#about" class="interactive-hover nav-link" data-translate="nav_about"></a>
+                <a href="#services" class="interactive-hover nav-link" data-translate="nav_services"></a>
+                <a href="#skills" class="interactive-hover nav-link" data-translate="nav_skills"></a>
+                <a href="#projects" class="interactive-hover nav-link" data-translate="nav_projects"></a>
+                <a href="#contact" class="interactive-hover nav-link" data-translate="nav_contact"></a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <button id="theme-toggle" class="interactive-hover w-10 h-10 rounded-full flex items-center justify-center text-muted hover:bg-white/10 transition-colors"><i id="theme-icon" class="fas fa-moon"></i></button>
+                <div class="lang-switcher hidden md:flex items-center gap-1 border border-[var(--border-color)] rounded-full p-1">
+                    <button data-lang="fr" class="interactive-hover lang-option w-8 h-8 text-sm rounded-full transition-colors">FR</button>
+                    <button data-lang="en" class="interactive-hover lang-option w-8 h-8 text-sm rounded-full transition-colors">EN</button>
+                    <button data-lang="ar" class="interactive-hover lang-option w-8 h-8 text-sm rounded-full transition-colors">AR</button>
+                </div>
+                <button id="mobile-menu-button" class="interactive-hover md:hidden text-muted w-10 h-10 flex items-center justify-center"><i class="fas fa-bars text-xl"></i></button>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden px-6 pb-4 border-t border-[var(--border-color)]"><a href="#hero" class="block py-2 text-muted" data-translate="nav_home_mobile"></a><a href="#about" class="block py-2 text-muted" data-translate="nav_about_mobile"></a><a href="#skills" class="block py-2 text-muted" data-translate="nav_skills_mobile"></a><a href="#experience" class="block py-2 text-muted" data-translate="nav_experience_mobile"></a><a href="#projects" class="block py-2 text-muted" data-translate="nav_projects_mobile"></a><a href="#contact" class="block py-2 text-muted" data-translate="nav_contact_mobile"></a></div>
     </header>
 
-    <main class="container mx-auto px-6">
+    <div id="mobile-menu-container">
+        <div id="mobile-menu-overlay" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
+        <div id="mobile-menu" class="h-full w-64 ml-auto glass-effect p-6 flex flex-col space-y-4">
+            <a href="#hero" class="nav-link-mobile text-muted" data-translate="nav_home_mobile"></a>
+            <a href="#about" class="nav-link-mobile text-muted" data-translate="nav_about_mobile"></a>
+            <a href="#services" class="nav-link-mobile text-muted" data-translate="nav_services_mobile"></a>
+            <a href="#skills" class="nav-link-mobile text-muted" data-translate="nav_skills_mobile"></a>
+            <a href="#projects" class="nav-link-mobile text-muted" data-translate="nav_projects_mobile"></a>
+            <a href="#contact" class="nav-link-mobile text-muted" data-translate="nav_contact_mobile"></a>
+            <div class="border-t border-[var(--border-color)] pt-4 space-y-2">
+                 <div class="flex justify-around items-center border border-[var(--border-color)] rounded-full p-1">
+                    <button data-lang="fr" class="lang-option-mobile w-10 h-10 text-sm rounded-full transition-colors">FR</button>
+                    <button data-lang="en" class="lang-option-mobile w-10 h-10 text-sm rounded-full transition-colors">EN</button>
+                    <button data-lang="ar" class="lang-option-mobile w-10 h-10 text-sm rounded-full transition-colors">AR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <main class="container mx-auto px-6 relative z-10">
         <section id="hero" class="min-h-screen flex flex-col justify-center section-content">
-             <div class="fade-in-element">
+             <div class="reveal-on-scroll">
                 <p class="text-[var(--primary-color)] text-lg font-medium" data-translate="hero_greeting"></p>
-                <h1 class="text-4xl md:text-7xl font-extrabold mt-2 interactive-hover" data-translate="hero_name"></h1>
-                <h2 class="text-3xl md:text-5xl font-bold text-muted mt-3 interactive-hover" data-translate="hero_subtitle"></h2>
+                <h1 class="text-4xl md:text-7xl font-extrabold mt-2" data-translate="hero_name"></h1>
+                <h2 id="hero-subtitle" class="text-3xl md:text-5xl font-bold text-muted mt-3 h-24 md:h-16">
+                    <span class="text-content"></span><span class="cursor"></span>
+                </h2>
                 <p class="max-w-xl mt-6 text-muted" data-translate="hero_description"></p>
-                <div class="mt-8 flex gap-4"><a href="#projects" class="bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 interactive-hover" data-translate="hero_button_projects"></a><button class="contact-trigger border border-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 interactive-hover" data-translate="hero_button_contact"></button></div>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="#projects" class="interactive-hover bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300" data-translate="hero_button_projects"></a>
+                    <a href="/path-to-your-cv.pdf" download class="interactive-hover border border-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300" data-translate="hero_button_cv"></a>
+                </div>
              </div>
         </section>
 
-        <!-- All other sections remain the same -->
-        <div class="section-divider"></div>
-
         <section id="about" class="py-24 section-content">
-             <div class="fade-in-element">
-                <h2 class="section-title relative inline-block text-3xl font-bold mb-8" data-translate="about_title"></h2>
-                <div class="grid md:grid-cols-3 gap-8 items-center">
-                    <div class="md:col-span-2 text-muted space-y-4"><p data-translate="about_p1"></p></div>
-                    <div class="space-y-6 glass-effect p-6 rounded-lg"><h3 class="font-bold text-lg mb-2 text-[var(--text-color)]" data-translate="about_qualities"></h3><ul class="space-y-1 text-muted list-disc list-inside"><li data-translate="quality1"></li><li data-translate="quality2"></li><li data-translate="quality3"></li><li data-translate="lang1"></li></ul></div>
+            <h2 class="section-title text-center text-3xl font-bold mb-12 reveal-on-scroll" data-translate="about_title"></h2>
+            <div class="grid md:grid-cols-5 gap-12 items-center reveal-on-scroll" style="transition-delay: 150ms;">
+                <div class="md:col-span-3 text-muted space-y-4">
+                    <p data-translate="about_p1"></p>
+                </div>
+                <div class="md:col-span-2 flex flex-col items-center">
+                    <img 
+
+                        src="https://i.ibb.co/b5FgQxkn/1702836263913.png" 
+                        alt="Bilal EL Haoudar portrait" 
+                        width="800" height="800" 
+                        class="rounded-lg shadow-lg mb-2" 
+                        loading="lazy"
+                        style="object-fit:cover;max-width:100%;height:auto; background:repeating-linear-gradient(0deg, #62baf366, #62baf340, transparent 100%)"
+                    >
+                    <span class="text-sm text-muted">Bilal EL Haoudar</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-24 section-content">
+            <h2 class="section-title text-center text-3xl font-bold mb-12 reveal-on-scroll" data-translate="services_title"></h2>
+            <div class="grid md:grid-cols-3 gap-8 reveal-on-scroll" style="transition-delay: 150ms;">
+                <div class="glass-effect p-6 rounded-lg text-center interactive-hover">
+                    <i class="fas fa-code text-4xl text-[var(--primary-color)] mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2" data-translate="service1_title"></h3>
+                    <p class="text-muted text-sm" data-translate="service1_desc"></p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg text-center interactive-hover">
+                    <i class="fas fa-palette text-4xl text-[var(--primary-color)] mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2" data-translate="service2_title"></h3>
+                    <p class="text-muted text-sm" data-translate="service2_desc"></p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg text-center interactive-hover">
+                    <i class="fas fa-server text-4xl text-[var(--primary-color)] mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2" data-translate="service3_title"></h3>
+                    <p class="text-muted text-sm" data-translate="service3_desc"></p>
                 </div>
             </div>
         </section>
 
         <section id="skills" class="py-24 section-content overflow-hidden">
-             <div class="fade-in-element"><h2 class="section-title relative inline-block text-3xl font-bold mb-12 text-center mx-auto" data-translate="skills_title"></h2></div>
-            <div class="skills-track w-full inline-block whitespace-nowrap">
+            <h2 class="section-title text-center text-3xl font-bold mb-12 reveal-on-scroll" data-translate="skills_title"></h2>
+            <div class="skills-track w-full inline-block whitespace-nowrap reveal-on-scroll" style="transition-delay: 150ms;">
                 <div class="skills-slider">
-                    <div class="skill-slide"><i class="devicon-javascript-plain text-6xl text-muted"></i><span class="skill-tooltip">JavaScript</span></div><div class="skill-slide"><i class="devicon-react-original text-6xl text-muted"></i><span class="skill-tooltip">React.js</span></div><div class="skill-slide"><i class="devicon-nodejs-plain text-6xl text-muted"></i><span class="skill-tooltip">Node.js</span></div><div class="skill-slide"><i class="devicon-laravel-plain text-6xl text-muted"></i><span class="skill-tooltip">Laravel</span></div><div class="skill-slide"><i class="devicon-php-plain text-6xl text-muted"></i><span class="skill-tooltip">PHP</span></div><div class="skill-slide"><i class="devicon-python-plain text-6xl text-muted"></i><span class="skill-tooltip">Python</span></div><div class="skill-slide"><i class="devicon-mysql-plain text-6xl text-muted"></i><span class="skill-tooltip">MySQL</span></div><div class="skill-slide"><i class="devicon-git-plain text-6xl text-muted"></i><span class="skill-tooltip">Git</span></div><div class="skill-slide"><i class="devicon-figma-plain text-6xl text-muted"></i><span class="skill-tooltip">Figma</span></div><div class="skill-slide"><i class="devicon-java-plain text-6xl text-muted"></i><span class="skill-tooltip">Java</span></div><div class="skill-slide"><i class="devicon-cplusplus-plain text-6xl text-muted"></i><span class="skill-tooltip">C++</span></div><div class="skill-slide"><i class="devicon-html5-plain text-6xl text-muted"></i><span class="skill-tooltip">HTML5</span></div><div class="skill-slide"><i class="devicon-css3-plain text-6xl text-muted"></i><span class="skill-tooltip">CSS3</span></div><div class="skill-slide"><i class="devicon-mongodb-plain text-6xl text-muted"></i><span class="skill-tooltip">MongoDB</span></div>
-                    <div class="skill-slide"><i class="devicon-javascript-plain text-6xl text-muted"></i><span class="skill-tooltip">JavaScript</span></div><div class="skill-slide"><i class="devicon-react-original text-6xl text-muted"></i><span class="skill-tooltip">React.js</span></div><div class="skill-slide"><i class="devicon-nodejs-plain text-6xl text-muted"></i><span class="skill-tooltip">Node.js</span></div><div class="skill-slide"><i class="devicon-laravel-plain text-6xl text-muted"></i><span class="skill-tooltip">Laravel</span></div><div class="skill-slide"><i class="devicon-php-plain text-6xl text-muted"></i><span class="skill-tooltip">PHP</span></div><div class="skill-slide"><i class="devicon-python-plain text-6xl text-muted"></i><span class="skill-tooltip">Python</span></div><div class="skill-slide"><i class="devicon-mysql-plain text-6xl text-muted"></i><span class="skill-tooltip">MySQL</span></div><div class="skill-slide"><i class="devicon-git-plain text-6xl text-muted"></i><span class="skill-tooltip">Git</span></div><div class="skill-slide"><i class="devicon-figma-plain text-6xl text-muted"></i><span class="skill-tooltip">Figma</span></div><div class="skill-slide"><i class="devicon-java-plain text-6xl text-muted"></i><span class="skill-tooltip">Java</span></div><div class="skill-slide"><i class="devicon-cplusplus-plain text-6xl text-muted"></i><span class="skill-tooltip">C++</span></div><div class="skill-slide"><i class="devicon-html5-plain text-6xl text-muted"></i><span class="skill-tooltip">HTML5</span></div><div class="skill-slide"><i class="devicon-css3-plain text-6xl text-muted"></i><span class="skill-tooltip">CSS3</span></div><div class="skill-slide"><i class="devicon-mongodb-plain text-6xl text-muted"></i><span class="skill-tooltip">MongoDB</span></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-javascript-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-react-original text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-nodejs-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-laravel-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-php-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-python-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-mysql-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-git-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-figma-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-java-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-cplusplus-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-html5-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-css3-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-mongodb-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-javascript-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-react-original text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-nodejs-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-laravel-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-php-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-python-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-mysql-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-git-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-figma-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-java-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-cplusplus-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-html5-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-css3-plain text-6xl text-muted"></i></div>
+                    <div class="skill-slide interactive-hover"><i class="devicon-mongodb-plain text-6xl text-muted"></i></div>
                 </div>
             </div>
         </section>
 
-        <div class="section-divider"></div>
-
         <section id="experience" class="py-24 section-content">
-            <div class="fade-in-element"><h2 class="section-title relative inline-block text-3xl font-bold mb-12" data-translate="experience_title"></h2></div>
-            <div class="relative fade-in-element" style="transition-delay: 200ms;">
+            <h2 class="section-title text-center text-3xl font-bold mb-12 reveal-on-scroll" data-translate="experience_title"></h2>
+            <div class="relative max-w-2xl mx-auto reveal-on-scroll" style="transition-delay: 150ms;">
                 <div class="timeline-item"><div class="timeline-dot"></div><p class="text-sm font-semibold text-muted" data-translate="exp1_date"></p><h3 class="text-xl font-bold mt-1" data-translate="exp1_title"></h3><p class="text-md font-medium text-muted" data-translate="exp1_company"></p><ul class="list-disc list-inside mt-2 text-muted space-y-1" dir="auto"><li data-translate="exp1_desc1"></li><li data-translate="exp1_desc2"></li><li data-translate="exp1_desc3"></li></ul></div>
                 <div class="timeline-item"><div class="timeline-dot"></div><p class="text-sm font-semibold text-muted" data-translate="exp2_date"></p><h3 class="text-xl font-bold mt-1" data-translate="exp2_title"></h3><p class="text-md font-medium text-muted" data-translate="exp2_company"></p><ul class="list-disc list-inside mt-2 text-muted space-y-1" dir="auto"><li data-translate="exp2_desc1"></li><li data-translate="exp2_desc2"></li><li data-translate="exp2_desc3"></li></ul></div>
             </div>
         </section>
         
         <section id="education" class="py-24 section-content">
-            <div class="fade-in-element"><h2 class="section-title relative inline-block text-3xl font-bold mb-12" data-translate="education_title"></h2></div>
-            <div class="relative fade-in-element" style="transition-delay: 200ms;">
+            <h2 class="section-title text-center text-3xl font-bold mb-12 reveal-on-scroll" data-translate="education_title"></h2>
+            <div class="relative max-w-2xl mx-auto reveal-on-scroll" style="transition-delay: 150ms;">
                 <div class="timeline-item"><div class="timeline-dot"></div><p class="text-sm font-semibold text-muted" data-translate="edu1_date"></p><h3 class="text-xl font-bold mt-1" data-translate="edu1_degree"></h3><p class="text-md font-medium text-muted" data-translate="edu1_school"></p></div>
                 <div class="timeline-item"><div class="timeline-dot"></div><p class="text-sm font-semibold text-muted" data-translate="edu2_date"></p><h3 class="text-xl font-bold mt-1" data-translate="edu2_degree"></h3><p class="text-md font-medium text-muted" data-translate="edu2_school"></p></div>
                 <div class="timeline-item"><div class="timeline-dot"></div><p class="text-sm font-semibold text-muted" data-translate="edu3_date"></p><h3 class="text-xl font-bold mt-1" data-translate="edu3_degree"></h3><p class="text-md font-medium text-muted" data-translate="edu3_school"></p></div>
             </div>
         </section>
 
-        <div class="section-divider"></div>
+        <section id="projects" class="py-24 section-content" aria-labelledby="projects-title">
+            <h2 id="projects-title" class="section-title text-center text-3xl font-bold mb-12 reveal-on-scroll" data-translate="projects_title"></h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-on-scroll" style="transition-delay: 150ms;">
+                
+                <div class="project-card group glass-effect rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                    <div class="relative w-full h-48 cursor-pointer" onclick="window.open('https://github.com/BilalEH', '_blank')">
+                        <img src="https://i.ibb.co/vNXcrLJ/smarter-cover-image.png" alt="smarter-cover-image" alt="projet SMARTER Quiz Game" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <img src="https://i.ibb.co/KcBsG1sG/SMARTER-6.png" alt="projet SMARTER Quiz Game" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <img src="https://i.ibb.co/4wRcsqwb/SMARTER-2.png" alt="projet SMARTER Quiz Game" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <img src="https://i.ibb.co/WpcWWhNz/SMARTER-4.png" alt="projet SMARTER Quiz Game" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <img src="https://i.ibb.co/tpLNsXLp/SMARTER-5.png" alt="projet SMARTER Quiz Game" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <img src="https://i.ibb.co/xqkZpWHh/SMARTER-3.png" alt="projet SMARTER Quiz Game" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <div class="absolute inset-0 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                            <button class="slider-prev bg-black/40 text-white hover:bg-black/70 rounded-full w-8 h-8 flex items-center justify-center ml-2 backdrop-blur-sm shadow-lg interactive-hover"><i class="fas fa-chevron-left"></i></button>
+                            <button class="slider-next bg-black/40 text-white hover:bg-black/70 rounded-full w-8 h-8 flex items-center justify-center mr-2 backdrop-blur-sm shadow-lg interactive-hover"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold" data-translate="proj1_title"></h3>
+                        <p class="mt-2 text-muted text-sm" data-translate="proj1_desc"></p>
+                        <a href="https://github.com/BilalEH" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-[var(--primary-color)] font-semibold group/link">
+                           <span data-translate="proj_link"></span><i class="fas fa-arrow-right ml-1 transform group-hover/link:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
 
-        <section id="projects" class="py-24 section-content">
-             <div class="fade-in-element"><h2 class="section-title relative inline-block text-3xl font-bold mb-12 text-center mx-auto" data-translate="projects_title"></h2></div>
-             <div class="grid md:grid-cols-2 gap-8 fade-in-element" style="transition-delay: 200ms;">
-                <div class="interactive-card glass-effect rounded-lg"><div class="p-6"><div class="flex items-center gap-4 mb-3"><i class="fas fa-gamepad text-[var(--primary-color)] text-2xl"></i><h3 class="text-xl font-bold" data-translate="proj1_title"></h3></div><p class="mt-1 text-muted flex-1" data-translate="proj1_desc"></p><div class="mt-5"><a href="#" class="text-[var(--primary-color)] font-semibold interactive-hover" data-translate="proj_link"></a></div></div><div class="glow"></div></div>
-                <div class="interactive-card glass-effect rounded-lg"><div class="p-6"><div class="flex items-center gap-4 mb-3"><i class="fas fa-cash-register text-[var(--primary-color)] text-2xl"></i><h3 class="text-xl font-bold" data-translate="proj2_title"></h3></div><p class="mt-1 text-muted flex-1" data-translate="proj2_desc"></p><div class="mt-5"><a href="#" class="text-[var(--primary-color)] font-semibold interactive-hover" data-translate="proj_link_2"></a></div></div><div class="glow"></div></div>
+                <div class="project-card group glass-effect rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                    <div class="relative w-full h-48 cursor-pointer" onclick="window.open('https://github.com/BilalEH', '_blank')">
+                        <img src="https://i.imgur.com/vj53x2Y.png" alt="Capture d'écran 1 du projet ARGON PILOT" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <img src="https://i.imgur.com/3Z6kL3T.png" alt="Capture d'écran 2 du projet ARGON PILOT" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <div class="absolute inset-0 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                            <button class="slider-prev bg-black/40 text-white hover:bg-black/70 rounded-full w-8 h-8 flex items-center justify-center ml-2 backdrop-blur-sm shadow-lg interactive-hover"><i class="fas fa-chevron-left"></i></button>
+                            <button class="slider-next bg-black/40 text-white hover:bg-black/70 rounded-full w-8 h-8 flex items-center justify-center mr-2 backdrop-blur-sm shadow-lg interactive-hover"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold" data-translate="proj2_title"></h3>
+                        <p class="mt-2 text-muted text-sm" data-translate="proj2_desc"></p>
+                        <a href="https://github.com/BilalEH" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-[var(--primary-color)] font-semibold group/link">
+                           <span data-translate="proj_link_2"></span><i class="fas fa-arrow-right ml-1 transform group-hover/link:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card group glass-effect rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                    <div class="relative w-full h-48 cursor-pointer" onclick="window.open('https://github.com/BilalEH', '_blank')">
+                        <img src="https://i.imgur.com/z4drF6S.png" alt="Capture d'écran 1 du projet Sales Dashboard" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <img src="https://i.imgur.com/vj53x2Y.png" alt="Capture d'écran 2 du projet Sales Dashboard" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <img src="https://i.imgur.com/3Z6kL3T.png" alt="Capture d'écran 3 du projet Sales Dashboard" class="project-slide w-full h-full object-cover absolute inset-0 opacity-0" loading="lazy">
+                        <div class="absolute inset-0 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                            <button class="slider-prev bg-black/40 text-white hover:bg-black/70 rounded-full w-8 h-8 flex items-center justify-center ml-2 backdrop-blur-sm shadow-lg interactive-hover"><i class="fas fa-chevron-left"></i></button>
+                            <button class="slider-next bg-black/40 text-white hover:bg-black/70 rounded-full w-8 h-8 flex items-center justify-center mr-2 backdrop-blur-sm shadow-lg interactive-hover"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold" data-translate="proj3_title"></h3>
+                        <p class="mt-2 text-muted text-sm" data-translate="proj3_desc"></p>
+                        <a href="https://github.com/BilalEH" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 text-[var(--primary-color)] font-semibold group/link">
+                           <span data-translate="proj_link"></span><i class="fas fa-arrow-right ml-1 transform group-hover/link:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
+
         <section id="certifications" class="py-24 section-content">
-             <div class="fade-in-element"><h2 class="section-title relative inline-block text-3xl font-bold mb-12 text-center mx-auto" data-translate="certs_title"></h2></div>
-             <div class="grid md:grid-cols-2 gap-8 fade-in-element" style="transition-delay: 200ms;">
+            <h2 class="section-title text-center text-3xl font-bold mb-12 reveal-on-scroll" data-translate="certs_title"></h2>
+            <div class="grid md:grid-cols-2 gap-8 reveal-on-scroll" style="transition-delay: 150ms;">
                  <div class="space-y-4">
-                     <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card"><i class="fas fa-award text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="cert1_title"></p><p class="text-sm text-muted" data-translate="cert1_issuer"></p></div></div>
-                     <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card"><i class="fas fa-award text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="cert2_title"></p><p class="text-sm text-muted" data-translate="cert2_issuer"></p></div></div>
-                     <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card"><i class="fas fa-award text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="cert3_title"></p><p class="text-sm text-muted" data-translate="cert3_issuer"></p></div></div>
-                      <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card"><i class="fas fa-award text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="cert4_title"></p><p class="text-sm text-muted" data-translate="cert4_issuer"></p></div></div>
+                      <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card interactive-hover"><i class="fas fa-award text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="cert1_title"></p><p class="text-sm text-muted" data-translate="cert1_issuer"></p></div></div>
+                      <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card interactive-hover"><i class="fas fa-award text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="cert2_title"></p><p class="text-sm text-muted" data-translate="cert2_issuer"></p></div></div>
+                      <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card interactive-hover"><i class="fas fa-award text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="cert3_title"></p><p class="text-sm text-muted" data-translate="cert3_issuer"></p></div></div>
+                      <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card interactive-hover"><i class="fas fa-award text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="cert4_title"></p><p class="text-sm text-muted" data-translate="cert4_issuer"></p></div></div>
                  </div>
                  <div class="space-y-4">
-                    <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card"><i class="fas fa-users text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="activity1"></p></div></div>
-                    <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card"><i class="fas fa-trophy text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="activity2"></p></div></div>
-                    <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card"><i class="fas fa-lightbulb text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="activity3"></p></div></div>
+                     <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card interactive-hover"><i class="fas fa-users text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="activity1"></p></div></div>
+                     <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card interactive-hover"><i class="fas fa-trophy text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="activity2"></p></div></div>
+                     <div class="glass-effect rounded-lg p-4 flex items-center gap-4 cert-card interactive-hover"><i class="fas fa-lightbulb text-2xl text-[var(--primary-color)]"></i><div><p class="font-semibold" data-translate="activity3"></p></div></div>
                  </div>
-             </div>
+              </div>
         </section>
 
         <section id="contact" class="py-24 section-content">
-            <div class="text-center fade-in-element">
-                <h2 class="section-title relative inline-block text-3xl font-bold mb-4 mx-auto" data-translate="contact_title"></h2>
-                <p class="max-w-2xl mx-auto text-muted mb-8" data-translate="contact_p"></p>
+            <h2 class="section-title text-center text-3xl font-bold mb-4 reveal-on-scroll" data-translate="contact_title"></h2>
+            <p class="max-w-2xl mx-auto text-muted mb-8 reveal-on-scroll" style="transition-delay: 150ms;" data-translate="contact_p"></p>
+            <div class="reveal-on-scroll text-center" style="transition-delay: 300ms;">
                 <button class="contact-trigger inline-block bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-bold py-4 px-8 rounded-lg transition-colors duration-300 text-lg interactive-hover" data-translate="contact_button"></button>
             </div>
         </section>
     </main>
     
-    <footer class="border-t border-[var(--border-color)] transition-colors section-content"><div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center text-center"><p class="text-muted" data-translate="footer_copyright"></p><div class="flex space-x-6 mt-4 md:mt-0"><a href="https://github.com/BilalEH" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-[var(--primary-color)] transition-colors interactive-hover"><i class="fab fa-github fa-2x"></i></a><a href="https://www.linkedin.com/in/bilal-el-haoudar/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-[var(--primary-color)] transition-colors interactive-hover"><i class="fab fa-linkedin fa-2x"></i></a></div></div></footer>
+    <footer class="border-t border-[var(--border-color)] relative z-10">
+        <div class="container mx-auto px-6 py-8 text-center">
+             <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://github.com/BilalEH" target="_blank" rel="noopener noreferrer" aria-label="GitHub Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors interactive-hover"><i class="fab fa-github fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/bilal-el-haoudar/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors interactive-hover"><i class="fab fa-linkedin fa-2x"></i></a>
+                 <a href="mailto:bilal.elhaoudar.dev@gmail.com" aria-label="Envoyer un email à Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors interactive-hover"><i class="fas fa-envelope fa-2x"></i></a>
+            </div>
+            <p class="text-muted" data-translate="footer_copyright"></p>
+        </div>
+    </footer>
 
     <script>
     const translations = {
-        fr: { nav_home: "Home", nav_about: "À propos", nav_skills: "Compétences", nav_experience: "Expérience", nav_education: "Éducation", nav_projects: "Projets", nav_contact: "Contact", nav_home_mobile: "Home", nav_about_mobile: "À propos", nav_skills_mobile: "Compétences", nav_experience_mobile: "Expérience", nav_education_mobile: "Éducation", nav_projects_mobile: "Projets", nav_contact_mobile: "Contact", hero_greeting: "Bonjour, je suis", hero_name: "Bilal EL Haoudar.", hero_subtitle: "Développeur Full-Stack & Ingénieur en Logiciels.", hero_description: "Étudiant en Ingénierie Informatique à l'EMSI, passionné par le développement web et la conception de systèmes performants. Recherche activement un stage pour contribuer à des projets concrets.", hero_button_projects: "Voir mes projets", hero_button_contact: "Me contacter", about_title: "À propos de moi", about_p1: "En tant que futur ingénieur de l'EMSI, je suis profondément passionné par la technologie et sa capacité à résoudre des problèmes complexes. Mon parcours m'a permis de développer une double compétence en développement logiciel et en administration de systèmes, me rendant polyvalent et adaptable.", about_qualities: "Qualités & Langues", quality1: "Sens de l'analyse et résolution de problèmes", quality2: "Créativité dans les interfaces et UX", quality3: "Autonomie dans la gestion de projet", lang1: "Arabe (Natif), Français & Anglais (Courants)", skills_title: "Mes Compétences Techniques", experience_title: "Expérience Professionnelle", education_title: "Parcours Éducatif", exp1_date: "Août 2024 - Oct 2024", exp1_company: "Cloud Marketing Hub", exp1_title: "Stagiaire Réseaux & Systèmes", exp1_desc1: "Développé des composants frontend pour l'interface principale.", exp1_desc2: "Intégré des services API REST pour la synchronisation de données.", exp1_desc3: "Participé à des sessions de code review et à l'amélioration des processus.", exp2_date: "Avril 2024 - Mai 2024", exp2_company: "Argon Formation", exp2_title: "Développeur Full-Stack (Stage PFA)", exp2_desc1: "Conçu et développé une application web de gestion financière complète.", exp2_desc2: "Intégré un système de suivi automatisé des paiements et de génération de rapports.", exp2_desc3: "Utilisé React.js, Laravel/MySQL pour créer un dashboard interactif.", edu1_date: "2024 - 2027", edu1_degree: "Ingénierie Informatique et Réseaux", edu1_school: "EMSI - École Marocaine des Sciences de l'Ingénieur", edu2_date: "2022 - 2024", edu2_degree: "Technicien Spécialisé en Développement Informatique Full-Stack", edu2_school: "ISMONTIC-OFPPT Tanger", edu3_date: "2021 - 2022", edu3_degree: "Baccalauréat en Sciences de la Vie et de la Terre", edu3_school: "Lycée Qualifiant Al Jamai", projects_title: "Projets Notables", proj1_title: "SMARTER® - Jeu de Quiz", proj1_desc: "Application de quiz temps réel avec React.js, Node.js, Socket.IO et Firebase pour une communication instantanée et une expérience multi-utilisateurs fluide.", proj_link: "Voir le projet <i class='fas fa-arrow-right ml-1'></i>", proj2_title: "ARGON PILOT - Gestion Financière", proj2_desc: "Plateforme complète de gestion pour un centre éducatif, avec suivi des paiements et facturation pour plus de 200 étudiants.", proj_link_2: "Voir le projet <i class='fas fa-arrow-right ml-1'></i>", certs_title: "Certifications & Activités", cert1_title: "Introduction à la programmation orientée objet (C++)", cert1_issuer: "EPFL", cert2_title: "Interactivity with JavaScript", cert2_issuer: "University of Michigan", cert3_title: "Using Python to Access Web Data", cert3_issuer: "University of Michigan", cert4_title: "Software Engineering: Design & Project Management", cert4_issuer: "HKUST", activity1: "Participation aux IT-WAVE Meetup 2024 & 2025", activity2: "5ème place au Hackathon interne IT-WAVE 2024", activity3: "Contributeur au projet SMARTER® (EMSI-2025)", contact_title: "Entrons en contact", contact_p: "Je suis toujours ouvert à de nouvelles opportunités et collaborations. N'hésitez pas à me contacter par e-mail ou via mes réseaux sociaux.", contact_button: "Envoyer un e-mail", footer_copyright: "&copy; 2025 Bilal EL Haoudar. Tous droits réservés." },
-        en: { nav_home: "Home", nav_about: "About", nav_skills: "Skills", nav_experience: "Experience", nav_education: "Education", nav_projects: "Projects", nav_contact: "Contact", hero_greeting: "Hello, I am", hero_name: "Bilal EL Haoudar.", hero_subtitle: "Full-Stack Developer & Software Engineer.", hero_description: "Computer Engineering student at EMSI, passionate about web development and designing high-performance systems. Actively seeking an internship to contribute to tangible projects.", hero_button_projects: "View My Projects", hero_button_contact: "Contact Me", about_title: "About Me", about_p1: "As a future engineer from EMSI, I am deeply passionate about technology and its ability to solve complex problems. My journey has allowed me to develop dual expertise in software development and systems administration, making me versatile and adaptable.", about_qualities: "Qualities & Languages", quality1: "Analytical and problem-solving skills", quality2: "Creativity in interfaces and UX", quality3: "Autonomy in project management", lang1: "Arabic (Native), French & English (Fluent)", skills_title: "My Technical Skills", experience_title: "Professional Experience", education_title: "Education", exp1_date: "Aug 2024 - Oct 2024", exp1_company: "Cloud Marketing Hub", exp1_title: "Network & Systems Intern", exp1_desc1: "Developed frontend components for the main interface.", exp1_desc2: "Integrated REST API services for data synchronization.", exp1_desc3: "Participated in code review sessions and process improvements.", exp2_date: "Apr 2024 - May 2024", exp2_company: "Argon Formation", exp2_title: "Full-Stack Developer (Internship)", exp2_desc1: "Designed and developed a complete financial management web application.", exp2_desc2: "Integrated an automated payment tracking and report generation system.", exp2_desc3: "Used React.js, Laravel/MySQL to create an interactive dashboard.", edu1_date: "2024 - 2027", edu1_degree: "Computer Science and Network Engineering", edu1_school: "EMSI - Moroccan School of Engineering Sciences", edu2_date: "2022 - 2024", edu2_degree: "Specialized Technician in Full-Stack Development", edu2_school: "ISMONTIC-OFPPT Tangier", edu3_date: "2021 - 2022", edu3_degree: "Baccalaureate in Life and Earth Sciences", edu3_school: "Al Jamai High School", projects_title: "Noteworthy Projects", proj1_title: "SMARTER® - Quiz Game", proj1_desc: "Real-time quiz application with React.js, Node.js, Socket.IO, and Firebase for instant communication and a smooth multi-user experience.", proj_link: "View Project <i class='fas fa-arrow-right ml-1'></i>", proj2_title: "ARGON PILOT - Financial Management", proj2_desc: "Complete management platform for an educational center, with payment tracking and invoicing for over 200 students.", proj_link_2: "View Project <i class='fas fa-arrow-right ml-1'></i>", certs_title: "Certifications & Activities", cert1_title: "Introduction to Object-Oriented Programming (C++)", cert1_issuer: "EPFL", cert2_title: "Interactivity with JavaScript", cert2_issuer: "University of Michigan", cert3_title: "Using Python to Access Web Data", cert3_issuer: "University of Michigan", cert4_title: "Software Engineering: Design & Project Management", cert4_issuer: "HKUST", activity1: "Participation in IT-WAVE Meetups 2024 & 2025", activity2: "5th place in the internal IT-WAVE Hackathon 2024", activity3: "Contributor to the SMARTER® project (EMSI-2025)", contact_title: "Get In Touch", contact_p: "I am always open to new opportunities and collaborations. Feel free to contact me by email or through my social networks.", contact_button: "Send an Email", footer_copyright: "&copy; 2025 Bilal EL Haoudar. All rights reserved." },
-        ar: { nav_home: "الرئيسية", nav_about: "نبذة عني", nav_skills: "المهارات", nav_experience: "الخبرة المهنية", nav_education: "المسار التعليمي", nav_projects: "المشاريع", nav_contact: "تواصل", hero_greeting: "مرحباً، أنا", hero_name: "بلال الحودار.", hero_subtitle: "مطور ويب شامل ومهندس برمجيات.", hero_description: "طالب في الهندسة المعلوماتية بالمدرسة المغربية لعلوم المهندس، شغوف بتطوير الويب وتصميم أنظمة عالية الأداء. أبحث حالياً عن تدريب للمساهمة في مشاريع واقعية.", hero_button_projects: "شاهد المشاريع", hero_button_contact: "تواصل معي", about_title: "نبذة عني", about_p1: "بصفتي مهندسًا مستقبليًا من المدرسة المغربية لعلوم المهندس، لدي شغف عميق بالتكنولوجيا وقدرتها على حل المشكلات المعقدة. سمح لي مساري بتطوير خبرة مزدوجة في تطوير البرمجيات وإدارة الأنظمة، مما يجعلني متعدد المهارات وقابلًا للتكيف.", about_qualities: "المميزات واللغات", quality1: "التحليل وحل المشكلات", quality2: "الإبداع وتجربة المستخدم", quality3: "الاستقلالية في إدارة المشاريع", lang1: "العربية (الأم)، الفرنسية والإنجليزية (بطلاقة)", skills_title: "مهاراتي التقنية", experience_title: "الخبرة المهنية", education_title: "المسار التعليمي", exp1_date: "أغسطس 2024 - أكتوبر 2024", exp1_company: "Cloud Marketing Hub", exp1_title: "متدرب في الشبكات والأنظمة", exp1_desc1: "تطوير مكونات الواجهة الأمامية للواجهة الرئيسية.", exp1_desc2: "دمج خدمات واجهة برمجة تطبيقات REST لمزامنة البيانات.", exp1_desc3: "المشاركة في جلسات مراجعة الكود وتحسين العمليات.", exp2_date: "أبريل 2024 - مايو 2024", exp2_company: "Argon Formation", exp2_title: "مطور Full-Stack (تدريب نهاية الدراسة)", exp2_desc1: "تصميم وتطوير تطبيق ويب متكامل للإدارة المالية.", exp2_desc2: "دمج نظام آلي لتتبع المدفوعات وإنشاء التقارير.", exp2_desc3: "استخدام React.js و Laravel/MySQL لإنشاء لوحة تحكم تفاعلية.", edu1_date: "2024 - 2027", edu1_degree: "هندسة الكمبيوتر والشبكات", edu1_school: "المدرسة المغربية لعلوم المهندس", edu2_date: "2022 - 2024", edu2_degree: "تقني متخصص في تطوير الويب Full-Stack", edu2_school: "ISMONTIC-OFPPT طنجة", edu3_date: "2021 - 2022", edu3_degree: "بكالوريا في علوم الحياة والأرض", edu3_school: "ثانوية الجامعي التأهيلية", projects_title: "مشاريع بارزة", proj1_title: "SMARTER® - لعبة اختبارات", proj1_desc: "تطبيق اختبارات في الوقت الفعلي باستخدام React.js و Node.js و Socket.IO و Firebase لتواصل فوري وتجربة سلسة متعددة المستخدمين.", proj_link: "شاهد المشروع <i class='fas fa-arrow-left mr-1'></i>", proj2_title: "ARGON PILOT - الإدارة المالية", proj2_desc: "منصة إدارة شاملة لمركز تعليمي، مع تتبع للدفعات والفواتير لأكثر من 200 طالب.", proj_link_2: "شاهد المشروع <i class='fas fa-arrow-left mr-1'></i>", certs_title: "الشهادات والأنشطة", cert1_title: "مقدمة في البرمجة الشيئية (C++)", cert1_issuer: "EPFL", cert2_title: "التفاعلية مع جافاسكريبت", cert2_issuer: "جامعة ميشيغان", cert3_title: "استخدام بايثون للوصول إلى بيانات الويب", cert3_issuer: "جامعة ميشيغان", cert4_title: "هندسة البرمجيات: التصميم وإدارة المشاريع", cert4_issuer: "HKUST", activity1: "المشاركة في لقاءات IT-WAVE 2024 و 2025", activity2: "المركز الخامس في هاكاثون IT-WAVE الداخلي 2024", activity3: "مساهم في مشروع SMARTER® (EMSI-2025)", contact_title: "تواصل معي", contact_p: "أنا منفتح دائمًا على الفرص والتعاونات الجديدة. لا تتردد في الاتصال بي عبر البريد الإلكتروني أو شبكاتي الاجتماعية.", contact_button: "أرسل بريدًا إلكترونيًا", footer_copyright: "© 2025 بلال الحودار. جميع الحقوق محفوظة." }
+        fr: { nav_home: "Accueil", nav_about: "À propos", nav_services: "Services", nav_skills: "Compétences", nav_experience: "Expérience", nav_education: "Éducation", nav_projects: "Projets", nav_contact: "Contact", nav_home_mobile: "Accueil", nav_about_mobile: "À propos", nav_services_mobile: "Services", nav_skills_mobile: "Compétences", nav_experience_mobile: "Expérience", nav_projects_mobile: "Projets", nav_contact_mobile: "Contact", hero_greeting: "Bonjour, je suis", hero_name: "Bilal EL Haoudar.", hero_subtitle: "Développeur Full-Stack & Ingénieur en Logiciels.", hero_description: "Étudiant en Ingénierie Informatique à l'EMSI, passionné par le développement web et la conception de systèmes performants. Recherche activement un stage pour contribuer à des projets concrets.", hero_button_projects: "Voir mes projets", hero_button_cv: "Télécharger CV", about_title: "À propos de moi", about_p1: "En tant que futur ingénieur de l'EMSI, je suis profondément passionné par la technologie et sa capacité à résoudre des problèmes complexes. Mon parcours m'a permis de développer une double compétence en développement logiciel et en administration de systèmes, me rendant polyvalent et adaptable.", services_title: "Mes Services", service1_title: "Développement Web", service1_desc: "Création d'applications web complètes, du front-end au back-end, avec un focus sur la performance et l'expérience utilisateur.", service2_title: "Design UI/UX", service2_desc: "Conception d'interfaces intuitives et modernes qui améliorent l'engagement et la satisfaction des utilisateurs.", service3_title: "Solutions Backend", service3_desc: "Développement d'APIs RESTful robustes, gestion de bases de données et architecture de systèmes performants.", skills_title: "Mes Compétences Techniques", experience_title: "Expérience Professionnelle", exp1_date: "Août 2024 - Oct 2024", exp1_title: "Stagiaire Réseaux & Systèmes", exp1_company: "Cloud Marketing Hub", exp1_desc1: "Développé des composants frontend.", exp1_desc2: "Intégré des services API REST.", exp1_desc3: "Participé à des sessions de code review.", exp2_date: "Avril 2024 - Mai 2024", exp2_title: "Développeur Full-Stack (Stage)", exp2_company: "Argon Formation", exp2_desc1: "Conçu une application web de gestion.", exp2_desc2: "Intégré un suivi automatisé des paiements.", exp2_desc3: "Utilisé React.js et Laravel.", education_title: "Parcours Éducatif", edu1_date: "2024 - 2027", edu1_degree: "Ingénierie Informatique", edu1_school: "EMSI, Tanger", edu2_date: "2022 - 2024", edu2_degree: "Technicien Spécialisé", edu2_school: "ISMONTIC-OFPPT, Tanger", edu3_date: "2021 - 2022", edu3_degree: "Baccalauréat SVT", edu3_school: "Lycée Al Jamai, Tétouan", projects_title: "Projets Notables", proj1_title: "SMARTER® - Jeu de Quiz", proj1_desc: "Application de quiz temps réel avec React.js, Node.js, et Socket.IO.", proj_link: "Voir le projet", proj2_title: "ARGON PILOT - Gestion", proj2_desc: "Plateforme de gestion pour un centre éducatif.", proj_link_2: "Voir le projet", proj3_title: "Dashboard de Ventes", proj3_desc: "Tableau de bord interactif pour la visualisation des données de ventes en temps réel.", testimonials_title: "Ce qu'ils disent de moi", certs_title: "Certifications & Activités", cert1_title: "Intro à la programmation orientée objet", cert1_issuer: "EPFL", cert2_title: "Interactivity with JavaScript", cert2_issuer: "University of Michigan", cert3_title: "Using Python to Access Web Data", cert3_issuer: "University of Michigan", cert4_title: "Software Engineering: Design", cert4_issuer: "HKUST", activity1: "Participation IT-WAVE Meetup", activity2: "5ème place Hackathon IT-WAVE", activity3: "Contributeur projet SMARTER®", contact_title: "Entrons en contact", contact_p: "Je suis ouvert à de nouvelles opportunités. N'hésitez pas à me contacter.", contact_button: "Discutons-en", contact_form_title: "Contactez-moi", contact_form_send: "Envoyer", contact_form_success: "Merci ! Message envoyé.", footer_copyright: "&copy; 2025 Bilal EL Haoudar. Tous droits réservés." },
+        en: { nav_home: "Home", nav_about: "About", nav_services: "Services", nav_skills: "Skills", nav_experience: "Experience", nav_education: "Education", nav_projects: "Projects", nav_contact: "Contact", hero_greeting: "Hello, I am", hero_name: "Bilal EL Haoudar.", hero_subtitle: "Full-Stack Developer & Software Engineer.", hero_description: "Computer Engineering student at EMSI, passionate about web development and designing high-performance systems. Actively seeking an internship to contribute to tangible projects.", hero_button_projects: "View My Projects", hero_button_cv: "Download CV", about_title: "About Me", about_p1: "As a future engineer from EMSI, I am deeply passionate about technology and its ability to solve complex problems. My journey has allowed me to develop dual expertise in software development and systems administration, making me versatile and adaptable.", services_title: "My Services", service1_title: "Web Development", service1_desc: "Creating complete web applications from front-end to back-end, with a focus on performance and user experience.", service2_title: "UI/UX Design", service2_desc: "Designing intuitive and modern interfaces that enhance user engagement and satisfaction.", service3_title: "Backend Solutions", service3_desc: "Developing robust RESTful APIs, managing databases, and architecting high-performance systems.", skills_title: "My Technical Skills", experience_title: "Professional Experience", exp1_date: "Aug 2024 - Oct 2024", exp1_title: "Network & Systems Intern", exp1_company: "Cloud Marketing Hub", exp1_desc1: "Developed frontend components.", exp1_desc2: "Integrated REST API services.", exp1_desc3: "Participated in code review sessions.", exp2_date: "Apr 2024 - May 2024", exp2_title: "Full-Stack Developer (Intern)", exp2_company: "Argon Formation", exp2_desc1: "Designed a management web app.", exp2_desc2: "Integrated automated payment tracking.", exp2_desc3: "Used React.js and Laravel.", education_title: "Education", edu1_date: "2024 - 2027", edu1_degree: "Computer Engineering", edu1_school: "EMSI, Tangier", edu2_date: "2022 - 2024", edu2_degree: "Specialized Technician", edu2_school: "ISMONTIC-OFPPT, Tangier", edu3_date: "2021 - 2022", edu3_degree: "Baccalaureate in Life Sciences", edu3_school: "Al Jamai High School, Tétouan", projects_title: "Noteworthy Projects", proj1_title: "SMARTER® - Quiz Game", proj1_desc: "Real-time quiz app using React.js, Node.js, and Socket.IO.", proj_link: "View Project", proj2_title: "ARGON PILOT - Management", proj2_desc: "Management platform for an educational center.", proj_link_2: "View Project", proj3_title: "Sales Dashboard", proj3_desc: "Interactive dashboard for real-time sales data visualization.", testimonials_title: "What They Say About Me", certs_title: "Certifications & Activities", cert1_title: "Intro to Object-Oriented Programming", cert1_issuer: "EPFL", cert2_title: "Interactivity with JavaScript", cert2_issuer: "University of Michigan", cert3_title: "Using Python to Access Web Data", cert3_issuer: "University of Michigan", cert4_title: "Software Engineering: Design", cert4_issuer: "HKUST", activity1: "IT-WAVE Meetup Participant", activity2: "5th place, IT-WAVE Hackathon", activity3: "SMARTER® Project Contributor", contact_title: "Get In Touch", contact_p: "I am open to new opportunities. Feel free to contact me.", contact_button: "Let's Talk", contact_form_title: "Contact Me", contact_form_send: "Send", contact_form_success: "Thank you! Message sent.", footer_copyright: "&copy; 2025 Bilal EL Haoudar. All rights reserved." },
+        ar: { nav_home: "الرئيسية", nav_about: "نبذة", nav_services: "خدماتي", nav_skills: "المهارات", nav_experience: "الخبرة", nav_education: "التعليم", nav_projects: "المشاريع", nav_contact: "تواصل", hero_greeting: "مرحباً، أنا", hero_name: "بلال الحودار.", hero_subtitle: "مطور ويب شامل ومهندس برمجيات.", hero_description: "طالب في الهندسة المعلوماتية، شغوف بتطوير الويب وتصميم أنظمة عالية الأداء. أبحث عن تدريب للمساهمة في مشاريع واقعية.", hero_button_projects: "شاهد المشاريع", hero_button_cv: "تحميل السيرة الذاتية", about_title: "نبذة عني", about_p1: "بصفتي مهندسًا مستقبليًا، لدي شغف عميق بالتكنولوجيا وقدرتها على حل المشكلات المعقدة. مساري سمح لي بتطوير خبرة مزدوجة في تطوير البرمجيات وإدارة الأنظمة.", services_title: "خدماتي", service1_title: "تطوير الويب", service1_desc: "إنشاء تطبيقات ويب متكاملة من الواجهة الأمامية إلى الخلفية، مع التركيز على الأداء وتجربة المستخدم.", service2_title: "تصميم UI/UX", service2_desc: "تصميم واجهات سهلة الاستخدام وعصرية تعزز تفاعل المستخدمين ورضاهم.", service3_title: "حلول الخلفية", service3_desc: "تطوير واجهات برمجة تطبيقات RESTful قوية، وإدارة قواعد البيانات، وهندسة أنظمة عالية الأداء.", skills_title: "مهاراتي التقنية", experience_title: "الخبرة المهنية", exp1_date: "أغسطس 2024 - أكتوبر 2024", exp1_title: "متدرب شبكات وأنظمة", exp1_company: "Cloud Marketing Hub", exp1_desc1: "تطوير مكونات الواجهة الأمامية.", exp1_desc2: "دمج خدمات API REST.", exp1_desc3: "المشاركة في مراجعات الكود.", exp2_date: "أبريل 2024 - مايو 2024", exp2_title: "مطور Full-Stack (تدريب)", exp2_company: "Argon Formation", exp2_desc1: "تصميم تطبيق ويب للإدارة.", exp2_desc2: "دمج تتبع آلي للمدفوعات.", exp2_desc3: "استخدام React.js و Laravel.", education_title: "المسار التعليمي", edu1_date: "2024 - 2027", edu1_degree: "هندسة الكمبيوتر", edu1_school: "EMSI، طنجة", edu2_date: "2022 - 2024", edu2_degree: "تقني متخصص", edu2_school: "ISMONTIC-OFPPT، طنجة", edu3_date: "2021 - 2022", edu3_degree: "بكالوريا علوم الحياة والأرض", edu3_school: "ثانوية الجامعي، تطوان", projects_title: "مشاريع بارزة", proj1_title: "SMARTER® - لعبة اختبارات", proj1_desc: "تطبيق اختبارات في الوقت الفعلي باستخدام React.js و Node.js.", proj_link: "شاهد المشروع", proj2_title: "ARGON PILOT - إدارة", proj2_desc: "منصة إدارة لمركز تعليمي.", proj_link_2: "شاهد المشروع", proj3_title: "لوحة تحكم المبيعات", proj3_desc: "لوحة تحكم تفاعلية لعرض بيانات المبيعات في الوقت الفعلي.", testimonials_title: "ماذا يقولون عني", certs_title: "الشهادات والأنشطة", cert1_title: "مقدمة في البرمجة الشيئية", cert1_issuer: "EPFL", cert2_title: "التفاعلية مع جافاسكريبت", cert2_issuer: "جامعة ميشيغان", cert3_title: "استخدام بايثون لبيانات الويب", cert3_issuer: "جامعة ميشيغان", cert4_title: "هندسة البرمجيات: تصميم", cert4_issuer: "HKUST", activity1: "مشاركة في لقاء IT-WAVE", activity2: "المركز الخامس هاكاثون IT-WAVE", activity3: "مساهم في مشروع SMARTER®", contact_title: "تواصل معي", contact_p: "أنا منفتح على الفرص الجديدة. لا تتردد في الاتصال بي.", contact_button: "لنتحدث", contact_form_title: "تواصل معي", contact_form_send: "إرسال", contact_form_success: "شكراً! تم إرسال الرسالة.", footer_copyright: "© 2025 بلال الحودار. جميع الحقوق محفوظة." }
     };
     
-    // This needs to be in global scope for the iframe to call it
     let submitted = false;
     function showSuccessMessage() {
         const contactForm = document.getElementById('contact-form');
@@ -257,26 +484,77 @@
             contactForm.reset();
             contactForm.style.display = 'none';
             successMessage.style.display = 'block';
-
             setTimeout(() => {
-                const contactPopup = document.getElementById('contact-popup');
-                if (contactPopup) {
-                    contactPopup.classList.add('opacity-0', 'invisible');
-                    contactPopup.classList.remove('is-open');
-                    setTimeout(() => {
-                        contactForm.style.display = 'block';
-                        successMessage.style.display = 'none';
-                    }, 500);
-                }
+                closePopup();
+                setTimeout(() => {
+                    contactForm.style.display = 'block';
+                    successMessage.style.display = 'none';
+                }, 500);
             }, 3000);
         }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        const preloader = document.getElementById('preloader');
+        
+        /**
+         * ===================================================================
+         * INTERACTIVITY & CORE LOGIC
+         * ===================================================================
+         */
+        const root = document.documentElement;
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        if (!isTouchDevice) {
+            window.addEventListener('mousemove', e => {
+                gsap.to(root, {
+                    '--mouse-x': (e.clientX / window.innerWidth * 100) + '%',
+                    '--mouse-y': (e.clientY / window.innerHeight * 100) + '%',
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            const cursorDot = document.querySelector(".cursor-dot");
+            const cursorOutline = document.querySelector(".cursor-outline");
+            if (cursorDot && cursorOutline) {
+                let mouseX = 0, mouseY = 0;
+                gsap.set([cursorDot, cursorOutline], {xPercent: -50, yPercent: -50});
+                window.addEventListener("mousemove", (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+
+                gsap.ticker.add(() => {
+                    gsap.to(cursorDot, { duration: 0.2, x: mouseX, y: mouseY });
+                    gsap.to(cursorOutline, { duration: 0.6, x: mouseX, y: mouseY, ease: "power2.out" });
+                });
+
+                document.querySelectorAll('.interactive-hover').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        gsap.to(cursorOutline, { duration: 0.3, scale: 1.4, backgroundColor: 'rgba(100, 100, 100, 0.1)' });
+                        gsap.to(cursorDot, { duration: 0.3, scale: 0 });
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        gsap.to(cursorOutline, { duration: 0.3, scale: 1, backgroundColor: 'transparent' });
+                        gsap.to(cursorDot, { duration: 0.3, scale: 1 });
+                    });
+                });
+            }
+        } else {
+             function animateSpotlight() {
+                gsap.to(':root', {
+                    '--mouse-x': gsap.utils.random(0, 100) + '%',
+                    '--mouse-y': gsap.utils.random(0, 100) + '%',
+                    duration: gsap.utils.random(4, 8),
+                    ease: 'power1.inOut',
+                    onComplete: animateSpotlight
+                });
+            }
+            animateSpotlight();
+        }
+
         const getStoredTheme = () => localStorage.getItem('theme') || 'dark';
         const getStoredLang = () => localStorage.getItem('language') || 'fr';
-        const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         
         const applyTheme = (theme) => {
             document.documentElement.className = theme === 'light' ? 'light-theme' : '';
@@ -285,140 +563,161 @@
         };
 
         const setLanguage = (lang) => {
-            const preloader = document.getElementById('preloader');
-            preloader.classList.remove('hidden', 'fade-out');
+             const preloader = document.getElementById('preloader');
+            preloader.classList.remove('fade-out');
 
             setTimeout(() => {
                 document.documentElement.lang = lang;
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
                 document.querySelectorAll('[data-translate]').forEach(el => {
                     const key = el.getAttribute('data-translate');
-                    if (translations[lang] && translations[lang][key]) {
-                        el.innerHTML = translations[lang][key];
-                    } else if (translations['fr'][key]) { // Fallback to French
-                        el.innerHTML = translations['fr'][key];
-                    }
+                    el.innerHTML = translations[lang]?.[key] || translations['fr'][key];
                 });
                 document.querySelectorAll('.lang-option, .lang-option-mobile').forEach(btn => {
-                    btn.classList.remove('font-bold', 'text-[var(--primary-color)]');
-                    if (btn.getAttribute('data-lang') === lang) {
-                         btn.classList.add('font-bold', 'text-[var(--primary-color)]');
-                    }
+                    btn.classList.toggle('font-bold', btn.getAttribute('data-lang') === lang);
+                    btn.classList.toggle('text-[var(--primary-color)]', btn.getAttribute('data-lang') === lang);
                 });
                 localStorage.setItem('language', lang);
-                
-                setTimeout(() => {
+                if(document.getElementById('hero-subtitle')) typeAnimation();
+                 setTimeout(() => {
                     preloader.classList.add('fade-out');
-                    preloader.addEventListener('transitionend', () => preloader.classList.add('hidden'), { once: true });
-                }, 50);
+                }, 100);
+            }, 500);
 
-            }, 300);
         };
         
         document.getElementById('theme-toggle').addEventListener('click', () => applyTheme(getStoredTheme() === 'dark' ? 'light' : 'dark'));
-
-        const langButtons = document.querySelectorAll('.lang-option, .lang-option-mobile');
-        langButtons.forEach(btn => {
+        document.querySelectorAll('.lang-option, .lang-option-mobile').forEach(btn => {
              btn.addEventListener('click', (e) => {
                  e.preventDefault();
                  setLanguage(e.target.getAttribute('data-lang'));
-                 document.getElementById('mobile-lang-menu').classList.add('hidden');
              });
         });
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('is-open');
-            mobileMenu.querySelectorAll('a').forEach((link, index) => {
-                link.style.animationDelay = `${index * 100}ms`;
-            });
-        });
-        document.getElementById('mobile-lang-toggle').addEventListener('click', (e) => {
-            e.stopPropagation();
-            document.getElementById('mobile-lang-menu').classList.toggle('hidden');
-        });
-        document.addEventListener('click', () => {
-            document.getElementById('mobile-lang-menu').classList.add('hidden');
-            mobileMenu.classList.remove('is-open');
-        });
 
-        if (!isTouchDevice()) {
-            const cursorDot = document.querySelector(".cursor-dot");
-            const cursorOutline = document.querySelector(".cursor-outline");
-            const body = document.body;
-            window.addEventListener("mousemove", (e) => {
-                if(cursorDot && cursorOutline){
-                    cursorDot.style.left = `${e.clientX}px`;
-                    cursorDot.style.top = `${e.clientY}px`;
-                    cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 500, fill: "forwards" });
-                }
-            });
-            document.querySelectorAll('.interactive-hover').forEach(el => {
-                el.addEventListener('mouseenter', () => body.classList.add('link-hovered'));
-                el.addEventListener('mouseleave', () => body.classList.remove('link-hovered'));
-            });
-            document.querySelectorAll('.interactive-card').forEach(card => {
-                card.addEventListener('mousemove', e => {
-                    const rect = card.getBoundingClientRect();
-                    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-                    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-                });
-            });
-        }
-       
-        // Contact Form Popup Logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        function toggleMobileMenu() { document.body.classList.toggle('mobile-menu-open'); }
+        mobileMenuButton.addEventListener('click', (e) => { e.stopPropagation(); toggleMobileMenu(); });
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+        document.querySelectorAll('.nav-link-mobile').forEach(link => link.addEventListener('click', toggleMobileMenu));
+        
         const contactPopup = document.getElementById('contact-popup');
         const closePopupButton = document.getElementById('close-popup');
         const contactTriggers = document.querySelectorAll('.contact-trigger');
-        const contactForm = document.getElementById('contact-form');
-        
-        const openPopup = () => {
-             contactPopup.classList.remove('invisible', 'opacity-0');
-             contactPopup.classList.add('is-open');
-        };
-        const closePopup = () => {
-            contactPopup.classList.add('opacity-0');
-            contactPopup.addEventListener('transitionend', () => {
-                contactPopup.classList.add('invisible');
-            }, {once: true});
-            contactPopup.classList.remove('is-open');
-        };
-
+        const openPopup = () => contactPopup.classList.add('is-open');
+        const closePopup = () => contactPopup.classList.remove('is-open');
         contactTriggers.forEach(trigger => trigger.addEventListener('click', openPopup));
         closePopupButton.addEventListener('click', closePopup);
-        contactForm.addEventListener('submit', () => {
-            window.submitted = true;
-        });
+        document.getElementById('contact-form').addEventListener('submit', () => { window.submitted = true; });
 
+        const typeAnimation = () => {
+            const subtitleEl = document.getElementById('hero-subtitle');
+            if(!subtitleEl) return;
+            const textContentEl = subtitleEl.querySelector('.text-content');
+            const text = translations[getStoredLang()].hero_subtitle || translations.fr.hero_subtitle;
+            let i = 0;
+            textContentEl.innerHTML = '';
+            function type() { if (i < text.length) { textContentEl.innerHTML += text.charAt(i); i++; setTimeout(type, 50); } }
+            type();
+        };
 
-        applyTheme(getStoredTheme());
-        setLanguage(getStoredLang());
-        
-        const fadeObserver = new IntersectionObserver((entries) => {
+        const sections = document.querySelectorAll('.section-content');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                const id = entry.target.id;
+                entry.target.classList.toggle('is-visible', entry.isIntersecting);
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+                    entry.target.querySelectorAll('.reveal-on-scroll').forEach((el, index) => {
+                       setTimeout(() => el.classList.add('is-visible'), index * 100);
+                    });
+                    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
                 }
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in-element').forEach(el => fadeObserver.observe(el));
+        }, { rootMargin: '-40% 0px -60% 0px', threshold: 0 }); 
+
+        sections.forEach(section => observer.observe(section));
 
         const progressBar = document.getElementById('progress-bar');
         window.addEventListener('scroll', () => {
             const scrollTop = document.documentElement.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollProgress = (scrollTop / scrollHeight) * 100;
-            progressBar.style.width = `${scrollProgress}%`;
+            progressBar.style.width = `${(scrollTop / scrollHeight) * 100}%`;
         });
         
-        window.onload = () => {
-            const preloader = document.getElementById('preloader');
-            if(preloader) {
-                preloader.classList.add('fade-out');
-                preloader.addEventListener('transitionend', () => preloader.classList.add('hidden'), { once: true });
+        const preloader = document.getElementById('preloader');
+        
+        // Initial Load Sequence
+        applyTheme(getStoredTheme());
+        setLanguage(getStoredLang());
+
+        window.addEventListener('load', () => {
+            preloader?.classList.add('fade-out');
+        });
+
+        /**
+         * ===================================================================
+         * PROJECT SLIDER LOGIC (NOUVEAU CODE)
+         * ===================================================================
+         */
+        document.querySelectorAll('.project-card').forEach(card => {
+            const slides = card.querySelectorAll('.project-slide');
+            const prevButton = card.querySelector('.slider-prev');
+            const nextButton = card.querySelector('.slider-next');
+            let currentIndex = 0;
+            let intervalId = null;
+
+            if (slides.length <= 1) {
+                if(prevButton) prevButton.style.display = 'none';
+                if(nextButton) nextButton.style.display = 'none';
+                if(slides.length === 1) slides[0].style.opacity = '1';
+                return;
             }
-        };
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.opacity = i === index ? '1' : '0';
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            function startSlider() {
+                stopSlider(); // Éviter les intervalles multiples
+                intervalId = setInterval(nextSlide, 2000);
+            }
+
+            function stopSlider() {
+                clearInterval(intervalId);
+            }
+
+            nextButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                nextSlide();
+            });
+
+            prevButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                prevSlide();
+            });
+
+            card.addEventListener('mouseenter', stopSlider);
+            card.addEventListener('mouseleave', startSlider);
+
+            showSlide(currentIndex);
+            startSlider();
+        });
+        
     });
     </script>
 </body>
