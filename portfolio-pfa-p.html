@@ -341,8 +341,8 @@
         <section class="mb-16 md:mb-24">
             <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="team_presentation_title">Notre Équipe Créative</h2>
             <p class="max-w-3xl mx-auto text-lg text-muted text-center mb-8 reveal-on-scroll" data-translate="team_presentation_intro">Découvrez les talents derrière la plateforme EMSI Clubs, une équipe passionnée et polyvalente qui a transformé une vision en réalité.</p>
-            <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass-effect p-6 rounded-lg flex flex-col items-center text-center reveal-on-scroll" style="transition-delay: 100ms;">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center text-center reveal-on-scroll" style="transition-delay: 100ms; ">
                     <img src="https://i.ibb.co/2YpfRnQQ/ilyas.png" alt="Photo de Ilyas Oulmidi" class="rounded-full w-24 h-24 object-cover mb-4 shadow-md" />
                     <h4 class="font-bold text-lg" data-translate="member2_name">Ilyas Oulmidi</h4>
                     <p class="text-sm font-semibold text-[var(--primary-color)] mb-2" data-translate="member2_role">Architecte Backend & Gestion de Base de Données</p>
@@ -668,10 +668,10 @@
         <section class="mb-16 md:mb-24 text-center">
              <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="resources_title">Ressources du Projet</h2>
              <div class="flex justify-center flex-wrap gap-4 reveal-on-scroll">
-                <a href="https://bilaleh.github.io/portfolio/rapport-pfa-v1.docx" download class="bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center gap-2">
+                <a href="https://bilaleh.github.io/portfolio/Rapport_PingPong_Complet.pdf" download class="bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center gap-2">
                     <i class="fas fa-file-pdf"></i> <span data-translate="download_report">Télécharger le Rapport</span>
                 </a>
-                <a href="https://github.com/BilalEH/PFA" target="_blank" rel="noopener noreferrer" class="border border-[var(--border-color)] hover:bg-[var(--border-color)] font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center gap-2">
+                <a href="https://github.com/BilalEH" target="_blank" rel="noopener noreferrer" class="border border-[var(--border-color)] hover:bg-[var(--border-color)] font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center gap-2">
                     <i class="fab fa-github"></i> <span data-translate="view_on_github">Voir sur GitHub</span>
                 </a>
             </div>
@@ -760,13 +760,6 @@
             </div>
         </section>
 
-        <!-- New Sections End Here -->
-        <div class="text-center mb-8 reveal-on-scroll">
-            <button id="open-gallery-btn" class="bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center gap-2 mx-auto">
-                <i class="fas fa-images"></i> <span data-translate="open_gallery">Ouvrir la Galerie</span>
-            </button>
-        </div>
-
     </main>
     
     <footer class="border-t border-[var(--border-color)] relative z-10 mt-16">
@@ -774,7 +767,7 @@
              <div class="flex justify-center space-x-6 mb-4">
                 <a href="https://github.com/BilalEH" target="_blank" rel="noopener noreferrer" aria-label="GitHub Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors"><i class="fab fa-github fa-2x"></i></a>
                 <a href="https://www.linkedin.com/in/bilal-el-haoudar/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors"><i class="fab fa-linkedin fa-2x"></i></a>
-                   <a href="mailto:bilalelhaoudar@gmail.com" aria-label="Envoyer un email à Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors"><i class="fas fa-envelope fa-2x"></i></a>
+                   <a href="mailto:bilal.elhaoudar.dev@gmail.com" aria-label="Envoyer un email à Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors"><i class="fas fa-envelope fa-2x"></i></a>
             </div>
             <p class="text-muted text-sm">© 2025 Bilal EL Haoudar. Tous droits réservés.</p>
         </div>
@@ -800,9 +793,8 @@
         let isRTL = false;
 
         // --- TRANSLATIONS OBJECT ---
-        const translations = {
 
-        
+       const translations = {
     fr: { 
         page_title: "Étude de Cas : EMSI Clubs | Bilal EL Haoudar",
         back_to_portfolio: "Retour au Portfolio", 
@@ -865,6 +857,8 @@
         resources_title: "Ressources du Projet", 
         download_report: "Télécharger le Rapport", 
         view_on_github: "Voir sur GitHub",
+        project_summary_title: "Résumé du Projet",
+        project_summary_desc: "La plateforme EMSI Clubs a été développée pour résoudre les défis de gestion et de communication des clubs étudiants. En offrant une solution centralisée avec authentification multi-profils, automatisation des candidatures et gestion complète des événements, nous avons créé un outil moderne et sécurisé. Ce projet a démontré notre capacité à transformer des besoins complexes en une application web robuste et intuitive, améliorant significativement l'expérience associative à l'EMSI.",
         
         // New sections translations
         team_presentation_title: "Notre Équipe Créative",
@@ -930,50 +924,11 @@
         perspective3_title: "Ouverture à d'Autres Établissements",
         perspective3_desc: "Adapter la plateforme pour qu'elle puisse être déployée et utilisée par d'autres établissements d'enseignement supérieur, élargissant ainsi son impact et sa portée.",
         perspective4_title: "Hébergement Centralisé et Sécurisé",
-        perspective4_desc: "Mettre en place une solution d'hébergement cloud robuste et sécurisée pour garantir la disponibilité, la performance et la protection des données de la plateforme à grande échelle.",
-        open_gallery: "Ouvrir la Galerie",
-        page_title: "Étude de Cas : EMSI Clubs | Bilal EL Haoudar",
-        back_to_portfolio: "Retour au Portfolio", 
-        case_study_tag: "Étude de Cas", 
-        project_title: "EMSI Clubs Platform", 
-        project_subtitle: "Conception et développement d’une plateforme web centralisée pour la gestion des clubs étudiants à l’EMSI.", 
-        context_title: "Contexte", 
-        context_desc: "Actuellement, les clubs de l’EMSI utilisent des outils dispersés comme Google Forms pour les candidatures, WhatsApp pour la communication, et Excel pour le suivi. Ce fonctionnement entraîne une perte de temps considérable, un manque de coordination et d’efficacité, ainsi qu’une visibilité réduite des activités des clubs.", 
-        problem_title: "Problématique", 
-        problem_desc: "Face à ces défis, la problématique centrale était de développer une plateforme web centralisée, responsive, sécurisée et évolutive, capable de gérer efficacement les candidatures, les rôles utilisateurs et les événements, tout en améliorant la communication et l'organisation au sein de l'EMSI.", 
-        objectives_title: "Objectifs", 
-        objectives_desc: "Nos objectifs étaient de créer une solution robuste offrant une authentification multi-profils (Étudiant, Admin Club, Admin Système), de centraliser les données des clubs, d'automatiser les candidatures, de développer un module d'événements complet, et de fournir un tableau de bord adapté à chaque utilisateur, tout en sécurisant les données (JWT, CSRF).", 
-        team_presentation_title: "Notre Équipe Créative",
-        team_presentation_intro: "Découvrez les talents derrière la plateforme EMSI Clubs, une équipe passionnée et polyvalente qui a transformé une vision en réalité.",
-            member2_name: "Ilyas Oulmidi",
-        member2_role: "Architecte Backend & Gestion de Base de Données",
-        member2_desc: "Responsable de la robustesse du backend avec Laravel et de la modélisation de la base de données MySQL. A assuré la fluidité des interactions serveur.",
-            member3_name: "Bilal EL Haoudar",
-        member3_role: "Lead Backend, Architecte BD & Développeur Étudiant",
-        member3_desc: "Mon rôle a été central dans la conception de l'API RESTful, la modélisation MySQL, et le développement des fonctionnalités clés pour le profil étudiant (connexion, inscription, tableau de bord).",
-        member1_name: "Adam Amaziane",
-        member1_role: "Développeur Full-stack & Expert UI/UX",
-        member1_desc: "Spécialisé dans le développement frontend avec React.js et la conception d'interfaces utilisateur intuitives. A contribué à l'architecture globale et à l'expérience visuelle.",
-        member4_name: "Ahmed Nahri",
-        member4_role: "Développeur Frontend & Intégration API",
-        member4_desc: "Expert en intégration des API Laravel avec React.js, a assuré la cohérence des données et la réactivité des composants frontend.",
-        conception_title: "Conception et Modélisation",
-        conception_intro: "La phase de conception a été cruciale pour assurer la robustesse, la modularité et la scalabilité de la plateforme EMSI Clubs. Nous avons utilisé des outils de modélisation standardisés pour visualiser l'architecture du système et les interactions entre ses composants.",
-        conception_uc_title: "Diagrammes de Cas d'Utilisation (UML)",
-        conception_uc_desc: "Ces diagrammes ont permis de définir clairement les fonctionnalités offertes par la plateforme et les interactions des différents acteurs (Étudiant, Admin Club, Admin Système) avec le système. Ils ont servi de base pour comprendre les besoins fonctionnels et les périmètres de chaque rôle.",
-        conception_class_title: "Diagrammes de Classes (UML)",
-        conception_class_desc: "La modélisation de la structure interne de l'application a été réalisée à l'aide de diagrammes de classes. Ils ont permis de représenter les entités clés (utilisateurs, clubs, événements, candidatures) et leurs relations, garantissant une base de données cohérente et une logique métier bien organisée.",
-        conception_sequence_title: "Diagrammes de Séquence (UML)",
-        conception_sequence_desc: "Pour les scénarios complexes comme l'authentification multi-profils ou le processus de candidature, des diagrammes de séquence ont été élaborés. Ils ont illustré le déroulement chronologique des interactions entre les objets du système, assurant une implémentation logique et sans faille.",
-        conception_gantt_title: "Diagramme de Gantt",
-        conception_gantt_desc: "Un diagramme de Gantt a été utilisé pour la planification et le suivi du projet. Il a permis de visualiser les différentes phases de développement, les dépendances entre les tâches et les délais, assurant une gestion de projet efficace et le respect des échéances.",
-        app_screenshots_title: "Captures d'Écran de l'Application",
-        app_screenshots_summary: "Explorez l'interface utilisateur de la plateforme EMSI Clubs à travers cette galerie de captures d'écran. Découvrez les différents tableaux de bord, les formulaires de gestion et les vues des fonctionnalités clés qui améliorent l'expérience des étudiants et des administrateurs. Cliquez sur une image pour l'afficher en plein écran et naviguer.",
-        resources_title: "Ressources du Projet", 
-        download_report: "Télécharger le Rapport", 
-        view_on_github: "Voir sur GitHub"
+        perspective4_desc: "Mettre en place une solution d'hébergement cloud robuste et sécurisée pour garantir la disponibilité, la performance et la protection des données de la plateforme à grande échelle."
     },
-    en: { 
+    en: {
+        project_summary_title: "Project Summary",
+        project_summary_desc: "The EMSI Clubs platform was developed to address the management and communication challenges faced by student clubs. By providing a centralized solution with multi-profile authentication, application automation, and comprehensive event management, we created a modern and secure tool. This project demonstrated our ability to transform complex needs into a robust and intuitive web application, significantly enhancing the associative experience at EMSI.",
         page_title: "Case Study : EMSI Clubs | Bilal EL Haoudar",
         back_to_portfolio: "Back to Portfolio", 
         case_study_tag: "Case Study", 
@@ -1100,50 +1055,11 @@
         perspective3_title: "Expansion to Other Institutions",
         perspective3_desc: "Adapt the platform so it can be deployed and used by other higher education institutions, thereby expanding its impact and reach.",
         perspective4_title: "Centralized and Secure Hosting",
-        perspective4_desc: "Implement a robust and secure cloud hosting solution to ensure the availability, performance, and data protection of the platform at scale.",
-        open_gallery: "Open Gallery",
-        page_title: "Case Study : EMSI Clubs | Bilal EL Haoudar",
-        back_to_portfolio: "Back to Portfolio", 
-        case_study_tag: "Case Study", 
-        project_title: "EMSI Clubs Platform", 
-        project_subtitle: "Design and development of a centralized web platform for managing student clubs at EMSI.", 
-        context_title: "Context", 
-        context_desc: "Club management currently relies on scattered tools like Google Forms for applications, WhatsApp for communication, and Excel for tracking. This leads to considerable time loss, lack of coordination and efficiency, and reduced visibility of club activities.", 
-        problem_title: "Problem", 
-        problem_desc: "Facing these challenges, the central problem was to develop a centralized, responsive, secure, and scalable web platform capable of effectively managing applications, user roles, and events, while improving communication and organization within EMSI.", 
-        objectives_title: "Objectives", 
-        objectives_desc: "Our objectives were to create a robust solution offering multi-profile authentication (Student, Club Admin, System Admin), centralizing club data, automating applications, developing a comprehensive event module, and providing a tailored dashboard for each user, all while securing data (JWT, CSRF).", 
-        team_presentation_title: "Our Creative Team",
-        team_presentation_intro: "Discover the talents behind the EMSI Clubs platform, a passionate and versatile team that transformed a vision into reality.",
-        member2_name: "Ilyas Oulmidi",
-        member2_role: "Backend Architect & Database Management",
-        member2_desc: "Responsible for the robustness of the backend with Laravel and the modeling of the MySQL database. Ensured smooth server interactions.",
-        member3_name: "Bilal EL Haoudar",
-        member3_role: "Lead Backend, DB Architect & Student Developer",
-        member3_desc: "My role was central in designing the RESTful API, MySQL modeling, and developing key features for the student profile (login, registration, dashboard).",
-        member1_name: "Adam Amaziane",
-        member1_role: "Full-stack Developer & UI/UX Expert",
-        member1_desc: "Specialized in frontend development with React.js and designing intuitive user interfaces. Contributed to the overall architecture and visual experience.",
-        member4_name: "Ahmed Nahri",
-        member4_role: "Frontend Developer & API Integration",
-        member4_desc: "Expert in integrating Laravel APIs with React.js, ensured data consistency and responsiveness of frontend components.",
-        conception_title: "Design and Modeling",
-        conception_intro: "The design phase was crucial to ensure the robustness, modularity, and scalability of the EMSI Clubs platform. We used standardized modeling tools to visualize the system's architecture and the interactions between its components.",
-        conception_uc_title: "Use Case Diagrams (UML)",
-        conception_uc_desc: "These diagrams helped to clearly define the features offered by the platform and the interactions of the different actors (Student, Club Admin, System Admin) with the system. They served as a basis for understanding the functional requirements and the scope of each role.",
-        conception_class_title: "Class Diagrams (UML)",
-        conception_class_desc: "The internal structure of the application was modeled using class diagrams. They allowed for the representation of key entities (users, clubs, events, applications) and their relationships, ensuring a coherent database and a well-organized business logic.",
-        conception_sequence_title: "Sequence Diagrams (UML)",
-        conception_sequence_desc: "For complex scenarios such as multi-profile authentication or the application process, sequence diagrams were created. They illustrated the chronological flow of interactions between the system's objects, ensuring a logical and flawless implementation.",
-        conception_gantt_title: "Gantt Chart",
-        conception_gantt_desc: "A Gantt chart was used for project planning and monitoring. It allowed for the visualization of the different development phases, dependencies between tasks, and deadlines, ensuring effective project management and adherence to schedules.",
-        app_screenshots_title: "Application Screenshots",
-        app_screenshots_summary: "Explore the user interface of the EMSI Clubs platform through this gallery of screenshots. Discover the various dashboards, management forms, and views of key features that enhance the experience for students and administrators. Click on an image to view it in full screen and navigate.",
-        resources_title: "Project Resources", 
-        download_report: "Download Report", 
-        view_on_github: "View on GitHub"
+        perspective4_desc: "Implement a robust and secure cloud hosting solution to ensure the availability, performance, and data protection of the platform at scale."
     },
-    ar: { 
+    ar: {
+        project_summary_title: "ملخص المشروع",
+        project_summary_desc: "تم تطوير منصة نوادي EMSI لمعالجة تحديات إدارة وتواصل النوادي الطلابية. من خلال توفير حل مركزي مع مصادقة متعددة الملفات الشخصية، وأتمتة الطلبات، وإدارة شاملة للفعاليات، أنشأنا أداة حديثة وآمنة. أظهر هذا المشروع قدرتنا على تحويل الاحتياجات المعقدة إلى تطبيق ويب قوي وبديهي، مما يعزز التجربة الجمعية بشكل كبير في EMSI.",
         page_title: "دراسة حالة: نوادي EMSI | بلال الحوضار",
         back_to_portfolio: "العودة إلى البورتفوليو", 
         case_study_tag: "دراسة حالة", 
@@ -1270,52 +1186,12 @@
         perspective3_title: "الافتتاح لمؤسسات أخرى",
         perspective3_desc: "تكييف المنصة بحيث يمكن نشرها واستخدامها من قبل مؤسسات التعليم العالي الأخرى، وبالتالي توسيع تأثيرها ونطاقها.",
         perspective4_title: "استضافة مركزية وآمنة",
-        perspective4_desc: "تطبيق حل استضافة سحابي قوي وآمن لضمان توفر المنصة وأدائها وحماية بياناتها على نطاق واسع.",
-        open_gallery: "افتح المعرض",
-            page_title: "دراسة حالة: نوادي EMSI |بلال الحودار",
-        back_to_portfolio: "العودة إلى البورتفوليو", 
-        case_study_tag: "دراسة حالة", 
-        project_title: "منصة نوادي EMSI", 
-        project_subtitle: "تصميم وتطوير منصة ويب مركزية لإدارة نوادي الطلاب في المدرسة المغربية لعلوم المهندس.", 
-        context_title: "السياق", 
-        context_desc: "تعتمد إدارة النوادي حاليًا على أدوات متفرقة مثل نماذج جوجل لتقديم الطلبات، واتساب للتواصل، وإكسل للمتابعة. يؤدي هذا الأسلوب إلى إهدار كبير للوقت، ونقص في التنسيق والفعالية، وتقليل وضوح أنشطة النوادي.", 
-        problem_title: "الإشكالية", 
-        problem_desc: "في مواجهة هذه التحديات، كانت المشكلة الرئيسية هي تطوير منصة ويب مركزية، متجاوبة، آمنة، وقابلة للتطوير، قادرة على إدارة الطلبات، أدوار المستخدمين، والفعاليات بفعالية، مع تحسين التواصل والتنظيم داخل EMSI.", 
-        objectives_title: "الأهداف", 
-        objectives_desc: "كانت أهدافنا هي إنشاء حل قوي يوفر مصادقة متعددة الملفات الشخصية (طالب، مسؤول نادي، مسؤول نظام)، لمركزة بيانات النوادي، أتمتة طلبات الانضمام، تطوير وحدة أحداث شاملة، وتوفير لوحة تحكم مخصصة لكل مستخدم، مع تأمين البيانات (JWT، CSRF).", 
-        team_presentation_title: "فريقنا الإبداعي",
-        team_presentation_intro: "اكتشف المواهب وراء منصة نوادي EMSI، فريق شغوف ومتعدد المواهب حول رؤية إلى حقيقة.",
-        member2_name: "إلياس أولميدي",
-        member2_role: "مهندس الواجهة الخلفية وإدارة قواعد البيانات",
-        member2_desc: "مسؤول عن قوة الواجهة الخلفية باستخدام Laravel ونمذجة قاعدة بيانات MySQL. ضمن سلاسة تفاعلات الخادم.",
-        member3_name: "بلال الحودار",
-        member3_role: "قائد الواجهة الخلفية، مهندس قواعد البيانات ومطور الطالب",
-        member3_desc: "كان دوري محوريًا في تصميم واجهة برمجة التطبيقات RESTful، ونمذجة MySQL، وتطوير الميزات الرئيسية لملف الطالب (تسجيل الدخول، التسجيل، لوحة التحكم).",
-        member1_name: "آدم أمازيان",
-        member1_role: "مطور متكامل وخبير واجهة المستخدم/تجربة المستخدم",
-        member1_desc: "متخصص في تطوير الواجهة الأمامية باستخدام React.js وتصميم واجهات مستخدم بديهية. ساهم في البنية العامة والتجربة المرئية.",
-        member4_name: "أحمد نهري",
-        member4_role: "مطور الواجهة الأمامية وتكامل واجهة برمجة التطبيقات",
-        member4_desc: "خبير في تكامل واجهات برمجة تطبيقات Laravel مع React.js، ضمن اتساق البيانات واستجابة مكونات الواجهة الأمامية.",
-        conception_title: "التصميم والنمذجة",
-        conception_intro: "كانت مرحلة التصميم حاسمة لضمان قوة، نمطية، وقابلية توسع منصة نوادي EMSI. لقد استخدمنا أدوات نمذجة موحدة لتصور بنية النظام والتفاعلات بين مكوناته.",
-        conception_uc_title: "مخططات حالات الاستخدام (UML)",
-        conception_uc_desc: "ساعدت هذه المخططات على تحديد الميزات التي تقدمها المنصة بوضوح وتفاعلات مختلف الفاعلين (الطالب، مسؤول النادي، مسؤول النظام) مع النظام. لقد كانت بمثابة أساس لفهم المتطلبات الوظيفية ونطاق كل دور.",
-        conception_class_title: "مخططات الفئات (UML)",
-        conception_class_desc: "تم تصميم الهيكل الداخلي للتطبيق باستخدام مخططات الفئات. وقد أتاحت تمثيل الكيانات الرئيسية (المستخدمين، الأندية، الأحداث، الطلبات) وعلاقاتها، مما يضمن قاعدة بيانات متماسكة ومنطق أعمال منظم جيدًا.",
-        conception_sequence_title: "مخططات التسلسل (UML)",
-        conception_sequence_desc: "بالنسبة للسيناريوهات المعقدة مثل المصادقة متعددة الملفات الشخصية أو عملية التقديم، تم إنشاء مخططات تسلسل. وقد أوضحت التدفق الزمني للتفاعلات بين كائنات النظام، مما يضمن تنفيذًا منطقيًا لا تشوبه شائبة.",
-        conception_gantt_title: "مخطط جانت",
-        conception_gantt_desc: "تم استخدام مخطط جانت لتخطيط المشروع ومراقبته. وقد سمح بتصور مراحل التطوير المختلفة، والتبعيات بين المهام، والمواعيد النهائية، مما يضمن إدارة فعالة للمشروع والالتزام بالجداول الزمنية.",
-        app_screenshots_title: "لقطات شاشة التطبيق",
-        app_screenshots_summary: "استكشف واجهة المستخدم لمنصة نوادي EMSI من خلال معرض لقطات الشاشة هذا. اكتشف لوحات التحكم المختلفة، ونماذج الإدارة، وطرق عرض الوظائف الرئيسية التي تعزز تجربة الطلاب والمسؤولين. انقر على صورة لعرضها بملء الشاشة والتنقل بينها.",
-        resources_title: "موارد المشروع", 
-        download_report: "تحميل التقرير", 
-        view_on_github: "المشاهدة على GitHub"
+        perspective4_desc: "تطبيق حل استضافة سحابي قوي وآمن لضمان توفر المنصة وأدائها وحماية بياناتها على نطاق واسع."
     }
 };
-       
-// --- INITIALIZATION ---
+
+
+        // --- INITIALIZATION ---
         setupUI();
         setupGallery();
         setupCarousel();
@@ -1623,7 +1499,6 @@
             });
         }
     });
-            // 4. CUSTOM CURSOR
 
     </script>
 </body>
