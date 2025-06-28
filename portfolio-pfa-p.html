@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="page_title">Étude de Cas : EMSI Clubs | Bilal EL Haoudar</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="Étude de cas détaillée du projet EMSI Clubs, une plateforme de gestion centralisée pour les clubs étudiants. Découvrez le contexte, les technologies et les fonctionnalités.">
+    <meta name="author" content="Bilal EL Haoudar">
+    <link rel="canonical" href="https://bilaleh.github.io/portfolio/case-study.html" />
+
+    <!-- Preload Google Fonts for better performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Devicons for skill icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color-main: #020617;
+            --text-color: #e2e8f0;
+            --text-muted-color: #94a3b8;
+            --card-bg-color: rgba(15, 23, 42, 0.75);
+            --border-color: rgba(51, 65, 85, 0.5);
+            --primary-color: #38bdf8;
+            --primary-color-dark: #0ea5e9;
+            --bg-grid-color: rgba(51, 65, 85, 0.4);
+            --spotlight-color: rgba(14, 165, 233, 0.15);
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+        .light-theme {
+            --bg-color-main: #f8fafc;
+            --text-color: #0f172a;
+            --text-muted-color: #475569;
+            --card-bg-color: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(203, 213, 225, 0.8);
+            --primary-color: #2563eb;
+            --primary-color-dark: #1d4ed8;
+            --bg-grid-color: rgba(100, 116, 139, 0.3);
+            --spotlight-color: rgba(96, 165, 250, 0.2);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color-main);
+            color: var(--text-color);
+            transition: background-color 0.5s ease;
+        }
+        html[lang="ar"] body { font-family: 'Cairo', sans-serif; }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image: 
+                radial-gradient(var(--bg-grid-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(
+                circle 400px at var(--mouse-x) var(--mouse-y),
+                var(--spotlight-color),
+                transparent
+            );
+        }
+                /* NEW CUSTOM CURSOR STYLES */
+        .custom-cursor {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 10001;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+            display: none; /* Hidden on touch devices by default */
+        }
+        .custom-cursor.hover {
+            width: 48px;
+            height: 48px;
+        }
+        /* Hide default cursor only on devices that can hover */
+        @media (pointer: fine) {
+            body, button, a, .modal-close, .modal-nav-button {
+                cursor: none;
+            }
+            .custom-cursor {
+                display: block;
+            }
+        }
+
+        .glass-effect { background: var(--card-bg-color); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--border-color); }
+        .text-muted { color: var(--text-muted-color); }
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        .preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-color-main); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 1; transition: opacity 0.5s ease-in-out, visibility 0.5s; }
+        .preloader.fade-out { opacity: 0; visibility: hidden; }
+        .spinner { width: 50px; height: 50px; border: 5px solid #334155; border-top: 5px solid var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Modal for image gallery */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal.is-active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content-wrapper {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Ensure image doesn't overflow during animation */
+        }
+
+        .modal-content {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .modal-content.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            font-size: 1rem;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .modal.is-active .modal-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 1001; /* Ensure it's above other modal elements */
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Arrows for navigation */
+        .modal-nav-button {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+            background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+            z-index: 1001; /* Ensure it's above other modal elements */
+        }
+
+        .modal-next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .modal-prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .modal-nav-button:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+
+                /* NEW CAROUSEL STYLES V3 */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 1rem 0;
+            cursor: grab;
+        }
+        .carousel-container:active {
+            cursor: grabbing;
+        }
+        .carousel-track {
+            display: flex;
+        }
+        .carousel-slide {
+            flex: 1 0 50%; /* Default for mobile: 2 slides visible */
+            padding: 0 8px;
+            box-sizing: border-box;
+        }
+        .carousel-slide img {
+            height: 320px;
+            width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            object-fit: cover;
+            object-position: top;
+            user-select: none;
+            pointer-events: none; /* Prevent image interaction during drag */
+        }
+        @media (min-width: 768px) { .carousel-slide { flex-basis: 33.3333%; } }
+        @media (min-width: 1024px) { .carousel-slide { flex-basis: 25%; } }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 9999px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
+        .carousel-button:hover { background-color: rgba(0, 0, 0, 0.8); }
+        .carousel-button.prev { left: 1rem; }
+        .carousel-button.next { right: 1rem; }
+
+    </style>
+</head>
+<body class="antialiased">
+        <div class="custom-cursor"></div>
+    <div id="preloader" class="preloader"><div class="spinner"></div></div>
+    
+    <header class="sticky top-0 z-50 glass-effect">
+        <div class="container mx-auto px-6 h-16 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wider">B<span class="text-[var(--primary-color)]">.</span>EH</a>
+            <div class="flex items-center gap-2">
+                   <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center text-muted hover:bg-white/10 transition-colors"><i id="theme-icon" class="fas fa-moon"></i></button>
+                <div class="lang-switcher flex items-center gap-1 border border-[var(--border-color)] rounded-full p-1">
+                    <button data-lang="fr" class="lang-option w-8 h-8 text-sm rounded-full transition-colors">FR</button>
+                    <button data-lang="en" class="lang-option w-8 h-8 text-sm rounded-full transition-colors">EN</button>
+                    <button data-lang="ar" class="lang-option w-8 h-8 text-sm rounded-full transition-colors">AR</button>
+                </div>
+                <a href="index.html#projects" class="text-sm text-muted hover:text-[var(--primary-color)] transition-colors ml-4">
+                    <i class="fas fa-arrow-left mr-2"></i><span data-translate="back_to_portfolio" class="hidden md:inline">Retour au Portfolio</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-24">
+        
+        <section class="text-center mb-16 md:mb-24 reveal-on-scroll">
+            <span class="text-sm font-semibold text-[var(--primary-color)] tracking-widest uppercase" data-translate="case_study_tag">Étude de Cas</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mt-4 mb-6" data-translate="project_title">EMSI Clubs Platform</h1>
+            <p class="max-w-3xl mx-auto text-lg text-muted" data-translate="project_subtitle">
+                Conception et développement d’une plateforme web centralisée pour la gestion des clubs étudiants à l’EMSI.
+            </p>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll">
+                    <h3 class="text-xl font-bold mb-3 flex items-center"><i class="fas fa-bullseye mr-3 text-[var(--primary-color)]"></i><span data-translate="context_title">Contexte</span></h3>
+                    <p class="text-muted" data-translate="context_desc">Actuellement, les clubs de l’EMSI utilisent des outils dispersés comme Google Forms pour les candidatures, WhatsApp pour la communication, et Excel pour le suivi. Ce fonctionnement entraîne une perte de temps considérable, un manque de coordination et d’efficacité, ainsi qu’une visibilité réduite des activités des clubs.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 150ms;">
+                    <h3 class="text-xl font-bold mb-3 flex items-center"><i class="fas fa-exclamation-circle mr-3 text-[var(--primary-color)]"></i><span data-translate="problem_title">Problématique</span></h3>
+                    <p class="text-muted" data-translate="problem_desc">Face à ces défis, la problématique centrale était de développer une plateforme web centralisée, responsive, sécurisée et évolutive, capable de gérer efficacement les candidatures, les rôles utilisateurs et les événements, tout en améliorant la communication et l'organisation au sein de l'EMSI.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 300ms;">
+                    <h3 class="text-xl font-bold mb-3 flex items-center"><i class="fas fa-rocket mr-3 text-[var(--primary-color)]"></i><span data-translate="objectives_title">Objectifs</span></h3>
+                    <p class="text-muted" data-translate="objectives_desc">Nos objectifs étaient de créer une solution robuste offrant une authentification multi-profils (Étudiant, Admin Club, Admin Système), de centraliser les données des clubs, d'automatiser les candidatures, de développer un module d'événements complet, et de fournir un tableau de bord adapté à chaque utilisateur, tout en sécurisant les données (JWT, CSRF).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Team Presentation -->
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="team_presentation_title">Notre Équipe Créative</h2>
+            <p class="max-w-3xl mx-auto text-lg text-muted text-center mb-8 reveal-on-scroll" data-translate="team_presentation_intro">Découvrez les talents derrière la plateforme EMSI Clubs, une équipe passionnée et polyvalente qui a transformé une vision en réalité.</p>
+            <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center text-center reveal-on-scroll" style="transition-delay: 100ms;">
+                    <img src="https://i.ibb.co/2YpfRnQQ/ilyas.png" alt="Photo de Ilyas Oulmidi" class="rounded-full w-24 h-24 object-cover mb-4 shadow-md" />
+                    <h4 class="font-bold text-lg" data-translate="member2_name">Ilyas Oulmidi</h4>
+                    <p class="text-sm font-semibold text-[var(--primary-color)] mb-2" data-translate="member2_role">Architecte Backend & Gestion de Base de Données</p>
+                    <p class="text-muted text-sm" data-translate="member2_desc">Responsable de la robustesse du backend avec Laravel et de la modélisation de la base de données MySQL. A assuré la fluidité des interactions serveur.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center text-center reveal-on-scroll" style="transition-delay: 200ms;">
+                    <img src="https://i.ibb.co/6jwgKYB/White-Clean-Minimalist-Business-Real-Estate-Resume.png" alt="Photo de Bilal EL Haoudar" class="rounded-full w-24 h-24 object-cover mb-4 shadow-md" />
+                    <h4 class="font-bold text-lg" data-translate="member3_name">Bilal EL Haoudar</h4>
+                    <p class="text-sm font-semibold text-[var(--primary-color)] mb-2" data-translate="member3_role">Lead Backend, Architecte BD & Développeur Étudiant</p>
+                    <p class="text-muted text-sm" data-translate="member3_desc">Mon rôle a été central dans la conception de l'API RESTful, la modélisation MySQL, et le développement des fonctionnalités clés pour le profil étudiant (connexion, inscription, tableau de bord).</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center text-center reveal-on-scroll">
+                    <img src="https://i.ibb.co/pr5VCNKt/adam.png" alt="Photo de Adam Amaziane" class="rounded-full w-24 h-24 object-cover mb-4 shadow-md" />
+                    <h4 class="font-bold text-lg" data-translate="member1_name">Adam Amaziane</h4>
+                    <p class="text-sm font-semibold text-[var(--primary-color)] mb-2" data-translate="member1_role">Développeur Full-stack & Expert UI/UX</p>
+                    <p class="text-muted text-sm" data-translate="member1_desc">Spécialisé dans le développement frontend avec React.js et la conception d'interfaces utilisateur intuitives. A contribué à l'architecture globale et à l'expérience visuelle.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center text-center reveal-on-scroll" style="transition-delay: 300ms;">
+                    <img src="https://i.ibb.co/TMT9V2Fz/ahmed-1.png" alt="Photo de Ahmed Nahri" class="rounded-full w-24 h-24 object-cover mb-4 shadow-md" />
+                    <h4 class="font-bold text-lg" data-translate="member4_name">Ahmed Nahri</h4>
+                    <p class="text-sm font-semibold text-[var(--primary-color)] mb-2" data-translate="member4_role">Développeur Frontend & Intégration API</p>
+                    <p class="text-muted text-sm" data-translate="member4_desc">Expert en intégration des API Laravel avec React.js, a assuré la cohérence des données et la réactivité des composants frontend.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Analyse de l'Existant & Positionnement du Projet -->
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="existing_analysis_title">Analyse de l'Existant & Positionnement du Projet</h2>
+            <p class="max-w-3xl mx-auto text-lg text-muted mb-8 reveal-on-scroll" data-translate="existing_analysis_intro">Avant la conception d'EMSI Clubs, la gestion des associations à l'EMSI s'appuyait sur des méthodes et outils fragmentés, limitant l'efficacité et la visibilité des activités étudiantes.</p>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fab fa-google mr-3 text-red-500"></i><span data-translate="tool1_title">Google Forms & WhatsApp</span></h4>
+                    <p class="text-muted" data-translate="tool1_desc">Utilisés pour les candidatures et la communication, ces outils manquaient de centralisation des données, d'automatisation des processus, et posaient des problèmes de sécurité et de traçabilité.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 150ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-tasks mr-3 text-blue-500"></i><span data-translate="tool2_title">Trello, Notion & Google Sheets</span></h4>
+                    <p class="text-muted" data-translate="tool2_desc">Détournés pour la gestion de tâches, ils n'offraient pas une gestion structurée multi-utilisateurs avec des rôles et permissions spécifiques aux clubs étudiants.</p>
+                </div>
+                <div class="md:col-span-2 text-center mt-8 reveal-on-scroll" style="transition-delay: 300ms;">
+                    <h3 class="text-2xl font-bold mb-4" data-translate="our_positioning_title">Notre Positionnement Unique</h3>
+                    <p class="text-muted" data-translate="our_positioning_desc">EMSI Clubs se distingue par sa gratuité, sa centralisation des données avec gestion des droits par profil utilisateur, et son adaptation fonctionnelle précise à l'environnement EMSI (candidatures, entretiens, validations, tableaux de bord). La plateforme répond directement aux besoins spécifiques des clubs étudiants, offrant une solution intégrée et sécurisée.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Processus de Développement & Méthodologie -->
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="development_process_title">Processus de Développement & Méthodologie</h2>
+            <p class="max-w-3xl mx-auto text-lg text-muted text-center mb-8 reveal-on-scroll" data-translate="development_process_intro">Notre projet a suivi une démarche structurée, adoptant une approche rigoureuse pour garantir sa réussite et l'atteinte de nos objectifs, malgré les défis rencontrés.</p>
+
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-sitemap mr-3 text-[var(--primary-color)]"></i><span data-translate="methodology_title">Méthodologie Adoptée</span></h4>
+                    <p class="text-muted" data-translate="methodology_desc">Nous avons opté pour une approche de type Cycle en V, adaptée à la durée limitée du projet (huit semaines) et aux exigences académiques. Cette méthode a permis un enchaînement rigoureux des étapes: analyse des besoins, conception, développement, tests et finalisation.</p>
+                </div>
+
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 150ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-users-cog mr-3 text-[var(--primary-color)]"></i><span data-translate="team_organization_title">Organisation de l'Équipe</span></h4>
+                    <p class="text-muted" data-translate="team_organization_desc">L'équipe, composée de quatre membres, était polyvalente (frontend & backend). Le travail a été collaboratif, avec une répartition des tâches flexible et une entraide constante. Nous avons utilisé Discord pour les réunions régulières et GitHub pour le versionnage et la collaboration sur le code source.</p>
+                </div>
+
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 300ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-exclamation-triangle mr-3 text-orange-500"></i><span data-translate="challenges_lessons_title">Défis & Apprentissages Clés</span></h4>
+                    <p class="text-muted" data-translate="challenges_lessons_desc">Le projet a présenté des défis comme la durée limitée (huit semaines), la coordination à distance, et la gestion des conflits Git. De plus, l'apprentissage autonome de React.js pour deux membres de l'équipe a exigé un effort personnel important, renforçant notre capacité à maîtriser de nouvelles technologies rapidement.</p>
+                </div>
+
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 450ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-calendar-check mr-3 text-[var(--primary-color)]"></i><span data-translate="planning_phases_title">Planification & Phases du Projet</span></h4>
+                    <p class="text-muted" data-translate="planning_phases_desc">Le projet a été divisé en cinq phases clés : Analyse des besoins, Conception (maquettes Figma, modélisation UML), Développement (Laravel, React.js), Intégration & Tests (APIs RESTful, sécurité), et Finalisation (rapport, documentation). Chaque phase a eu des jalons hebdomadaires pour un suivi efficace.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="key_features_title">Fonctionnalités Clés</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-users mr-3 text-[var(--primary-color)]"></i><span data-translate="feature1_title">Gestion Multi-Profils</span></h4>
+                    <p class="text-muted" data-translate="feature1_desc">Authentification et tableaux de bord personnalisés pour les étudiants, administrateurs de clubs et administrateurs système, garantissant une expérience utilisateur adaptée à chaque rôle.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 150ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-clipboard-list mr-3 text-[var(--primary-color)]"></i><span data-translate="feature2_title">Automatisation des Candidatures</span></h4>
+                    <p class="text-muted" data-translate="feature2_desc">Processus de candidature simplifié avec suivi automatisé, planification des entretiens et gestion des statuts, réduisant la charge administrative des clubs.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 300ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-calendar-alt mr-3 text-[var(--primary-color)]"></i><span data-translate="feature3_title">Module d'Événements Complet</span></h4>
+                    <p class="text-muted" data-translate="feature3_desc">Création, publication et gestion des événements des clubs, incluant les inscriptions, les rappels et la visibilité des activités pour toute la communauté étudiante.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 450ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-chart-line mr-3 text-[var(--primary-color)]"></i><span data-translate="feature4_title">Tableaux de Bord Adaptatifs</span></h4>
+                    <p class="text-muted" data-translate="feature4_desc">Des tableaux de bord intuitifs fournissent des informations pertinentes et des outils de gestion spécifiques aux besoins de chaque type d'utilisateur.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="conception_title">Conception et Modélisation</h2>
+            <div class="max-w-4xl mx-auto text-lg text-muted space-y-6">
+                <p data-translate="conception_intro">La phase de conception a été cruciale pour assurer la robustesse, la modularité et la scalabilité de la plateforme EMSI Clubs. Nous avons utilisé des outils de modélisation standardisés pour visualiser l'architecture du système et les interactions entre ses composants.</p>
+                
+                <div id="conception-diagrams-gallery" class="grid md:grid-cols-2 gap-8">
+                    <!-- Diagrammes de Cas d'Utilisation -->
+                    <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-between reveal-on-scroll">
+                        <div>
+                            <h4 class="font-bold text-xl mb-3 flex items-center"><i class="fas fa-sitemap mr-3 text-[var(--primary-color)]"></i><span data-translate="conception_uc_title">Diagrammes de Cas d'Utilisation (UML)</span></h4>
+                            <p class="text-muted mb-4" data-translate="conception_uc_desc">Ces diagrammes ont permis de définir clairement les fonctionnalités offertes par la plateforme et les interactions des différents acteurs (Étudiant, Admin Club, Admin Système) avec le système. Ils ont servi de base pour comprendre les besoins fonctionnels et les périmètres de chaque rôle.</p>
+                        </div>
+                        <div class="flex justify-center items-center bg-gray-800 rounded-lg p-4 mt-4 w-full " style="height: 200px; overflow: hidden;">
+                            <img src="https://i.ibb.co/3YPR1sZV/usecase.png" alt="Diagramme de Cas d'Utilisation" class="w-full h-auto rounded-md shadow-md cursor-pointer" data-caption="Diagramme de Cas d'Utilisation de la plateforme EMSI Clubs, illustrant les interactions entre les acteurs et les fonctionnalités.">
+                        </div>
+                    </div>
+
+                    <!-- Diagrammes de Classes -->
+                    <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-between reveal-on-scroll" style="transition-delay: 150ms;">
+                        <div>
+                            <h4 class="font-bold text-xl mb-3 flex items-center"><i class="fas fa-cubes mr-3 text-[var(--primary-color)]"></i><span data-translate="conception_class_title">Diagrammes de Classes (UML)</span></h4>
+                            <p class="text-muted mb-4" data-translate="conception_class_desc">La modélisation de la structure interne de l'application a été réalisée à l'aide de diagrammes de classes. Ils ont permis de représenter les entités clés (utilisateurs, clubs, événements, candidatures) et leurs relations, garantissant une base de données cohérente et une logique métier bien organisée.</p>
+                        </div>
+                        <div class="flex justify-center items-center bg-gray-800 rounded-lg p-4 mt-4 w-full" style="height: 200px; overflow: hidden;">
+                            <img src="https://i.ibb.co/Xkr1DxX1/pfa-d-class.png" alt="Diagramme de Classes" class="w-full h-auto rounded-md shadow-md cursor-pointer" data-caption="Diagramme de Classes de la plateforme EMSI Clubs, détaillant les entités et leurs relations.">
+                        </div>
+                    </div>
+
+                    <!-- Diagrammes de Séquence -->
+                    <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-between reveal-on-scroll" style="transition-delay: 300ms;">
+                        <div>
+                            <h4 class="font-bold text-xl mb-3 flex items-center"><i class="fas fa-exchange-alt mr-3 text-[var(--primary-color)]"></i><span data-translate="conception_sequence_title">Diagrammes de Séquence (UML)</span></h4>
+                            <p class="text-muted mb-4" data-translate="conception_sequence_desc">Pour les scénarios complexes comme l'authentification multi-profils ou le processus de candidature, des diagrammes de séquence ont été élaborés. Ils ont illustré le déroulement chronologique des interactions entre les objets du système, assurant une implémentation logique et sans faille.</p>
+                        </div>
+                        <div class="flex justify-center items-center bg-gray-800 rounded-lg p-4 mt-4 w-full" style="height: 200px; overflow: hidden;">
+                            <img src="https://i.ibb.co/2Yyj5Y2V/pfa-sequnce.png" alt="Diagramme de Séquence" class="w-full h-auto rounded-md shadow-md cursor-pointer" data-caption="Diagramme de Séquence illustrant le flux d'interactions pour des scénarios clés de la plateforme.">
+                        </div>
+                    </div>
+
+                    <!-- Diagramme de Gantt -->
+                    <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-between reveal-on-scroll" style="transition-delay: 450ms;">
+                        <div>
+                            <h4 class="font-bold text-xl mb-3 flex items-center"><i class="fas fa-chart-bar mr-3 text-[var(--primary-color)]"></i><span data-translate="conception_gantt_title">Diagramme de Gantt</span></h4>
+                            <p class="text-muted mb-4" data-translate="conception_gantt_desc">Un diagramme de Gantt a été utilisé pour la planification et le suivi du projet. Il a permis de visualiser les différentes phases de développement, les dépendances entre les tâches et les délais, assurant une gestion de projet efficace et le respect des échéances.</p>
+                        </div>
+                        <div class="flex justify-center items-center bg-gray-800 rounded-lg p-4 mt-4 w-full" style="height: 200px; overflow: hidden;">
+                            <img src="https://i.ibb.co/VYwp993m/gantt.png" alt="Diagramme de Gantt" class="w-full h-auto rounded-md shadow-md cursor-pointer" data-caption="Diagramme de Gantt détaillant la planification et les différentes phases du projet EMSI Clubs.">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="technologies_title">Technologies Utilisées</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center reveal-on-scroll">
+                    <i class="devicon-react-original text-6xl text-[var(--primary-color)] mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">React.js</h3>
+                    <p class="text-muted" data-translate="tech_react_desc">Utilisé pour le développement du frontend, React.js a permis de construire une interface utilisateur dynamique, réactive et modulaire, offrant une expérience fluide et moderne aux utilisateurs.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center reveal-on-scroll" style="transition-delay: 150ms;">
+                    <i class="devicon-laravel-plain text-6xl text-[var(--primary-color)] mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Laravel</h3>
+                    <p class="text-muted" data-translate="tech_laravel_desc">Le framework PHP Laravel 11 a été choisi pour le backend, assurant la robustesse de l'API RESTful, la gestion des authentifications (JWT) et la sécurité (CSRF), ainsi que la logique métier de la plateforme.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center reveal-on-scroll" style="transition-delay: 300ms;">
+                    <i class="devicon-mysql-plain text-6xl text-[var(--primary-color)] mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">MySQL</h3>
+                    <p class="text-muted" data-translate="tech_mysql_desc">MySQL a servi de système de gestion de base de données relationnelle pour stocker toutes les informations des clubs, des utilisateurs et des événements, garantissant l'intégrité et la performance des données.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="architecture_security_title">Architecture & Sécurité</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-1 gap-8">
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-network-wired mr-3 text-[var(--primary-color)]"></i><span data-translate="arch_api_title">API RESTful avec Laravel</span></h4>
+                    <p class="text-muted" data-translate="arch_api_desc">Le backend est construit autour d'une API RESTful robuste développée avec Laravel 11. Cette architecture permet une communication efficace entre le frontend React et la base de données, facilitant la gestion des requêtes et des réponses de manière structurée et performante.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 150ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-shield-alt mr-3 text-[var(--primary-color)]"></i><span data-translate="arch_security_title">Sécurité des Données (JWT, CSRF)</span></h4>
+                    <p class="text-muted" data-translate="arch_security_desc">La sécurité est une priorité. Nous avons implémenté des mécanismes d'authentification basés sur les JSON Web Tokens (JWT) pour sécuriser les sessions utilisateur et prévenir les accès non autorisés. De plus, des protections contre les attaques CSRF (Cross-Site Request Forgery) ont été mises en place pour garantir l'intégrité des requêtes utilisateur.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 300ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-database mr-3 text-[var(--primary-color)]"></i><span data-translate="arch_db_title">Modélisation de Base de Données</span></h4>
+                    <p class="text-muted" data-translate="arch_db_desc">La base de données MySQL a été soigneusement modélisée pour assurer une structure de données optimisée et cohérente. Cela inclut la gestion des utilisateurs, des clubs, des candidatures, des événements et des rôles, avec des relations claires pour une récupération et une manipulation efficaces des informations.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="my_role_title">Mon Rôle & Contributions</h2>
+            <p class="max-w-3xl mx-auto text-lg text-muted text-center mb-8" data-translate="my_role_summary">
+                En tant que membre clé de l'équipe, j'ai joué un rôle central dans la conception et le développement de la plateforme EMSI Clubs. Mes contributions se sont étendues du backend à l'intégration frontend, en passant par la modélisation de la base de données et la définition des exigences fonctionnelles.
+            </p>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="reveal-on-scroll">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-[var(--primary-color)]/10 p-3 rounded-full"><i class="fas fa-server text-xl text-[var(--primary-color)]"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg" data-translate="role1_title">Développement Backend & API</h4>
+                            <p class="text-muted mt-1" data-translate="role1_desc">J'étais directement responsable de la conception et de l'implémentation du backend de l'application avec Laravel 11. Cela incluait la création de l'API RESTful pour gérer toutes les interactions serveur-client, l'authentification (JWT) et la sécurité (CSRF), assurant la robustesse et la performance de la plateforme.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-on-scroll" style="transition-delay: 150ms;">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-[var(--primary-color)]/10 p-3 rounded-full"><i class="fas fa-database text-xl text-[var(--primary-color)]"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg" data-translate="role2_title">Architecte de Base de Données</h4>
+                            <p class="text-muted mt-1" data-translate="role2_desc">J'ai modélisé et mis en place la base de données MySQL, en veillant à son intégrité et à sa cohérence. Mon rôle a été essentiel pour structurer les données des clubs, des utilisateurs, des candidatures et des événements, optimisant ainsi la récupération et la manipulation des informations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-on-scroll" style="transition-delay: 300ms;">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-[var(--primary-color)]/10 p-3 rounded-full"><i class="fas fa-code-branch text-xl text-[var(--primary-color)]"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg" data-translate="role3_title">Liaison Frontend-Backend</h4>
+                            <p class="text-muted mt-1" data-translate="role3_desc">J'ai assuré la liaison fluide entre le frontend React et le backend Laravel, en veillant à ce que les données soient correctement transmises et traitées. Cela a impliqué la collaboration étroite avec l'équipe frontend pour intégrer les API et garantir une expérience utilisateur cohérente.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-on-scroll" style="transition-delay: 450ms;">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-[var(--primary-color)]/10 p-3 rounded-full"><i class="fas fa-user-graduate text-xl text-[var(--primary-color)]"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg" data-translate="role4_title">Développement des Fonctionnalités Étudiant</h4>
+                            <p class="text-muted mt-1" data-translate="role4_desc">J'ai spécifiquement développé des fonctionnalités clés pour le rôle étudiant, incluant la page d'accueil connectée, les processus d'inscription et de connexion. Mon objectif était de créer une interface intuitive et complète pour les étudiants, facilitant leur interaction avec les clubs.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="reveal-on-scroll" style="transition-delay: 600ms;">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-[var(--primary-color)]/10 p-3 rounded-full"><i class="fas fa-project-diagram text-xl text-[var(--primary-color)]"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg" data-translate="role5_title">Conception des Diagrammes UML</h4>
+                            <p class="text-muted mt-1" data-translate="role5_desc">J'ai activement participé à l'élaboration des diagrammes UML, notamment le diagramme de cas d'utilisation, pour modéliser les exigences fonctionnelles et les interactions du système. Cette contribution a été fondamentale pour la clarté et la structure du projet.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="reveal-on-scroll" style="transition-delay: 750ms;">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-[var(--primary-color)]/10 p-3 rounded-full"><i class="fas fa-file-alt text-xl text-[var(--primary-color)]"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg" data-translate="role6_title">Rédaction du Rapport Technique</h4>
+                            <p class="text-muted mt-1" data-translate="role6_desc">J'ai également contribué à la rédaction du rapport technique complet du projet, documentant les différentes phases, les choix technologiques et les solutions implémentées. Ce rapport récapitule l'ensemble de notre travail et les leçons apprises.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="video_demo_title">Démonstration Vidéo</h2>
+            <div class="max-w-4xl mx-auto reveal-on-scroll glass-effect rounded-lg overflow-hidden p-2 shadow-lg">
+                <div class="aspect-w-16 aspect-h-9" style="height: 450px;">
+                    <!-- Placeholder for the video. Replace with actual video embed later. -->
+                    <iframe src="https://www.youtube.com/embed/XimYAHaKm64?si=TrwGAeoF4qdNrjkq" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"allowfullscreen class="w-full h-full rounded-md"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="app_screenshots_title">Captures d'Écran de l'Application</h2>
+            <p class="max-w-3xl mx-auto text-lg text-muted text-center mb-8" data-translate="app_screenshots_summary">
+                Explorez l'interface utilisateur de la plateforme EMSI Clubs à travers cette galerie de captures d'écran. Découvrez les différents tableaux de bord, les formulaires de gestion et les vues des fonctionnalités clés qui améliorent l'expérience des étudiants et des administrateurs. Cliquez sur une image pour l'afficher en plein écran et naviguer.
+            </p>
+            
+            <div class="text-center mb-8 reveal-on-scroll">
+                <button id="open-gallery-btn" class="bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center gap-2 mx-auto">
+                    <i class="fas fa-images"></i> <span data-translate="open_gallery">Ouvrir la Galerie</span>
+                </button>
+            </div>
+
+            <!-- NEW CAROUSEL HTML STRUCTURE -->
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- Original slides go here. JS will clone them. -->
+                    <div class="carousel-slide"><img src="https://i.ibb.co/ymbXXX1Z/candidatures-clubs-student.png" alt="Tableau de bord Admin Club" data-caption="Tableau de bord de l'administrateur de club."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/Y4YkLBWp/Candidatures-d-v-nements-student-1.png" alt="Candidatures aux événements" data-caption="Interface des candidatures aux événements pour les étudiants."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/7d9k5Q4W/Candidatures-d-v-nements-student-2.png" alt="Candidatures aux événements" data-caption="Interface des candidatures aux événements pour les étudiants."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/S7xLtbhD/club-admin-club-info.png" alt="Informations du club" data-caption="Vue administrateur des informations du club."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/wNDCShm4/club-admin-club-info-1.png" alt="Informations du club" data-caption="Vue administrateur des informations du club."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/vChPBnzH/club-admin-dashboard.png" alt="Tableau de bord Admin" data-caption="Tableau de bord de l'administrateur de club."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/ZzMpX7nC/club-admin-events.png" alt="Gestion des événements" data-caption="Interface de gestion des événements pour l'administrateur."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/V0Yy7z8S/club-admin-events-create.png" alt="Création d'événement" data-caption="Formulaire de création d'un nouvel événement."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/2044tMM7/club-admin-events-update.png" alt="Mise à jour d'événement" data-caption="Formulaire de mise à jour d'un événement."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/HTTQ44pc/club-admin-interviews.png" alt="Gestion des entretiens" data-caption="Interface de gestion des entretiens pour l'administrateur."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/pBB0xQyX/club-admin-members.png" alt="Gestion des membres" data-caption="Liste et gestion des membres du club."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/MymkbBCm/club-admin-members-1.png" alt="Gestion des membres" data-caption="Liste et gestion des membres du club."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/hJt9ZNmB/D-couvrez-v-nements-student-1.png" alt="Découverte des événements" data-caption="Page de découverte des événements pour les étudiants."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/B5mtdtSh/D-couvrez-v-nements-student-2.png" alt="Découverte des événements" data-caption="Page de découverte des événements pour les étudiants."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/RTq4m713/D-couvrez-v-nements-student-3.png" alt="Découverte des événements" data-caption="Page de découverte des événements pour les étudiants."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/DHKFCGkC/D-couvrez-v-nements-student-4.png" alt="Découverte des événements" data-caption="Page de découverte des événements pour les étudiants."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/gLz8D1NC/Entretiens-Clubs-student-1.png" alt="Entretiens des clubs" data-caption="Vue étudiant des entretiens de clubs."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/0y1W6ScK/Entretiens-Clubs-student-2.png" alt="Entretiens des clubs" data-caption="Vue étudiant des entretiens de clubs."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/1GNz7s2S/v-nements-Clubs-student-1.png"  alt="Événements des clubs" data-caption="Vue étudiant des événements des clubs."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/spxtsDQF/v-nements-Clubs-student-2.png"  alt="Événements des clubs" data-caption="Vue étudiant des événements des clubs."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/QvyLwwm7/Clubs-Universitaires-student.png" alt="Liste des clubs" data-caption="Liste des clubs universitaires pour les étudiants."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/7xpJzZn3/login.png" alt="Page de connexion" data-caption="Page de connexion de la plateforme."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/0dcS7V6/register.png" alt="Page d'inscription" data-caption="Page d'inscription à la plateforme."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/B2X97fRb/Notifications-student.png" alt="Notifications" data-caption="Centre de notifications pour l'étudiant."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/hxwhTmLy/profil-student.png" alt="Profil étudiant" data-caption="Page de profil de l'étudiant."></div>
+                    <div class="carousel-slide"><img src="https://i.ibb.co/dJ50KNH2/student-dashboard.png" alt="Tableau de bord étudiant" data-caption="Tableau de bord principal de l'étudiant."></div>
+                </div>
+                <button class="carousel-button prev">❮</button>
+                <button class="carousel-button next">❯</button>
+            </div>
+        </section>
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <span class="modal-close">×</span>
+            <div class="modal-content-wrapper">
+                <img class="modal-content" id="img01">
+                <a class="modal-nav-button modal-prev">❮</a>
+                <a class="modal-nav-button modal-next">❯</a>
+            </div>
+            <div id="caption" class="modal-caption"></div>
+        </div>
+
+
+        <section class="mb-16 md:mb-24 text-center">
+             <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="resources_title">Ressources du Projet</h2>
+             <div class="flex justify-center flex-wrap gap-4 reveal-on-scroll">
+                <a href="https://bilaleh.github.io/portfolio/Rapport_PingPong_Complet.pdf" download class="bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center gap-2">
+                    <i class="fas fa-file-pdf"></i> <span data-translate="download_report">Télécharger le Rapport</span>
+                </a>
+                <a href="https://github.com/BilalEH" target="_blank" rel="noopener noreferrer" class="border border-[var(--border-color)] hover:bg-[var(--border-color)] font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center gap-2">
+                    <i class="fab fa-github"></i> <span data-translate="view_on_github">Voir sur GitHub</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24 text-center reveal-on-scroll">
+            <h2 class="text-3xl font-bold text-center mb-12" data-translate="project_summary_title">Résumé du Projet</h2>
+            <p class="max-w-3xl mx-auto text-lg text-muted" data-translate="project_summary_desc">
+                La plateforme EMSI Clubs a été développée pour résoudre les défis de gestion et de communication des clubs étudiants. En offrant une solution centralisée avec authentification multi-profils, automatisation des candidatures et gestion complète des événements, nous avons créé un outil moderne et sécurisé. Ce projet a démontré notre capacité à transformer des besoins complexes en une application web robuste et intuitive, améliorant significativement l'expérience associative à l'EMSI.
+            </p>
+        </section>
+
+        <!-- New Sections Start Here -->
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="challenges_solutions_title">Défis Relevés & Solutions Apportées</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-bug mr-3 text-red-500"></i><span data-translate="challenge1_title">Gestion de la Complexité des Rôles</span></h4>
+                    <p class="text-muted" data-translate="challenge1_desc">Le défi était d'intégrer trois profils utilisateurs distincts (Étudiant, Admin Club, Admin Système) avec des permissions et des tableaux de bord spécifiques. La solution a été l'implémentation d'un système d'authentification et d'autorisation robuste basé sur JWT, gérant dynamiquement l'accès et les vues selon le rôle de l'utilisateur.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 150ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-shield-alt mr-3 text-yellow-500"></i><span data-translate="challenge2_title">Sécurisation des Données Sensibles</span></h4>
+                    <p class="text-muted" data-translate="challenge2_desc">Assurer la sécurité des données (informations personnelles des étudiants, détails des clubs) était primordial. Nous avons mis en œuvre des mesures de sécurité avancées telles que les JSON Web Tokens (JWT) pour l'authentification des sessions et les protections CSRF pour prévenir les attaques de falsification de requêtes intersites.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 300ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-hourglass-half mr-3 text-blue-500"></i><span data-translate="challenge3_title">Optimisation des Processus Manuels</span></h4>
+                    <p class="text-muted" data-translate="challenge3_desc">Les méthodes traditionnelles (Google Forms, WhatsApp, Excel) entraînaient une perte de temps considérable. La plateforme a automatisé les candidatures, la gestion des événements et la communication, réduisant drastiquement la charge administrative et augmentant l'efficacité des clubs.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg reveal-on-scroll" style="transition-delay: 450ms;">
+                    <h4 class="font-bold text-lg mb-2 flex items-center"><i class="fas fa-globe mr-3 text-green-500"></i><span data-translate="challenge4_title">Accessibilité et Expérience Utilisateur</span></h4>
+                    <p class="text-muted" data-translate="challenge4_desc">Créer une interface intuitive et accessible sur différents appareils était un enjeu majeur. Grâce à React.js pour le frontend et une conception responsive, nous avons assuré une expérience utilisateur fluide et moderne, optimisée pour les ordinateurs de bureau et les appareils mobiles.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="impact_results_title">Impact & Résultats</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-center text-center reveal-on-scroll">
+                    <i class="fas fa-clock text-5xl text-[var(--primary-color)] mb-4"></i>
+                    <h4 class="font-bold text-xl" data-translate="impact1_title">Gain de Temps Significatif</h4>
+                    <p class="text-muted mt-2" data-translate="impact1_desc">Réduction estimée de 40% du temps administratif pour les clubs grâce à l'automatisation des tâches récurrentes comme la gestion des candidatures et la planification des événements.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-center text-center reveal-on-scroll" style="transition-delay: 150ms;">
+                    <i class="fas fa-chart-pie text-5xl text-[var(--primary-color)] mb-4"></i>
+                    <h4 class="font-bold text-xl" data-translate="impact2_title">Meilleure Organisation des Clubs</h4>
+                    <p class="text-muted mt-2" data-translate="impact2_desc">Centralisation de toutes les données et opérations des clubs sur une seule plateforme, améliorant la coordination interne et la gestion des membres.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-center text-center reveal-on-scroll" style="transition-delay: 300ms;">
+                    <i class="fas fa-bullhorn text-5xl text-[var(--primary-color)] mb-4"></i>
+                    <h4 class="font-bold text-xl" data-translate="impact3_title">Visibilité Accrue des Activités</h4>
+                    <p class="text-muted mt-2" data-translate="impact3_desc">Augmentation de l'engagement étudiant grâce à une meilleure visibilité des événements و des opportunités de participation, favorisant une vie associative plus dynamique.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-center text-center reveal-on-scroll" style="transition-delay: 450ms;">
+                    <i class="fas fa-user-check text-5xl text-[var(--primary-color)] mb-4"></i>
+                    <h4 class="font-bold text-xl" data-translate="impact4_title">Expérience Utilisateur Améliorée</h4>
+                    <p class="text-muted mt-2" data-translate="impact4_desc">Une interface claire, moderne et intuitive a rendu la navigation et l'interaction avec la plateforme plus agréable et efficace pour tous les utilisateurs, qu'ils soient étudiants ou administrateurs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal-on-scroll" data-translate="future_perspectives_title">Perspectives d'Évolution</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-center text-center reveal-on-scroll">
+                    <i class="fas fa-mobile-alt text-5xl text-[var(--primary-color)] mb-4"></i>
+                    <h4 class="font-bold text-xl" data-translate="perspective1_title">Version Mobile Native</h4>
+                    <p class="text-muted mt-2" data-translate="perspective1_desc">Développer des applications mobiles dédiées (iOS et Android) pour offrir une expérience utilisateur optimale et une accessibilité maximale aux étudiants et administrateurs en déplacement.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-center text-center reveal-on-scroll" style="transition-delay: 150ms;">
+                    <i class="fas fa-chart-line text-5xl text-[var(--primary-color)] mb-4"></i>
+                    <h4 class="font-bold text-xl" data-translate="perspective2_title">Module de Statistiques Avancées</h4>
+                    <p class="text-muted mt-2" data-translate="perspective2_desc">Intégrer des outils d'analyse de données pour fournir des statistiques détaillées sur l'engagement des clubs, la participation aux événements et les tendances des candidatures, aidant à la prise de décision.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-center text-center reveal-on-scroll" style="transition-delay: 300ms;">
+                    <i class="fas fa-university text-5xl text-[var(--primary-color)] mb-4"></i>
+                    <h4 class="font-bold text-xl" data-translate="perspective3_title">Ouverture à d'Autres Établissements</h4>
+                    <p class="text-muted mt-2" data-translate="perspective3_desc">Adapter la plateforme pour qu'elle puisse être déployée et utilisée par d'autres établissements d'enseignement supérieur, élargissant ainsi son impact et sa portée.</p>
+                </div>
+                <div class="glass-effect p-6 rounded-lg flex flex-col items-center justify-center text-center reveal-on-scroll" style="transition-delay: 450ms;">
+                    <i class="fas fa-cloud-upload-alt text-5xl text-[var(--primary-color)] mb-4"></i>
+                    <h4 class="font-bold text-xl" data-translate="perspective4_title">Hébergement Centralisé et Sécurisé</h4>
+                    <p class="text-muted mt-2" data-translate="perspective4_desc">Mettre en place une solution d'hébergement cloud robuste et sécurisée pour garantir la disponibilité, la performance et la protection des données de la plateforme à grande échelle.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Sections End Here -->
+        <div class="text-center mb-8 reveal-on-scroll">
+            <button id="open-gallery-btn" class="bg-[var(--primary-color)] hover:bg-[var(--primary-color-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center gap-2 mx-auto">
+                <i class="fas fa-images"></i> <span data-translate="open_gallery">Ouvrir la Galerie</span>
+            </button>
+        </div>
+
+    </main>
+    
+    <footer class="border-t border-[var(--border-color)] relative z-10 mt-16">
+        <div class="container mx-auto px-6 py-8 text-center">
+             <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://github.com/BilalEH" target="_blank" rel="noopener noreferrer" aria-label="GitHub Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors"><i class="fab fa-github fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/bilal-el-haoudar/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors"><i class="fab fa-linkedin fa-2x"></i></a>
+                   <a href="mailto:bilal.elhaoudar.dev@gmail.com" aria-label="Envoyer un email à Bilal EL Haoudar" class="text-muted hover:text-[var(--primary-color)] transition-colors"><i class="fas fa-envelope fa-2x"></i></a>
+            </div>
+            <p class="text-muted text-sm">© 2025 Bilal EL Haoudar. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- SELECTORS ---
+        const body = document.body;
+        const preloader = document.getElementById('preloader');
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("img01");
+        const modalCaption = document.getElementById("caption");
+        const modalCloseBtn = document.querySelector(".modal-close");
+        const modalPrevBtn = document.querySelector(".modal-prev");
+        const modalNextBtn = document.querySelector(".modal-next");
+        const openGalleryBtn = document.getElementById('open-gallery-btn');
+        
+        // --- STATE VARIABLES ---
+        let slideIndex = 0;
+        let galleryImages = [];
+        let isRTL = false;
+
+        // --- TRANSLATIONS OBJECT ---
+        const translations = {
+
+        
+    fr: { 
+        page_title: "Étude de Cas : EMSI Clubs | Bilal EL Haoudar",
+        back_to_portfolio: "Retour au Portfolio", 
+        case_study_tag: "Étude de Cas", 
+        project_title: "EMSI Clubs Platform", 
+        project_subtitle: "Conception et développement d’une plateforme web centralisée pour la gestion des clubs étudiants à l’EMSI.", 
+        context_title: "Contexte", 
+        context_desc: "Actuellement, les clubs de l’EMSI utilisent des outils dispersés comme Google Forms pour les candidatures, WhatsApp pour la communication, et Excel pour le suivi. Ce fonctionnement entraîne une perte de temps considérable, un manque de coordination et d’efficacité, ainsi qu’une visibilité réduite des activités des clubs.", 
+        problem_title: "Problématique", 
+        problem_desc: "Face à ces défis, la problématique centrale était de développer une plateforme web centralisée, responsive, sécurisée et évolutive, capable de gérer efficacement les candidatures, les rôles utilisateurs et les événements, tout en améliorant la communication et l'organisation au sein de l'EMSI.", 
+        objectives_title: "Objectifs", 
+        objectives_desc: "Nos objectifs étaient de créer une solution robuste offrant une authentification multi-profils (Étudiant, Admin Club, Admin Système), de centraliser les données des clubs, d'automatiser les candidatures, de développer un module d'événements complet, et de fournir un tableau de bord adapté à chaque utilisateur, tout en sécurisant les données (JWT, CSRF).", 
+        key_features_title: "Fonctionnalités Clés",
+        feature1_title: "Gestion Multi-Profils",
+        feature1_desc: "Authentification et tableaux de bord personnalisés pour les étudiants, administrateurs de clubs et administrateurs système, garantissant une expérience utilisateur adaptée à chaque rôle.",
+        feature2_title: "Automatisation des Candidatures",
+        feature2_desc: "Processus de candidature simplifié avec suivi automatisé, planification des entretiens et gestion des statuts, réduisant la charge administrative des clubs.",
+        feature3_title: "Module d'Événements Complet",
+        feature3_desc: "Création, publication et gestion des événements des clubs, incluant les inscriptions, les rappels et la visibilité des activités pour toute la communauté étudiante.",
+        feature4_title: "Tableaux de Bord Adaptatifs",
+        feature4_desc: "Des tableaux de bord intuitifs fournissent des informations pertinentes et des outils de gestion spécifiques aux besoins de chaque type d'utilisateur.",
+        conception_title: "Conception et Modélisation",
+        conception_intro: "La phase de conception a été cruciale pour assurer la robustesse, la modularité et la scalabilité de la plateforme EMSI Clubs. Nous avons utilisé des outils de modélisation standardisés pour visualiser l'architecture du système et les interactions entre ses composants.",
+        conception_uc_title: "Diagrammes de Cas d'Utilisation (UML)",
+        conception_uc_desc: "Ces diagrammes ont permis de définir clairement les fonctionnalités offertes par la plateforme et les interactions des différents acteurs (Étudiant, Admin Club, Admin Système) avec le système. Ils ont servi de base pour comprendre les besoins fonctionnels et les périmètres de chaque rôle.",
+        conception_class_title: "Diagrammes de Classes (UML)",
+        conception_class_desc: "La modélisation de la structure interne de l'application a été réalisée à l'aide de diagrammes de classes. Ils ont permis de représenter les entités clés (utilisateurs, clubs, événements, candidatures) et leurs relations, garantissant une base de données cohérente et une logique métier bien organisée.",
+        conception_sequence_title: "Diagrammes de Séquence (UML)",
+        conception_sequence_desc: "Pour les scénarios complexes comme l'authentification multi-profils ou le processus de candidature, des diagrammes de séquence ont été élaborés. Ils ont illustré le déroulement chronologique des interactions entre les objets du système, assurant une implémentation logique et sans faille.",
+        conception_gantt_title: "Diagramme de Gantt",
+        conception_gantt_desc: "Un diagramme de Gantt a été utilisé pour la planification et le suivi du projet. Il a permis de visualiser les différentes phases de développement, les dépendances entre les tâches et les délais, assurant une gestion de projet efficace et le respect des échéances.",
+        technologies_title: "Technologies Utilisées",
+        tech_react_desc: "Utilisé pour le développement du frontend, React.js a permis de construire une interface utilisateur dynamique, réactive et modulaire, offrant une expérience fluide et moderne aux utilisateurs.",
+        tech_laravel_desc: "Le framework PHP Laravel 11 a été choisi pour le backend, assurant la robustesse de l'API RESTful, la gestion des authentifications (JWT), et la sécurité (CSRF), ainsi que la logique métier de la plateforme.",
+        tech_mysql_desc: "MySQL a servi de système de gestion de base de données relationnelle pour stocker toutes les informations des clubs, des utilisateurs et des événements, garantissant l'intégrité et la performance des données.",
+        architecture_security_title: "Architecture & Sécurité",
+        arch_api_title: "API RESTful avec Laravel",
+        arch_api_desc: "Le backend est construit autour d'une API RESTful robuste développée avec Laravel 11. Cette architecture permet une communication efficace entre le frontend React et la base de données, facilitant la gestion des requêtes et des réponses de manière structurée et performante.",
+        arch_security_title: "Sécurité des Données (JWT, CSRF)",
+        arch_security_desc: "La sécurité est une priorité. Nous avons implémenté des mécanismes d'authentification basés sur les JSON Web Tokens (JWT) pour sécuriser les sessions utilisateur et prévenir les accès non autorisés. De plus, des protections contre les attaques CSRF (Cross-Site Request Forgery) ont été mises en place pour garantir l'intégrité des requêtes utilisateur.",
+        arch_db_title: "Modélisation de Base de Données",
+        arch_db_desc: "La base de données MySQL a été soigneusement modélisée pour assurer une structure de données optimisée et cohérente. Cela inclus la gestion des utilisateurs, des clubs, des candidatures, des événements et des rôles, avec des relations claires pour une récupération et une manipulation efficaces des informations.",
+        my_role_title: "Mon Rôle & Contributions", 
+        my_role_summary: "En tant que membre clé de l'équipe, j'ai joué un rôle central dans la conception et le développement de la plateforme EMSI Clubs. Mes contributions se sont étendues du backend à l'intégration frontend, en passant par la modélisation de la base de données et la définition des exigences fonctionnelles.",
+        role1_title: "Développement Backend & API", 
+        role1_desc: "J'étais directement responsable de la conception et de l'implémentation du backend de l'application avec Laravel 11. Cela incluait la création de l'API RESTful pour gérer toutes les interactions serveur-client, l'authentification (JWT) et la sécurité (CSRF), assurant la robustesse et la performance de la plateforme.", 
+        role2_title: "Architecte de Base de Données", 
+        role2_desc: "J'ai modélisé et mis en place la base de données MySQL, en veillant à son intégrité et à sa cohérence. Mon rôle a été essentiel pour structurer les données des clubs, des utilisateurs, des candidatures et des événements, optimisant ainsi la récupération et la manipulation des informations.", 
+        role3_title: "Liaison Frontend-Backend", 
+        role3_desc: "J'ai assuré la liaison fluide entre le frontend React et le backend Laravel, en veillant à ce que les données soient correctement transmises et traitées. Cela a impliqué la collaboration étroite avec l'équipe frontend pour intégrer les API et garantir une expérience utilisateur cohérente.", 
+        role4_title: "Développement des Fonctionnalités Étudiant", 
+        role4_desc: "J'ai spécifiquement développé des fonctionnalités clés pour le rôle étudiant, incluant la page d'accueil connectée, les processus d'inscription et de connexion. Mon objectif était de créer une interface intuitive et complète pour les étudiants, facilitant leur interaction avec les clubs.", 
+        role5_title: "Conception des Diagrammes UML",
+        role5_desc: "J'ai activement participé à l'élaboration des diagrammes UML, notamment le diagramme de cas d'utilisation, pour modéliser les exigences fonctionnelles et les interactions du système. Cette contribution a été fondamentale pour la clarté et la structure du projet.",
+        role6_title: "Rédaction du Rapport Technique",
+        role6_desc: "J'ai également contribué à la rédaction du rapport technique complet du projet, documentant les différentes phases, les choix technologiques et les solutions implémentées. Ce rapport récapitule l'ensemble de notre travail et les leçons apprises.",
+        video_demo_title: "Démonstration Vidéo", 
+        app_screenshots_title: "Captures d'Écran de l'Application",
+        app_screenshots_summary: "Explorez l'interface utilisateur de la plateforme EMSI Clubs à travers cette galerie de captures d'écran. Découvrez les différents tableaux de bord, les formulaires de gestion et les vues des fonctionnalités clés qui améliorent l'expérience des étudiants et des administrateurs. Cliquez sur une image pour l'afficher en plein écran et naviguer.",
+        resources_title: "Ressources du Projet", 
+        download_report: "Télécharger le Rapport", 
+        view_on_github: "Voir sur GitHub",
+        
+        // New sections translations
+        team_presentation_title: "Notre Équipe Créative",
+        team_presentation_intro: "Découvrez les talents derrière la plateforme EMSI Clubs, une équipe passionnée et polyvalente qui a transformé une vision en réalité.",
+        member1_name: "Adam Amaziane",
+        member1_role: "Développeur Frontend & Expert UI/UX", // Updated role
+        member1_desc: "Spécialisé dans le développement frontend avec React.js et la conception d'interfaces utilisateur intuitives. A contribué à l'architecture globale et à l'expérience visuelle, en collaboration avec Ilyas pour le frontend.", // Updated description
+        member2_name: "Ilyas Oulmidi",
+        member2_role: "Développeur Frontend & Architecte Base de Données", // Updated role
+        member2_desc: "Responsable de la modélisation de la base de données MySQL et a collaboré étroitement avec Bilal sur la structure de la base. A également contribué au développement frontend avec Adam.", // Updated description
+        member3_name: "Bilal EL Haoudar",
+        member3_role: "Lead Backend, Architecte BD & Développeur Rôle Étudiant", // Updated role
+        member3_desc: "Mon rôle a été central dans le développement complet du backend (API RESTful, sécurité JWT/CSRF), la liaison entre le frontend et le backend, et l'implémentation de toutes les fonctionnalités du rôle étudiant (page d'accueil connectée, inscription, connexion, etc.). J'ai également collaboré avec Ilyas sur la base de données.", // Updated description
+        member4_name: "Ahmed Nahri",
+        member4_role: "Développeur Frontend (Admin Système)", // Updated role
+        member4_desc: "Spécialisé dans le développement frontend, Ahmed a principalement travaillé sur l'interface d'administration système, assurant la réactivité et la gestion des fonctionnalités spécifiques à ce rôle.", // Updated description
+
+        existing_analysis_title: "Analyse de l'Existant & Positionnement du Projet",
+        existing_analysis_intro: "Avant la conception d'EMSI Clubs, la gestion des associations à l'EMSI s'appuyait sur des méthodes et outils fragmentés, limitant l'efficacité et la visibilité des activités étudiantes.",
+        tool1_title: "Google Forms & WhatsApp",
+        tool1_desc: "Utilisés pour les candidatures et la communication, ces outils manquaient de centralisation des données, d'automatisation des processus, et posaient des problèmes de sécurité et de traçabilité.",
+        tool2_title: "Trello, Notion & Google Sheets",
+        tool2_desc: "Détournés pour la gestion de tâches, ils n'offraient pas une gestion structurée multi-utilisateurs avec des rôles et permissions spécifiques aux clubs étudiants.",
+        our_positioning_title: "Notre Positionnement Unique",
+        our_positioning_desc: "EMSI Clubs se distingue par sa gratuité, sa centralisation des données avec gestion des droits par profil utilisateur, et son adaptation fonctionnelle précise à l'environnement EMSI (candidatures, entretiens, validations, tableaux de bord). La plateforme répond directement aux besoins spécifiques des clubs étudiants, offrant une solution intégrée et sécurisée.",
+
+        development_process_title: "Processus de Développement & Méthodologie",
+        development_process_intro: "Notre projet a suivi une démarche structurée, adoptant une approche rigoureuse pour garantir sa réussite et l'atteinte de nos objectifs, malgré les défis rencontrés.",
+        methodology_title: "Méthodologie Adoptée",
+        methodology_desc: "Nous avons opté pour une approche de type Cycle en V, adaptée à la durée limitée du projet (huit semaines) et aux exigences académiques. Cette méthode a permis un enchaînement rigoureux des étapes: analyse des besoins, conception, développement, tests et finalisation.",
+        team_organization_title: "Organisation de l'Équipe",
+        team_organization_desc: "L'équipe, composée de quatre membres, était polyvalente (frontend & backend). Le travail a été collaboratif, avec une répartition des tâches flexible et une entraide constante. Nous avons utilisé Discord pour les réunions régulières et GitHub pour le versionnage et la collaboration sur le code source.",
+        challenges_lessons_title: "Défis & Apprentissages Clés",
+        challenges_lessons_desc: "Le projet a présenté des défis comme la durée limitée (huit semaines), la coordination à distance, et la gestion des conflits Git. De plus, l'apprentissage autonome de React.js pour deux membres de l'équipe a exigé un effort personnel important, renforçant notre capacité à maîtriser de nouvelles technologies rapidement.",
+        planning_phases_title: "Planification & Phases du Projet",
+        planning_phases_desc: "Le projet a été divisé en cinq phases clés : Analyse des besoins, Conception (maquettes Figma, modélisation UML), Développement (Laravel, React.js), Intégration & Tests (APIs RESTful, sécurité), et Finalisation (rapport, documentation). Chaque phase a eu des jalons hebdomadaires pour un suivi efficace.",
+
+        challenges_solutions_title: "Défis Relevés & Solutions Apportées",
+        challenge1_title: "Gestion de la Complexité des Rôles",
+        challenge1_desc: "Le défi était d'intégrer trois profils utilisateurs distincts (Étudiant, Admin Club, Admin Système) avec des permissions et des tableaux de bord spécifiques. La solution a été l'implémentation d'un système d'authentification et d'autorisation robuste basé sur JWT, gérant dynamiquement l'accès et les vues selon le rôle de l'utilisateur.",
+        challenge2_title: "Sécurisation des Données Sensibles",
+        challenge2_desc: "Assurer la sécurité des données (informations personnelles des étudiants, détails des clubs) était primordial. Nous avons mis en œuvre des mesures de sécurité avancées telles que les JSON Web Tokens (JWT) pour l'authentification des sessions et les protections CSRF pour prévenir les attaques de falsification de requêtes intersites.",
+        challenge3_title: "Optimisation des Processus Manuels",
+        challenge3_desc: "Les méthodes traditionnelles (Google Forms, WhatsApp, Excel) entraînaient une perte de temps considérable. La plateforme a automatisé les candidatures, la gestion des événements et la communication, réduisant drastiquement la charge administrative et augmentant l'efficacité des clubs.",
+        challenge4_title: "Accessibilité et Expérience Utilisateur",
+        challenge4_desc: "Créer une interface intuitive et accessible sur différents appareils était un enjeu majeur. Grâce à React.js pour le frontend et une conception responsive, nous avons assuré une expérience utilisateur fluide et moderne, optimisée pour les ordinateurs de bureau et les appareils mobiles.",
+
+        impact_results_title: "Impact & Résultats",
+        impact1_title: "Gain de Temps Significatif",
+        impact1_desc: "Réduction estimée de 40% du temps administratif pour les clubs grâce à l'automatisation des tâches récurrentes comme la gestion des candidatures et la planification des événements.",
+        impact2_title: "Meilleure Organisation des Clubs",
+        impact2_desc: "Centralisation de toutes les données et opérations des clubs sur une seule plateforme, améliorant la coordination interne et la gestion des membres.",
+        impact3_title: "Visibilité Accrue des Activités",
+        impact3_desc: "Augmentation de l'engagement étudiant grâce à une meilleure visibilité des événements et des opportunités de participation, favorisant une vie associative plus dynamique.",
+        impact4_title: "Expérience Utilisateur Améliorée",
+        impact4_desc: "Une interface claire, moderne et intuitive a rendu la navigation et l'interaction avec la plateforme plus agréable et efficace pour tous les utilisateurs, qu'ils soient étudiants ou administrateurs.",
+
+        future_perspectives_title: "Perspectives d'Évolution",
+        perspective1_title: "Version Mobile Native",
+        perspective1_desc: "Développer des applications mobiles dédiées (iOS et Android) pour offrir une expérience utilisateur optimale et une accessibilité maximale aux étudiants et administrateurs en déplacement.",
+        perspective2_title: "Module de Statistiques Avancées",
+        perspective2_desc: "Intégrer des outils d'analyse de données pour fournir des statistiques détaillées sur l'engagement des clubs, la participation aux événements et les tendances des candidatures, aidant à la prise de décision.",
+        perspective3_title: "Ouverture à d'Autres Établissements",
+        perspective3_desc: "Adapter la plateforme pour qu'elle puisse être déployée et utilisée par d'autres établissements d'enseignement supérieur, élargissant ainsi son impact et sa portée.",
+        perspective4_title: "Hébergement Centralisé et Sécurisé",
+        perspective4_desc: "Mettre en place une solution d'hébergement cloud robuste et sécurisée pour garantir la disponibilité, la performance et la protection des données de la plateforme à grande échelle.",
+        open_gallery: "Ouvrir la Galerie",
+        page_title: "Étude de Cas : EMSI Clubs | Bilal EL Haoudar",
+        back_to_portfolio: "Retour au Portfolio", 
+        case_study_tag: "Étude de Cas", 
+        project_title: "EMSI Clubs Platform", 
+        project_subtitle: "Conception et développement d’une plateforme web centralisée pour la gestion des clubs étudiants à l’EMSI.", 
+        context_title: "Contexte", 
+        context_desc: "Actuellement, les clubs de l’EMSI utilisent des outils dispersés comme Google Forms pour les candidatures, WhatsApp pour la communication, et Excel pour le suivi. Ce fonctionnement entraîne une perte de temps considérable, un manque de coordination et d’efficacité, ainsi qu’une visibilité réduite des activités des clubs.", 
+        problem_title: "Problématique", 
+        problem_desc: "Face à ces défis, la problématique centrale était de développer une plateforme web centralisée, responsive, sécurisée et évolutive, capable de gérer efficacement les candidatures, les rôles utilisateurs et les événements, tout en améliorant la communication et l'organisation au sein de l'EMSI.", 
+        objectives_title: "Objectifs", 
+        objectives_desc: "Nos objectifs étaient de créer une solution robuste offrant une authentification multi-profils (Étudiant, Admin Club, Admin Système), de centraliser les données des clubs, d'automatiser les candidatures, de développer un module d'événements complet, et de fournir un tableau de bord adapté à chaque utilisateur, tout en sécurisant les données (JWT, CSRF).", 
+        team_presentation_title: "Notre Équipe Créative",
+        team_presentation_intro: "Découvrez les talents derrière la plateforme EMSI Clubs, une équipe passionnée et polyvalente qui a transformé une vision en réalité.",
+            member2_name: "Ilyas Oulmidi",
+        member2_role: "Architecte Backend & Gestion de Base de Données",
+        member2_desc: "Responsable de la robustesse du backend avec Laravel et de la modélisation de la base de données MySQL. A assuré la fluidité des interactions serveur.",
+            member3_name: "Bilal EL Haoudar",
+        member3_role: "Lead Backend, Architecte BD & Développeur Étudiant",
+        member3_desc: "Mon rôle a été central dans la conception de l'API RESTful, la modélisation MySQL, et le développement des fonctionnalités clés pour le profil étudiant (connexion, inscription, tableau de bord).",
+        member1_name: "Adam Amaziane",
+        member1_role: "Développeur Full-stack & Expert UI/UX",
+        member1_desc: "Spécialisé dans le développement frontend avec React.js et la conception d'interfaces utilisateur intuitives. A contribué à l'architecture globale et à l'expérience visuelle.",
+        member4_name: "Ahmed Nahri",
+        member4_role: "Développeur Frontend & Intégration API",
+        member4_desc: "Expert en intégration des API Laravel avec React.js, a assuré la cohérence des données et la réactivité des composants frontend.",
+        conception_title: "Conception et Modélisation",
+        conception_intro: "La phase de conception a été cruciale pour assurer la robustesse, la modularité et la scalabilité de la plateforme EMSI Clubs. Nous avons utilisé des outils de modélisation standardisés pour visualiser l'architecture du système et les interactions entre ses composants.",
+        conception_uc_title: "Diagrammes de Cas d'Utilisation (UML)",
+        conception_uc_desc: "Ces diagrammes ont permis de définir clairement les fonctionnalités offertes par la plateforme et les interactions des différents acteurs (Étudiant, Admin Club, Admin Système) avec le système. Ils ont servi de base pour comprendre les besoins fonctionnels et les périmètres de chaque rôle.",
+        conception_class_title: "Diagrammes de Classes (UML)",
+        conception_class_desc: "La modélisation de la structure interne de l'application a été réalisée à l'aide de diagrammes de classes. Ils ont permis de représenter les entités clés (utilisateurs, clubs, événements, candidatures) et leurs relations, garantissant une base de données cohérente et une logique métier bien organisée.",
+        conception_sequence_title: "Diagrammes de Séquence (UML)",
+        conception_sequence_desc: "Pour les scénarios complexes comme l'authentification multi-profils ou le processus de candidature, des diagrammes de séquence ont été élaborés. Ils ont illustré le déroulement chronologique des interactions entre les objets du système, assurant une implémentation logique et sans faille.",
+        conception_gantt_title: "Diagramme de Gantt",
+        conception_gantt_desc: "Un diagramme de Gantt a été utilisé pour la planification et le suivi du projet. Il a permis de visualiser les différentes phases de développement, les dépendances entre les tâches et les délais, assurant une gestion de projet efficace et le respect des échéances.",
+        app_screenshots_title: "Captures d'Écran de l'Application",
+        app_screenshots_summary: "Explorez l'interface utilisateur de la plateforme EMSI Clubs à travers cette galerie de captures d'écran. Découvrez les différents tableaux de bord, les formulaires de gestion et les vues des fonctionnalités clés qui améliorent l'expérience des étudiants et des administrateurs. Cliquez sur une image pour l'afficher en plein écran et naviguer.",
+        resources_title: "Ressources du Projet", 
+        download_report: "Télécharger le Rapport", 
+        view_on_github: "Voir sur GitHub"
+    },
+    en: { 
+        page_title: "Case Study : EMSI Clubs | Bilal EL Haoudar",
+        back_to_portfolio: "Back to Portfolio", 
+        case_study_tag: "Case Study", 
+        project_title: "EMSI Clubs Platform", 
+        project_subtitle: "Design and development of a centralized web platform for managing student clubs at EMSI.", 
+        context_title: "Context", 
+        context_desc: "Club management currently relies on scattered tools like Google Forms for applications, WhatsApp for communication, and Excel for tracking. This leads to considerable time loss, lack of coordination and efficiency, and reduced visibility of club activities.", 
+        problem_title: "Problem", 
+        problem_desc: "Facing these challenges, the central problem was to develop a centralized, responsive, secure, and scalable web platform capable of effectively managing applications, user roles, and events, while improving communication and organization within EMSI.", 
+        objectives_title: "Objectives", 
+        objectives_desc: "Our objectives were to create a robust solution offering multi-profile authentication (Student, Club Admin, System Admin), centralizing club data, automating applications, developing a comprehensive event module, and providing a tailored dashboard for each user, all while securing data (JWT, CSRF).", 
+        key_features_title: "Key Features",
+        feature1_title: "Multi-Profile Management",
+        feature1_desc: "Personalized authentication and dashboards for students, club administrators, and system administrators, ensuring a user experience adapted to each role.",
+        feature2_title: "Application Automation",
+        feature2_desc: "Simplified application process with automated tracking, interview scheduling, and status management, reducing the administrative burden on clubs.",
+        feature3_title: "Comprehensive Event Module",
+        feature3_desc: "Creation, publication, and management of club events, including registrations, reminders, and visibility of activities for the entire student community.",
+        feature4_title: "Adaptive Dashboards",
+        feature4_desc: "Intuitive dashboards provide relevant information and management tools specific to the needs of each user type.",
+        conception_title: "Design and Modeling",
+        conception_intro: "The design phase was crucial to ensure the robustness, modularity, and scalability of the EMSI Clubs platform. We used standardized modeling tools to visualize the system's architecture and the interactions between its components.",
+        conception_uc_title: "Use Case Diagrams (UML)",
+        conception_uc_desc: "These diagrams allowed us to clearly define the functionalities offered by the platform and the interactions of various actors (Student, Club Admin, System Admin) with the system. They served as a basis for understanding functional requirements and the scope of each role.",
+        conception_class_title: "Class Diagrams (UML)",
+        conception_class_desc: "The modeling of the application's internal structure was carried out using class diagrams. They helped represent key entities (users, clubs, events, applications) and their relationships, ensuring a consistent database and well-organized business logic.",
+        conception_sequence_title: "Sequence Diagrams (UML)",
+        conception_sequence_desc: "For complex scenarios like multi-profile authentication or the application process, sequence diagrams were developed. They illustrated the chronological flow of interactions between system objects, ensuring a logical and flawless implementation.",
+        conception_gantt_title: "Gantt Chart",
+        conception_gantt_desc: "A Gantt chart was used for project planning and monitoring. It allowed visualizing the different development phases, dependencies between tasks, and deadlines, ensuring efficient project management and adherence to timelines.",
+        technologies_title: "Technologies Used",
+        tech_react_desc: "Used for frontend development, React.js allowed building a dynamic, responsive, and modular user interface, offering a smooth and modern experience to users.",
+        tech_laravel_desc: "The PHP framework Laravel 11 was chosen for the backend, ensuring the robustness of the RESTful API, authentication management (JWT), and security (CSRF), as well as the platform's business logic.",
+        tech_mysql_desc: "MySQL served as the relational database management system to store all club, user, and event information, ensuring data integrity and performance.",
+        architecture_security_title: "Architecture & Security",
+        arch_api_title: "RESTful API with Laravel",
+        arch_api_desc: "The backend is built around a robust RESTful API developed with Laravel 11. This architecture enables efficient communication between the React frontend and the database, facilitating structured and high-performance request and response management.",
+        arch_security_title: "Data Security (JWT, CSRF)",
+        arch_security_desc: "Security is a priority. We implemented authentication mechanisms based on JSON Web Tokens (JWT) to secure user sessions and prevent unauthorized access. Additionally, protections against CSRF (Cross-Site Request Forgery) attacks have been put in place to ensure the integrity of user requests.",
+        arch_db_title: "Database Modeling",
+        arch_db_desc: "The MySQL database was carefully modeled to ensure an optimized and consistent data structure. This includes managing users, clubs, applications, events, and roles, with clear relationships for efficient information retrieval and manipulation.",
+        my_role_title: "My Role & Contributions", 
+        my_role_summary: "As a key member of the team, I played a central role in the design and development of the EMSI Clubs platform. My contributions extended from backend development to frontend integration, database modeling, and defining functional requirements.",
+        role1_title: "Backend Development & API", 
+        role1_desc: "I was directly responsible for the design and implementation of the application's backend with Laravel 11. This included creating the RESTful API to manage all server-client interactions, authentication (JWT), and security (CSRF), ensuring the platform's robustness and performance.", 
+        role2_title: "Database Architect", 
+        role2_desc: "I modeled and set up the MySQL database, ensuring its integrity and consistency. My role was essential in structuring club, user, application, and event data, thereby optimizing information retrieval and manipulation.", 
+        role3_title: "Frontend-Backend Liaison", 
+        role3_desc: "I ensured seamless communication between the React frontend and the Laravel backend, making sure data was correctly transmitted and processed. This involved close collaboration with the frontend team to integrate APIs and guarantee a consistent user experience.", 
+        role4_title: "Student Functionality Development", 
+        role4_desc: "I specifically developed key functionalities for the student role, including the logged-in homepage, and the registration and login processes. My goal was to create an intuitive and comprehensive interface for students, facilitating their interaction with clubs.", 
+        role5_title: "UML Diagram Design",
+        role5_desc: "I actively participated in the elaboration of UML diagrams, notably the Use Case diagram, to model the functional requirements and system interactions. This contribution was fundamental to the clarity and structure of the project.",
+        role6_title: "Technical Report Writing",
+        role6_desc: "I also contributed to the writing of the comprehensive technical report for the project, documenting the different phases, technological choices, and implemented solutions. This report summarizes all our work and lessons learned.",
+        video_demo_title: "Video Demonstration", 
+        app_screenshots_title: "Application Screenshots",
+        app_screenshots_summary: "Explore the user interface of the EMSI Clubs platform through this gallery of screenshots. Discover the various dashboards, management forms, and views of key functionalities that enhance the experience for students and administrators. Click on an image to view it full screen and navigate.",
+        resources_title: "Project Resources", 
+        download_report: "Download Report", 
+        view_on_github: "View on GitHub",
+
+        // New sections translations
+        team_presentation_title: "Our Creative Team",
+        team_presentation_intro: "Discover the talents behind the EMSI Clubs platform, a passionate and versatile team that transformed a vision into reality.",
+        member1_name: "Adam Amaziane",
+        member1_role: "Frontend Developer & UI/UX Expert", 
+        member1_desc: "Specialized in frontend development with React.js and designing intuitive user interfaces. Contributed to the overall architecture and visual experience, in collaboration with Ilyas for the frontend.", 
+        member2_name: "Ilyas Oulmidi",
+        member2_role: "Frontend Developer & Database Architect", 
+        member2_desc: "Responsible for MySQL database modeling and collaborated closely with Bilal on the database structure. Also contributed to frontend development with Adam.", 
+        member3_name: "Bilal EL Haoudar",
+        member3_role: "Lead Backend, DB Architect & Student Role Developer", 
+        member3_desc: "My role was central in the complete backend development (RESTful API, JWT/CSRF security), the liaison between frontend and backend, and the implementation of all student role functionalities (logged-in homepage, registration, login, etc.). I also collaborated with Ilyas on the database.", 
+        member4_name: "Ahmed Nahri",
+        member4_role: "Frontend Developer (System Admin)", 
+        member4_desc: "Specialized in frontend development, Ahmed primarily worked on the system administration interface, ensuring responsiveness and managing specific functionalities for this role.", 
+
+        existing_analysis_title: "Existing Analysis & Project Positioning",
+        existing_analysis_intro: "Before the conception of EMSI Clubs, association management at EMSI relied on fragmented methods and tools, limiting efficiency and visibility of student activities.",
+        tool1_title: "Google Forms & WhatsApp",
+        tool1_desc: "Used for applications and communication, these tools lacked data centralization, process automation, and posed security and traceability issues.",
+        tool2_title: "Trello, Notion & Google Sheets",
+        tool2_desc: "Used for task management, they did not offer structured multi-user management with specific roles and permissions for student clubs.",
+        our_positioning_title: "Our Unique Positioning",
+        our_positioning_desc: "EMSI Clubs stands out for its free access, data centralization with role-based access control, and precise functional adaptation to the EMSI environment (applications, interviews, validations, dashboards). The platform directly addresses the specific needs of student clubs, offering an integrated and secure solution.",
+
+        development_process_title: "Development Process & Methodology",
+        development_process_intro: "Our project followed a structured approach, adopting a rigorous methodology to ensure its success and the achievement of our objectives, despite the challenges encountered.",
+        methodology_title: "Adopted Methodology",
+        methodology_desc: "We opted for a V-Cycle approach, adapted to the limited project duration (eight weeks) and academic requirements. This method allowed a rigorous sequence of steps: needs analysis, design, development, testing, and finalization.",
+        team_organization_title: "Team Organization",
+        team_organization_desc: "The team, composed of four members, was versatile (frontend & backend). The work was collaborative, with flexible task distribution and constant mutual assistance. We used Discord for regular meetings and GitHub for version control and code collaboration.",
+        challenges_lessons_title: "Key Challenges & Learnings",
+        challenges_lessons_desc: "The project presented challenges such as limited duration (eight weeks), remote coordination, and managing Git conflicts. Furthermore, the self-learning of React.js for two team members required significant personal effort, strengthening our ability to quickly master new technologies.",
+        planning_phases_title: "Project Planning & Phases",
+        planning_phases_desc: "The project was divided into five key phases: Needs Analysis, Design (Figma mockups, UML modeling), Development (Laravel, React.js), Integration & Testing (RESTful APIs, security), and Finalization (report, documentation). Each phase had weekly milestones for effective monitoring.",
+
+        challenges_solutions_title: "Challenges Overcome & Solutions Provided",
+        challenge1_title: "Managing Role Complexity",
+        challenge1_desc: "The challenge was to integrate three distinct user profiles (Student, Club Admin, System Admin) with specific permissions and dashboards. The solution involved implementing a robust authentication and authorization system based on JWT, dynamically managing access and views according to the user's role.",
+        challenge2_title: "Securing Sensitive Data",
+        challenge2_desc: "Ensuring the security of data (students' personal information, club details) was paramount. We implemented advanced security measures such as JSON Web Tokens (JWT) for session authentication and CSRF protections to prevent cross-site request forgery attacks.",
+        challenge3_title: "Optimizing Manual Processes",
+        challenge3_desc: "Traditional methods (Google Forms, WhatsApp, Excel) led to considerable time loss. The platform automated applications, event management, and communication, drastically reducing administrative burden and increasing club efficiency.",
+        challenge4_title: "Accessibility and User Experience",
+        challenge4_desc: "Creating an intuitive and accessible interface across different devices was a major challenge. Thanks to React.js for the frontend and a responsive design, we ensured a fluid and modern user experience, optimized for both desktop and mobile devices.",
+
+        impact_results_title: "Impact & Results",
+        impact1_title: "Significant Time Savings",
+        impact1_desc: "Estimated 40% reduction in administrative time for clubs through the automation of recurring tasks such as application management and event planning.",
+        impact2_title: "Improved Club Organization",
+        impact2_desc: "Centralization of all club data and operations on a single platform, enhancing internal coordination and member management.",
+        impact3_title: "Increased Activity Visibility",
+        impact3_desc: "Increased student engagement due to better visibility of events and participation opportunities, fostering a more dynamic associative life.",
+        impact4_title: "Enhanced User Experience",
+        impact4_desc: "A clear, modern, and intuitive interface made navigating and interacting with the platform more pleasant and efficient for all users, whether students or administrators.",
+
+        future_perspectives_title: "Future Perspectives",
+        perspective1_title: "Native Mobile Version",
+        perspective1_desc: "Develop dedicated mobile applications (iOS and Android) to offer an optimal user experience and maximum accessibility for students and administrators on the go.",
+        perspective2_title: "Advanced Statistics Module",
+        perspective2_desc: "Integrate data analytics tools to provide detailed statistics on club engagement, event participation, and application trends, aiding in decision-making.",
+        perspective3_title: "Expansion to Other Institutions",
+        perspective3_desc: "Adapt the platform so it can be deployed and used by other higher education institutions, thereby expanding its impact and reach.",
+        perspective4_title: "Centralized and Secure Hosting",
+        perspective4_desc: "Implement a robust and secure cloud hosting solution to ensure the availability, performance, and data protection of the platform at scale.",
+        open_gallery: "Open Gallery",
+        page_title: "Case Study : EMSI Clubs | Bilal EL Haoudar",
+        back_to_portfolio: "Back to Portfolio", 
+        case_study_tag: "Case Study", 
+        project_title: "EMSI Clubs Platform", 
+        project_subtitle: "Design and development of a centralized web platform for managing student clubs at EMSI.", 
+        context_title: "Context", 
+        context_desc: "Club management currently relies on scattered tools like Google Forms for applications, WhatsApp for communication, and Excel for tracking. This leads to considerable time loss, lack of coordination and efficiency, and reduced visibility of club activities.", 
+        problem_title: "Problem", 
+        problem_desc: "Facing these challenges, the central problem was to develop a centralized, responsive, secure, and scalable web platform capable of effectively managing applications, user roles, and events, while improving communication and organization within EMSI.", 
+        objectives_title: "Objectives", 
+        objectives_desc: "Our objectives were to create a robust solution offering multi-profile authentication (Student, Club Admin, System Admin), centralizing club data, automating applications, developing a comprehensive event module, and providing a tailored dashboard for each user, all while securing data (JWT, CSRF).", 
+        team_presentation_title: "Our Creative Team",
+        team_presentation_intro: "Discover the talents behind the EMSI Clubs platform, a passionate and versatile team that transformed a vision into reality.",
+        member2_name: "Ilyas Oulmidi",
+        member2_role: "Backend Architect & Database Management",
+        member2_desc: "Responsible for the robustness of the backend with Laravel and the modeling of the MySQL database. Ensured smooth server interactions.",
+        member3_name: "Bilal EL Haoudar",
+        member3_role: "Lead Backend, DB Architect & Student Developer",
+        member3_desc: "My role was central in designing the RESTful API, MySQL modeling, and developing key features for the student profile (login, registration, dashboard).",
+        member1_name: "Adam Amaziane",
+        member1_role: "Full-stack Developer & UI/UX Expert",
+        member1_desc: "Specialized in frontend development with React.js and designing intuitive user interfaces. Contributed to the overall architecture and visual experience.",
+        member4_name: "Ahmed Nahri",
+        member4_role: "Frontend Developer & API Integration",
+        member4_desc: "Expert in integrating Laravel APIs with React.js, ensured data consistency and responsiveness of frontend components.",
+        conception_title: "Design and Modeling",
+        conception_intro: "The design phase was crucial to ensure the robustness, modularity, and scalability of the EMSI Clubs platform. We used standardized modeling tools to visualize the system's architecture and the interactions between its components.",
+        conception_uc_title: "Use Case Diagrams (UML)",
+        conception_uc_desc: "These diagrams helped to clearly define the features offered by the platform and the interactions of the different actors (Student, Club Admin, System Admin) with the system. They served as a basis for understanding the functional requirements and the scope of each role.",
+        conception_class_title: "Class Diagrams (UML)",
+        conception_class_desc: "The internal structure of the application was modeled using class diagrams. They allowed for the representation of key entities (users, clubs, events, applications) and their relationships, ensuring a coherent database and a well-organized business logic.",
+        conception_sequence_title: "Sequence Diagrams (UML)",
+        conception_sequence_desc: "For complex scenarios such as multi-profile authentication or the application process, sequence diagrams were created. They illustrated the chronological flow of interactions between the system's objects, ensuring a logical and flawless implementation.",
+        conception_gantt_title: "Gantt Chart",
+        conception_gantt_desc: "A Gantt chart was used for project planning and monitoring. It allowed for the visualization of the different development phases, dependencies between tasks, and deadlines, ensuring effective project management and adherence to schedules.",
+        app_screenshots_title: "Application Screenshots",
+        app_screenshots_summary: "Explore the user interface of the EMSI Clubs platform through this gallery of screenshots. Discover the various dashboards, management forms, and views of key features that enhance the experience for students and administrators. Click on an image to view it in full screen and navigate.",
+        resources_title: "Project Resources", 
+        download_report: "Download Report", 
+        view_on_github: "View on GitHub"
+    },
+    ar: { 
+        page_title: "دراسة حالة: نوادي EMSI | بلال الحوضار",
+        back_to_portfolio: "العودة إلى البورتفوليو", 
+        case_study_tag: "دراسة حالة", 
+        project_title: "منصة نوادي EMSI", 
+        project_subtitle: "تصميم وتطوير منصة ويب مركزية لإدارة نوادي الطلاب في المدرسة المغربية لعلوم المهندس.", 
+        context_title: "السياق", 
+        context_desc: "تعتمد إدارة النوادي حاليًا على أدوات متفرقة مثل نماذج جوجل لتقديم الطلبات، واتساب للتواصل، وإكسل للمتابعة. يؤدي هذا الأسلوب إلى إهدار كبير للوقت، ونقص في التنسيق والفعالية، وتقليل وضوح أنشطة النوادي.", 
+        problem_title: "الإشكالية", 
+        problem_desc: "في مواجهة هذه التحديات، كانت المشكلة الرئيسية هي تطوير منصة ويب مركزية، متجاوبة، آمنة، وقابلة للتطوير، قادرة على إدارة الطلبات، أدوار المستخدمين، والفعاليات بفعالية، مع تحسين التواصل والتنظيم داخل EMSI.", 
+        objectives_title: "الأهداف", 
+        objectives_desc: "كانت أهدافنا هي إنشاء حل قوي يوفر مصادقة متعددة الملفات الشخصية (طالب، مسؤول نادي، مسؤول نظام)، لمركزة بيانات النوادي، أتمتة طلبات الانضمام، تطوير وحدة أحداث شاملة، وتوفير لوحة تحكم مخصصة لكل مستخدم، مع تأمين البيانات (JWT، CSRF).", 
+        key_features_title: "الميزات الرئيسية",
+        feature1_title: "إدارة متعددة الملفات الشخصية",
+        feature1_desc: "مصادقة ولوحات تحكم مخصصة للطلاب، مديري الأندية، ومديري النظام، مما يضمن تجربة مستخدم تتكيف مع كل دور.",
+        feature2_title: "أتمتة طلبات الانضمام",
+        feature2_desc: "عملية تقديم طلبات مبسطة مع تتبع آلي، جدولة المقابلات، وإدارة الحالات، مما يقلل العبء الإداري على الأندية.",
+        feature3_title: "وحدة أحداث شاملة",
+        feature3_desc: "إنشاء، نشر، وإدارة أحداث الأندية، بما في ذلك التسجيلات، التذكيرات، ورؤية الأنشطة لجميع مجتمع الطلاب.",
+        feature4_title: "لوحات تحكم متكيفة",
+        feature4_desc: "توفر لوحات التحكم البديهية معلومات ذات صلة وأدوات إدارة خاصة باحتياجات كل نوع من المستخدمين.",
+        conception_title: "التصميم والنمذجة",
+        conception_intro: "كانت مرحلة التصميم حاسمة لضمان قوة، نمطية، وقابلية توسع منصة نوادي EMSI. لقد استخدمنا أدوات نمذجة موحدة لتصور بنية النظام والتفاعلات بين مكوناته.",
+        conception_uc_title: "مخططات حالات الاستخدام (UML)",
+        conception_uc_desc: "سمحت هذه المخططات بتحديد واضح للوظائف التي توفرها المنصة وتفاعلات مختلف الجهات الفاعلة (الطالب، مسؤول النادي، مسؤول النظام) مع النظام. وقد شكلت أساسًا لفهم المتطلبات الوظيفية ونطاقات كل دور.",
+        conception_class_title: "مخططات الفئات (UML)",
+        conception_class_desc: "تمت نمذجة الهيكل الداخلي للتطبيق باستخدام مخططات الفئات. وقد سمحت بتمثيل الكيانات الرئيسية (المستخدمون، النوادي، الأحداث، طلبات الانضمام) وعلاقاتها، مما يضمن قاعدة بيانات متسقة ومنطق عمل منظم جيدًا.",
+        conception_sequence_title: "مخططات التسلسل (UML)",
+        conception_sequence_desc: "بالنسبة للسيناريوهات المعقدة مثل المصادقة متعددة الملفات الشخصية أو عملية تقديم الطلبات، تم تطوير مخططات التسلسل. وقد أوضحت التدفق الزمني للتفاعلات بين كائنات النظام، مما يضمن تنفيذًا منطقيًا وخاليًا من الأخطاء.",
+        conception_gantt_title: "مخطط جانت",
+        conception_gantt_desc: "تم استخدام مخطط جانت لتخطيط المشروع ومتابعته. وقد سمح بتصور مراحل التطوير المختلفة، والتبعيات بين المهام، والمواعيد النهائية، مما يضمن إدارة فعالة للمشروع والالتزام بالمواعيد.",
+        technologies_title: "التقنيات المستخدمة",
+        tech_react_desc: "استخدمت React.js لتطوير الواجهة الأمامية، مما سمح ببناء واجهة مستخدم ديناميكية، متجاوبة، ومعيارية، مما يوفر تجربة سلسة وحديثة للمستخدمين.",
+        tech_laravel_desc: "تم اختيار إطار عمل PHP Laravel 11 للواجهة الخلفية، مما يضمن قوة API RESTful، إدارة المصادقة (JWT)، والأمان (CSRF)، بالإضافة إلى منطق الأعمال للمنصة.",
+        tech_mysql_desc: "عملت MySQL كنظام إدارة قواعد بيانات علائقية لتخزين جميع معلومات النادي، المستخدمين، والفعاليات، مما يضمن سلامة البيانات وأدائها.",
+        architecture_security_title: "الهندسة المعمارية والأمان",
+        arch_api_title: "API RESTful مع Laravel",
+        arch_api_desc: "تم بناء الواجهة الخلفية حول واجهة برمجة تطبيقات RESTful قوية تم تطويرها باستخدام Laravel 11. تتيح هذه الهندسة المعمارية اتصالًا فعالًا بين واجهة React الأمامية وقاعدة البيانات، مما يسهل إدارة الطلبات والاستجابات بطريقة منظمة وعالية الأداء.",
+        arch_security_title: "أمان البيانات (JWT, CSRF)",
+        arch_security_desc: "الأمان هو أولوية. لقد قمنا بتطبيق آليات مصادقة تعتمد على رموز الويب JSON (JWT) لتأمين جلسات المستخدم ومنع الوصول غير المصرح به. بالإضافة إلى ذلك، تم وضع حماية ضد هجمات تزوير الطلبات عبر المواقع (CSRF) لضمان سلامة طلبات المستخدم.",
+        arch_db_title: "نمذجة قاعدة البيانات",
+        arch_db_desc: "تم تصميم قاعدة بيانات MySQL بعناية لضمان بنية بيانات محسنة ومتسقة. يتضمن ذلك إدارة المستخدمين، الأندية، الطلبات، الأحداث، والأدوار، مع علاقات واضحة لاسترجاع المعلومات ومعالجتها بكفاءة.",
+        my_role_title: "دوري ومساهماتي", 
+        my_role_summary: "بصفتي عضوًا رئيسيًا في الفريق، لعبت دورًا محوريًا في تصميم وتطوير منصة نوادي EMSI. امتدت مساهماتي من الواجهة الخلفية إلى تكامل الواجهة الأمامية، مرورًا بنمذجة قاعدة البيانات وتحديد المتطلبات الوظيفية.",
+        role1_title: "تطوير الواجهة الخلفية وواجهة برمجة التطبيقات", 
+        role1_desc: "كنت مسؤولاً بشكل مباشر عن تصميم وتنفيذ الواجهة الخلفية للتطبيق باستخدام Laravel 11. شمل ذلك إنشاء واجهة برمجة تطبيقات RESTful لإدارة جميع التفاعلات بين الخادم والعميل، والمصادقة (JWT) والأمان (CSRF)، مما يضمن قوة وأداء المنصة.", 
+        role2_title: "مهندس قاعدة البيانات", 
+        role2_desc: "قمت بنمذجة وإنشاء قاعدة بيانات MySQL، مع ضمان سلامتها وتناسقها. كان دوري أساسيًا في هيكلة بيانات النوادي، المستخدمين، طلبات الانضمام، والفعاليات، وبالتالي تحسين استرجاع المعلومات ومعالجتها.", 
+        role3_title: "ربط الواجهة الأمامية بالخلفية", 
+        role3_desc: "لقد ضمنت التواصل السلس بين واجهة React الأمامية وواجهة Laravel الخلفية، مع التأكد من نقل البيانات ومعالجتها بشكل صحيح. تضمن ذلك التعاون الوثيق مع فريق الواجهة الأمامية لدمج واجهات برمجة التطبيقات وضمان تجربة مستخدم متسقة.", 
+        role4_title: "تطوير وظائف الطالب", 
+        role4_desc: "قمت بتطوير وظائف رئيسية خاصة بدور الطالب، بما في ذلك صفحة البداية بعد تسجيل الدخول، وعمليات التسجيل وتسجيل الدخول. كان هدفي هو إنشاء واجهة بديهية وشاملة للطلاب، مما يسهل تفاعلهم مع النوادي.", 
+        role5_title: "تصميم مخططات UML",
+        role5_desc: "شاركت بنشاط في إعداد مخططات UML، ولا سيما مخطط حالات الاستخدام، لنمذجة المتطلبات الوظيفية وتفاعلات النظام. كانت هذه المساهمة أساسية لوضوح المشروع وهيكله.",
+        role6_title: "كتابة التقرير التقني",
+        role6_desc: "لقد ساهمت أيضًا في كتابة التقرير التقني الشامل للمشروع، وتوثيق المراحل المختلفة، الخيارات التكنولوجية، والحلول المطبقة. يلخص هذا التقرير جميع أعمالنا والدروس المستفادة.",
+        video_demo_title: "عرض فيديو", 
+        app_screenshots_title: "لقطات شاشة التطبيق",
+        app_screenshots_summary: "استكشف واجهة المستخدم لمنصة نوادي EMSI من خلال معرض لقطات الشاشة هذا. اكتشف لوحات التحكم المختلفة، ونماذج الإدارة، وطرق عرض الوظائف الرئيسية التي تعزز تجربة الطلاب والمسؤولين. انقر على صورة لعرضها بملء الشاشة والتنقل بينها.",
+        resources_title: "موارد المشروع", 
+        download_report: "تحميل التقرير", 
+        view_on_github: "المشاهدة على GitHub",
+
+        // New sections translations
+        team_presentation_title: "فريقنا الإبداعي",
+        team_presentation_intro: "اكتشف المواهب وراء منصة نوادي EMSI، فريق شغوف ومتعدد المواهب حول رؤية إلى حقيقة.",
+        member1_name: "آدم أمازيان",
+        member1_role: "مطور الواجهة الأمامية وخبير UI/UX", // Updated role
+        member1_desc: "متخصص في تطوير الواجهة الأمامية باستخدام React.js وتصميم واجهات المستخدم البديهية. ساهم في البنية العامة وتجربة المستخدم البصرية، بالتعاون مع إلياس للواجهة الأمامية.", // Updated description
+        member2_name: "إلياس أولميدي",
+        member2_role: "مطور الواجهة الأمامية ومهندس قواعد البيانات", // Updated role
+        member2_desc: "مسؤول عن نمذجة قاعدة بيانات MySQL وتعاون بشكل وثيق مع بلال في هيكلة قاعدة البيانات. كما ساهم في تطوير الواجهة الأمامية مع آدم.", // Updated description
+        member3_name: "بلال الحوضار",
+        member3_role: "قائد الواجهة الخلفية، مهندس قواعد البيانات ومطور دور الطالب", // Updated role
+        member3_desc: "كان دوري محوريًا في التطوير الكامل للواجهة الخلفية (API RESTful، أمان JWT/CSRF)، والربط بين الواجهة الأمامية والخلفية، وتطبيق جميع وظائف دور الطالب (صفحة البداية بعد تسجيل الدخول، التسجيل، تسجيل الدخول، إلخ). كما تعاونت مع إلياس في قاعدة البيانات.", // Updated description
+        member4_name: "أحمد نحري",
+        member4_role: "مطور الواجهة الأمامية (مسؤول النظام)", // Updated role
+        member4_desc: "متخصص في تطوير الواجهة الأمامية، عمل أحمد بشكل أساسي على واجهة إدارة النظام، مما ضمن الاستجابة وإدارة الوظائف الخاصة بهذا الدور.", // Updated description
+
+        existing_analysis_title: "تحليل الوضع الحالي ومكانة المشروع",
+        existing_analysis_intro: "قبل تصميم نوادي EMSI، كانت إدارة الجمعيات في EMSI تعتمد على طرق وأدوات مجزأة، مما حد من كفاءة ووضوح الأنشطة الطلابية.",
+        tool1_title: "نماذج جوجل وواتساب",
+        tool1_desc: "استخدمت لتقديم الطلبات والتواصل، لكن هذه الأدوات افتقرت إلى مركزية البيانات، وأتمتة العمليات، وأثارت مشاكل أمنية وتتبع.",
+        tool2_title: "تريلو، نوشن وجداول بيانات جوجل",
+        tool2_desc: "استخدمت لإدارة المهام، لكنها لم توفر إدارة منظمة متعددة المستخدمين بأدوار وأذونات محددة لنوادي الطلاب.",
+        our_positioning_title: "مكانتنا الفريدة",
+        our_positioning_desc: "تتميز نوادي EMSI بمجانيتها، ومركزية البيانات مع التحكم في الوصول القائم على الأدوار، والتكيف الوظيفي الدقيق مع بيئة EMSI (الطلبات، المقابلات، الموافقات، لوحات التحكم). تلبي المنصة مباشرة الاحتياجات المحددة لنوادي الطلاب، وتقدم حلاً متكاملاً وآمنًا.",
+
+        development_process_title: "عملية التطوير والمنهجية",
+        development_process_intro: "اتبع مشروعنا نهجًا منظمًا، معتمدًا منهجية صارمة لضمان نجاحه وتحقيق أهدافنا، على الرغم من التحديات التي واجهناها.",
+        methodology_title: "المنهجية المعتمدة",
+        methodology_desc: "اخترنا نهج دورة V، المتكيف مع مدة المشروع المحدودة (ثمانية أسابيع) والمتطلبات الأكاديمية. سمحت هذه الطريقة بتسلسل صارم للخطوات: تحليل الاحتياجات، التصميم، التطوير، الاختبار، والانتهاء.",
+        team_organization_title: "تنظيم الفريق",
+        team_organization_desc: "كان الفريق، المكون من أربعة أعضاء، متعدد المواهب (الواجهة الأمامية والخلفية). كان العمل تعاونيًا، مع توزيع مرن للمهام ومساعدة متبادلة مستمرة. استخدمنا Discord للاجتماعات المنتظمة و GitHub للتحكم في الإصدار والتعاون في الكود المصدري.",
+        challenges_lessons_title: "التحديات الرئيسية والدروس المستفادة",
+        challenges_lessons_desc: "قدم المشروع تحديات مثل المدة المحدودة (ثمانية أسابيع)، والتنسيق عن بعد، وإدارة تعارضات Git. علاوة على ذلك، تطلب التعلم الذاتي لـ React.js لعضوين من الفريق جهدًا شخصيًا كبيرًا، مما عزز قدرتنا على إتقان التقنيات الجديدة بسرعة.",
+        planning_phases_title: "تخطيط المشروع ومراحله",
+        planning_phases_desc: "تم تقسيم المشروع إلى خمس مراحل رئيسية: تحليل الاحتياجات، التصميم (نماذج Figma، نمذجة UML)، التطوير (Laravel، React.js)، التكامل والاختبار (واجهات برمجة تطبيقات RESTful، الأمان)، والانتهاء (التقرير، الوثائق). كان لكل مرحلة معالم أسبوعية للمراقبة الفعالة.",
+
+        challenges_solutions_title: "التحديات التي تم تجاوزها والحلول المقدمة",
+        challenge1_title: "إدارة تعقيد الأدوار",
+        challenge1_desc: "كان التحدي هو دمج ثلاثة ملفات تعريف مستخدم متميزة (طالب، مسؤول نادي، مسؤول نظام) مع أذونات ولوحات تحكم محددة. كان الحل هو تطبيق نظام مصادقة وتفويض قوي يعتمد على JWT، وإدارة الوصول والعروض ديناميكيًا وفقًا لدور المستخدم.",
+        challenge2_title: "تأمين البيانات الحساسة",
+        challenge2_desc: "كان ضمان أمان البيانات (المعلومات الشخصية للطلاب، تفاصيل النوادي) أمرًا بالغ الأهمية. لقد طبقنا إجراءات أمنية متقدمة مثل رموز الويب JSON (JWT) لمصادقة الجلسة وحماية CSRF لمنع هجمات تزوير الطلبات عبر المواقع.",
+        challenge3_title: "تحسين العمليات اليدوية",
+        challenge3_desc: "أدت الطرق التقليدية (نماذج جوجل، واتساب، إكسل) إلى إهدار كبير للوقت. قامت المنصة بأتمتة الطلبات، وإدارة الأحداث، والتواصل، مما أدى إلى تقليل العبء الإداري بشكل كبير وزيادة كفاءة النوادي.",
+        challenge4_title: "إمكانية الوصول وتجربة المستخدم",
+        challenge4_desc: "كان إنشاء واجهة بديهية ومتاحة عبر الأجهزة المختلفة تحديًا كبيرًا. بفضل React.js للواجهة الأمامية والتصميم المتجاوب، ضمنا تجربة مستخدم سلسة وحديثة، محسنة لكل من أجهزة الكمبيوتر المكتبية والأجهزة المحمولة.",
+
+        impact_results_title: "التأثير والنتائج",
+        impact1_title: "توفير كبير للوقت",
+        impact1_desc: "تقدير لخفض 40% في الوقت الإداري للأندية بفضل أتمتة المهام المتكررة مثل إدارة الطلبات وتخطيط الأحداث.",
+        impact2_title: "تحسين تنظيم الأندية",
+        impact2_desc: "مركزية جميع بيانات وعمليات الأندية في منصة واحدة، مما يعزز التنسيق الداخلي وإدارة الأعضاء.",
+        impact3_title: "زيادة وضوح الأنشطة",
+        impact3_desc: "زيادة مشاركة الطلاب بفضل تحسين وضوح الأحداث وفرص المشاركة، مما يعزز حياة جمعوية أكثر ديناميكية.",
+        impact4_title: "تجربة مستخدم محسّنة",
+        impact4_desc: "واجهة واضحة وحديثة وبديهية جعلت التنقل والتفاعل مع المنصة أكثر متعة وفعالية لجميع المستخدمين، سواء كانوا طلابًا أو إداريين.",
+
+        future_perspectives_title: "آفاق التطور",
+        perspective1_title: "نسخة الجوال الأصلية",
+        perspective1_desc: "تطوير تطبيقات جوال مخصصة (iOS و Android) لتقديم تجربة مستخدم مثالية وأقصى قدر من الوصول للطلاب والإداريين أثناء التنقل.",
+        perspective2_title: "وحدة الإحصائيات المتقدمة",
+        perspective2_desc: "دمج أدوات تحليل البيانات لتقديم إحصائيات مفصلة حول مشاركة الأندية، والمشاركة في الأحداث، واتجاهات الطلبات، مما يساعد في اتخاذ القرارات.",
+        perspective3_title: "الافتتاح لمؤسسات أخرى",
+        perspective3_desc: "تكييف المنصة بحيث يمكن نشرها واستخدامها من قبل مؤسسات التعليم العالي الأخرى، وبالتالي توسيع تأثيرها ونطاقها.",
+        perspective4_title: "استضافة مركزية وآمنة",
+        perspective4_desc: "تطبيق حل استضافة سحابي قوي وآمن لضمان توفر المنصة وأدائها وحماية بياناتها على نطاق واسع.",
+        open_gallery: "افتح المعرض",
+            page_title: "دراسة حالة: نوادي EMSI |بلال الحودار",
+        back_to_portfolio: "العودة إلى البورتفوليو", 
+        case_study_tag: "دراسة حالة", 
+        project_title: "منصة نوادي EMSI", 
+        project_subtitle: "تصميم وتطوير منصة ويب مركزية لإدارة نوادي الطلاب في المدرسة المغربية لعلوم المهندس.", 
+        context_title: "السياق", 
+        context_desc: "تعتمد إدارة النوادي حاليًا على أدوات متفرقة مثل نماذج جوجل لتقديم الطلبات، واتساب للتواصل، وإكسل للمتابعة. يؤدي هذا الأسلوب إلى إهدار كبير للوقت، ونقص في التنسيق والفعالية، وتقليل وضوح أنشطة النوادي.", 
+        problem_title: "الإشكالية", 
+        problem_desc: "في مواجهة هذه التحديات، كانت المشكلة الرئيسية هي تطوير منصة ويب مركزية، متجاوبة، آمنة، وقابلة للتطوير، قادرة على إدارة الطلبات، أدوار المستخدمين، والفعاليات بفعالية، مع تحسين التواصل والتنظيم داخل EMSI.", 
+        objectives_title: "الأهداف", 
+        objectives_desc: "كانت أهدافنا هي إنشاء حل قوي يوفر مصادقة متعددة الملفات الشخصية (طالب، مسؤول نادي، مسؤول نظام)، لمركزة بيانات النوادي، أتمتة طلبات الانضمام، تطوير وحدة أحداث شاملة، وتوفير لوحة تحكم مخصصة لكل مستخدم، مع تأمين البيانات (JWT، CSRF).", 
+        team_presentation_title: "فريقنا الإبداعي",
+        team_presentation_intro: "اكتشف المواهب وراء منصة نوادي EMSI، فريق شغوف ومتعدد المواهب حول رؤية إلى حقيقة.",
+        member2_name: "إلياس أولميدي",
+        member2_role: "مهندس الواجهة الخلفية وإدارة قواعد البيانات",
+        member2_desc: "مسؤول عن قوة الواجهة الخلفية باستخدام Laravel ونمذجة قاعدة بيانات MySQL. ضمن سلاسة تفاعلات الخادم.",
+        member3_name: "بلال الحودار",
+        member3_role: "قائد الواجهة الخلفية، مهندس قواعد البيانات ومطور الطالب",
+        member3_desc: "كان دوري محوريًا في تصميم واجهة برمجة التطبيقات RESTful، ونمذجة MySQL، وتطوير الميزات الرئيسية لملف الطالب (تسجيل الدخول، التسجيل، لوحة التحكم).",
+        member1_name: "آدم أمازيان",
+        member1_role: "مطور متكامل وخبير واجهة المستخدم/تجربة المستخدم",
+        member1_desc: "متخصص في تطوير الواجهة الأمامية باستخدام React.js وتصميم واجهات مستخدم بديهية. ساهم في البنية العامة والتجربة المرئية.",
+        member4_name: "أحمد نهري",
+        member4_role: "مطور الواجهة الأمامية وتكامل واجهة برمجة التطبيقات",
+        member4_desc: "خبير في تكامل واجهات برمجة تطبيقات Laravel مع React.js، ضمن اتساق البيانات واستجابة مكونات الواجهة الأمامية.",
+        conception_title: "التصميم والنمذجة",
+        conception_intro: "كانت مرحلة التصميم حاسمة لضمان قوة، نمطية، وقابلية توسع منصة نوادي EMSI. لقد استخدمنا أدوات نمذجة موحدة لتصور بنية النظام والتفاعلات بين مكوناته.",
+        conception_uc_title: "مخططات حالات الاستخدام (UML)",
+        conception_uc_desc: "ساعدت هذه المخططات على تحديد الميزات التي تقدمها المنصة بوضوح وتفاعلات مختلف الفاعلين (الطالب، مسؤول النادي، مسؤول النظام) مع النظام. لقد كانت بمثابة أساس لفهم المتطلبات الوظيفية ونطاق كل دور.",
+        conception_class_title: "مخططات الفئات (UML)",
+        conception_class_desc: "تم تصميم الهيكل الداخلي للتطبيق باستخدام مخططات الفئات. وقد أتاحت تمثيل الكيانات الرئيسية (المستخدمين، الأندية، الأحداث، الطلبات) وعلاقاتها، مما يضمن قاعدة بيانات متماسكة ومنطق أعمال منظم جيدًا.",
+        conception_sequence_title: "مخططات التسلسل (UML)",
+        conception_sequence_desc: "بالنسبة للسيناريوهات المعقدة مثل المصادقة متعددة الملفات الشخصية أو عملية التقديم، تم إنشاء مخططات تسلسل. وقد أوضحت التدفق الزمني للتفاعلات بين كائنات النظام، مما يضمن تنفيذًا منطقيًا لا تشوبه شائبة.",
+        conception_gantt_title: "مخطط جانت",
+        conception_gantt_desc: "تم استخدام مخطط جانت لتخطيط المشروع ومراقبته. وقد سمح بتصور مراحل التطوير المختلفة، والتبعيات بين المهام، والمواعيد النهائية، مما يضمن إدارة فعالة للمشروع والالتزام بالجداول الزمنية.",
+        app_screenshots_title: "لقطات شاشة التطبيق",
+        app_screenshots_summary: "استكشف واجهة المستخدم لمنصة نوادي EMSI من خلال معرض لقطات الشاشة هذا. اكتشف لوحات التحكم المختلفة، ونماذج الإدارة، وطرق عرض الوظائف الرئيسية التي تعزز تجربة الطلاب والمسؤولين. انقر على صورة لعرضها بملء الشاشة والتنقل بينها.",
+        resources_title: "موارد المشروع", 
+        download_report: "تحميل التقرير", 
+        view_on_github: "المشاهدة على GitHub"
+    }
+};
+       
+// --- INITIALIZATION ---
+        setupUI();
+        setupGallery();
+        setupCarousel();
+    
+        // --- FUNCTIONS ---
+
+        // 1. GALLERY / MODAL FUNCTIONS
+        function setupGallery() {
+            const allClickableImages = document.querySelectorAll('#conception-diagrams-gallery img, .carousel-slide img');
+            
+            galleryImages = []; // Clear previous images
+            allClickableImages.forEach(img => {
+                if (!galleryImages.some(item => item.src === img.src)) {
+                    galleryImages.push({ 
+                        src: img.src, 
+                        alt: img.alt, 
+                        caption: img.getAttribute('data-caption') 
+                    });
+                }
+            });
+
+            document.querySelectorAll('img[data-caption]').forEach(img => {
+                 img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const masterIndex = galleryImages.findIndex(item => item.src === e.target.src);
+                    if (masterIndex !== -1) openModal(masterIndex);
+                });
+            });
+
+            modalCloseBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            modalImg.addEventListener('click', (e) => {
+                e.stopPropagation();
+                modalImg.classList.toggle('is-zoomed');
+            });
+            modalPrevBtn.addEventListener('click', () => plusSlides(-1));
+            modalNextBtn.addEventListener('click', () => plusSlides(1));
+            openGalleryBtn?.addEventListener('click', () => {
+                 const firstCarouselImageSrc = document.querySelector('.carousel-slide:not(.clone) img')?.src;
+                 const firstImageIndex = galleryImages.findIndex(item => item.src === firstCarouselImageSrc);
+                 openModal(firstImageIndex !== -1 ? firstImageIndex : 0);
+            });
+        }
+
+        function openModal(index) {
+            slideIndex = index;
+            modal.classList.add('is-active');
+            showImageInModal(slideIndex);
+        }
+
+        function closeModal() {
+            modalImg.classList.remove('is-zoomed');
+            modal.classList.remove('is-active');
+        }
+
+        function showImageInModal(index) {
+            if (!galleryImages[index]) return;
+            modalImg.classList.remove('is-visible');
+            setTimeout(() => {
+                modalImg.src = galleryImages[index].src;
+                modalCaption.innerHTML = galleryImages[index].caption;
+                modalImg.classList.add('is-visible');
+            }, 150);
+        }
+
+        function plusSlides(n) {
+            slideIndex = (slideIndex + n + galleryImages.length) % galleryImages.length;
+            modalImg.classList.remove('is-zoomed');
+            showImageInModal(slideIndex);
+        }
+
+        // 2. CAROUSEL (X-SLIDER) FUNCTIONS
+        function setupCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const track = document.querySelector('.carousel-track');
+            if (!container || !track) return;
+
+            const nextButton = document.querySelector('.carousel-button.next');
+            const prevButton = document.querySelector('.carousel-button.prev');
+            
+            let originalSlides = Array.from(track.children);
+            if (originalSlides.length === 0) return;
+
+            let isDragging = false,
+                startPos = 0,
+                currentTranslate = 0,
+                prevTranslate = 0,
+                animationID,
+                currentIndex,
+                autoplayInterval = null;
+
+            function initializeCarousel() {
+                stopAutoplay();
+                track.innerHTML = originalSlides.map(s => s.outerHTML).join('');
+                const slides = Array.from(track.children);
+                const slideWidth = slides[0].getBoundingClientRect().width;
+                
+                const clonesCount = Math.min(slides.length, 5);
+                const clonesStart = slides.slice(-clonesCount).map(s => s.cloneNode(true));
+                const clonesEnd = slides.slice(0, clonesCount).map(s => s.cloneNode(true));
+                
+                clonesStart.forEach(c => { c.classList.add('clone'); track.prepend(c); });
+                clonesEnd.forEach(c => { c.classList.add('clone'); track.append(c); });
+
+                currentIndex = clonesStart.length;
+
+                function setPosition() {
+                    currentTranslate = -currentIndex * slideWidth;
+                    track.style.transform = `translateX(${currentTranslate}px)`;
+                }
+                
+                function shiftSlide(direction) {
+                    track.style.transition = 'transform 0.4s ease-out';
+                    currentIndex += direction;
+                    setPosition();
+                }
+
+                function handleTransitionEnd() {
+                    if (currentIndex <= 0) {
+                        track.style.transition = 'none';
+                        currentIndex = slides.length;
+                        setPosition();
+                    }
+                    if (currentIndex >= slides.length + clonesStart.length) {
+                        track.style.transition = 'none';
+                        currentIndex = clonesStart.length;
+                        setPosition();
+                    }
+                }
+                
+                function dragStart(e) {
+                    stopAutoplay();
+                    isDragging = true;
+                    startPos = getPositionX(e);
+                    prevTranslate = -currentIndex * slideWidth;
+                    track.style.transition = 'none';
+                    animationID = requestAnimationFrame(animation);
+                    container.style.cursor = 'grabbing';
+                }
+
+                function drag(e) {
+                    if (isDragging) {
+                        const currentPosition = getPositionX(e);
+                        currentTranslate = prevTranslate + currentPosition - startPos;
+                    }
+                }
+
+                function dragEnd() {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    cancelAnimationFrame(animationID);
+                    container.style.cursor = 'grab';
+                    
+                    const movedBy = currentTranslate - prevTranslate;
+                    const moveDirection = isRTL ? 1 : -1;
+                    if (movedBy < -50) currentIndex += moveDirection;
+                    if (movedBy > 50) currentIndex -= moveDirection;
+                    
+                    track.style.transition = 'transform 0.4s ease-out';
+                    setPosition();
+                    startAutoplay();
+                }
+
+                function animation() {
+                    track.style.transform = `translateX(${currentTranslate}px)`;
+                    if (isDragging) requestAnimationFrame(animation);
+                }
+                
+                function getPositionX(e) {
+                    return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                }
+
+                function startAutoplay() {
+                    stopAutoplay();
+                    autoplayInterval = setInterval(() => {
+                        shiftSlide(isRTL ? -1 : 1);
+                    }, 2000);
+                }
+
+                function stopAutoplay() {
+                    clearInterval(autoplayInterval);
+                }
+
+                // Event Listeners
+                nextButton.onclick = () => shiftSlide(isRTL ? -1 : 1);
+                prevButton.onclick = () => shiftSlide(isRTL ? 1 : -1);
+                track.addEventListener('transitionend', handleTransitionEnd);
+                container.addEventListener('mousedown', dragStart);
+                container.addEventListener('mouseup', dragEnd);
+                container.addEventListener('mouseleave', dragEnd);
+                container.addEventListener('mousemove', drag);
+                container.addEventListener('touchstart', dragStart, { passive: true });
+                container.addEventListener('touchend', dragEnd);
+                container.addEventListener('touchmove', drag, { passive: true });
+                container.addEventListener('mouseenter', stopAutoplay);
+                container.addEventListener('mouseleave', startAutoplay);
+                
+                setPosition();
+                startAutoplay();
+            }
+            
+            initializeCarousel();
+        }
+
+        // 3. GENERAL UI SETUP
+        function setupUI() {
+            const root = document.documentElement;
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            if (!isTouchDevice && window.gsap) {
+                window.addEventListener('mousemove', e => {
+                    gsap.to(root, {
+                        '--mouse-x': `${(e.clientX / window.innerWidth * 100)}%`,
+                        '--mouse-y': `${(e.clientY / window.innerHeight * 100)}%`,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+            }
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('is-visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+            
+            const getStoredTheme = () => localStorage.getItem('theme') || 'dark';
+            const applyTheme = (theme) => {
+                document.documentElement.className = theme === 'light' ? 'light-theme' : '';
+                const themeIcon = document.getElementById('theme-icon');
+                if(themeIcon) themeIcon.className = `fas fa-${theme === 'light' ? 'moon' : 'sun'}`;
+                localStorage.setItem('theme', theme);
+            };
+
+            const setLanguage = (lang) => {
+                const wasRTL = isRTL;
+                isRTL = lang === 'ar';
+                document.documentElement.lang = lang;
+                document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+                document.querySelectorAll('[data-translate]').forEach(el => {
+                    const key = el.getAttribute('data-translate');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    } else if (translations['fr'] && translations['fr'][key]) {
+                        el.innerHTML = translations['fr'][key];
+                    }
+                });
+                document.querySelectorAll('.lang-option').forEach(btn => {
+                    btn.classList.toggle('font-bold', btn.getAttribute('data-lang') === lang);
+                    btn.classList.toggle('text-[var(--primary-color)]', btn.getAttribute('data-lang') === lang);
+                });
+                localStorage.setItem('language', lang);
+                
+                if (wasRTL !== isRTL) {
+                    setupCarousel();
+                }
+            };
+            
+            document.getElementById('theme-toggle')?.addEventListener('click', () => applyTheme(getStoredTheme() === 'dark' ? 'light' : 'dark'));
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.addEventListener('click', (e) => setLanguage(e.target.getAttribute('data-lang')));
+            });
+
+            applyTheme(getStoredTheme());
+            setLanguage(localStorage.getItem('language') || 'fr');
+
+            window.addEventListener('load', () => {
+                if(preloader) {
+                    preloader.classList.add('fade-out');
+                }
+                body.style.transition = 'opacity 0.5s ease-in-out';
+                body.style.opacity = '1';
+            });
+            setupCustomCursor();
+        }
+        function setupCustomCursor() {
+            const cursor = document.querySelector('.custom-cursor');
+            if (!cursor) return;
+    
+            // Select all interactive elements
+            const hoverElements = document.querySelectorAll(
+                'a, button, .carousel-container, .modal-close, .modal-nav-button, img[data-caption]'
+            );
+    
+            // Move cursor with mouse
+            window.addEventListener('mousemove', e => {
+                gsap.to(cursor, {
+                    duration: 0.2,
+                    x: e.clientX,
+                    y: e.clientY,
+                    ease: 'power2.out'
+                });
+            });
+    
+            // Add hover effect
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+        }
+    });
+            // 4. CUSTOM CURSOR
+
+    </script>
+</body>
+</html>
